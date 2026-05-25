@@ -96,7 +96,7 @@ const ContactUs = () => {
     <div className="pt-20">
       <SEO
         title="Contact Us"
-        description="Get in touch with PANTHM AI Labs. Contact us for web development, mobile app development, AI solutions, and more. Located in Pune, India. Call +918380862789 or email info@panthm.com"
+        description="Get in touch with PANTHM AI Labs. Contact us for web development, mobile app development, AI solutions, and more. Located in Pune, India. Call +917558646366 or email info@panthm.com"
         keywords="contact PANTHM AI Labs, software development company contact, web development company Pune, app development contact, AI solutions contact"
         structuredData={structuredData}
       />

@@ -92,7 +92,7 @@ const Home = () => {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+918380862789",
+      "telephone": "+917558646366",
       "contactType": "customer service",
       "email": "info@panthm.com"
     },
