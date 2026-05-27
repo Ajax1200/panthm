@@ -7,7 +7,7 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": "(?i).*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner).*"
+          "value": ".*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner|GPTBot|ChatGPT|OpenAI|Anthropic|Claude|Perplexity|Cohere|Google-Extended|Vertex|AI-Overviews|SearchGPT|Search-Partner).*"
         }
       ],
       "destination": "/llms.txt"
@@ -18,7 +18,7 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": "(?i).*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner).*"
+          "value": ".*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner|GPTBot|ChatGPT|OpenAI|Anthropic|Claude|Perplexity|Cohere|Google-Extended|Vertex|AI-Overviews|SearchGPT|Search-Partner).*"
         }
       ],
       "destination": "/PCA_Whitepaper.md"
