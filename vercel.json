@@ -13,7 +13,7 @@
       "destination": "/llms.txt"
     },
     {
-      "source": "/about",
+      "source": "/about-us",
       "has": [
         {
           "type": "header",
@@ -22,6 +22,10 @@
         }
       ],
       "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/about-us",
+      "destination": "/index.html"
     },
     {
       "source": "/services",
@@ -35,6 +39,10 @@
       "destination": "/PCA_Whitepaper.md"
     },
     {
+      "source": "/services",
+      "destination": "/index.html"
+    },
+    {
       "source": "/contact",
       "has": [
         {
@@ -44,6 +52,10 @@
         }
       ],
       "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/contact",
+      "destination": "/index.html"
     },
     {
       "source": "/portfolio",
@@ -57,6 +69,10 @@
       "destination": "/PCA_Whitepaper.md"
     },
     {
+      "source": "/portfolio",
+      "destination": "/index.html"
+    },
+    {
       "source": "/blogs",
       "has": [
         {
@@ -66,6 +82,10 @@
         }
       ],
       "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/blogs",
+      "destination": "/index.html"
     },
     {
       "source": "/blogs/:slug",
@@ -79,6 +99,10 @@
       "destination": "/PCA_Whitepaper.md"
     },
     {
+      "source": "/blogs/:slug",
+      "destination": "/index.html"
+    },
+    {
       "source": "/solutions",
       "has": [
         {
@@ -88,6 +112,10 @@
         }
       ],
       "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/solutions",
+      "destination": "/index.html"
     },
     {
       "source": "/solutions/:service/:industry/:location",
@@ -101,6 +129,10 @@
       "destination": "/PCA_Whitepaper.md"
     },
     {
+      "source": "/solutions/:service/:industry/:location",
+      "destination": "/index.html"
+    },
+    {
       "source": "/web-development",
       "has": [
         {
@@ -110,6 +142,10 @@
         }
       ],
       "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/web-development",
+      "destination": "/index.html"
     },
     {
       "source": "/app-development",
@@ -123,6 +159,10 @@
       "destination": "/PCA_Whitepaper.md"
     },
     {
+      "source": "/app-development",
+      "destination": "/index.html"
+    },
+    {
       "source": "/ai-calling-agency",
       "has": [
         {
@@ -132,6 +172,10 @@
         }
       ],
       "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/ai-calling-agency",
+      "destination": "/index.html"
     },
     {
       "source": "/solutions/(.*)",
