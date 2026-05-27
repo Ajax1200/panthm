@@ -30,6 +30,7 @@ const ContactUs = lazy(() => import("./pages/ContactUs"));
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const Thankyou = lazy(() => import("./pages/Thankyou"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
+const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
 
 AOS.init({
   once: true,
@@ -47,6 +48,16 @@ function App() {
           <ScrollToTop />
           <Toaster position="top-center" />
           <Routes>
+            <Route
+              path="/solutions/:service/:industry/:location"
+              element={
+                <>
+                  <Header />
+                  <IntersectionLanding />
+                  <Footer />
+                </>
+              }
+            />
             <Route path="*" element={<Navigate to="/" />} />
             <Route
               path="/"

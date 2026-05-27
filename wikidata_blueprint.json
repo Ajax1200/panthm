@@ -1,0 +1,80 @@
+{
+  "entity": {
+    "label": {
+      "en": "PANTHM AI Labs",
+      "mr": "पँथम एआय लॅब्स"
+    },
+    "description": {
+      "en": "Technology and artificial intelligence development agency specializing in autonomous systems, custom software, and workflow automation",
+      "mr": "स्वायत्त प्रणाली, सानुकूल सॉफ्टवेअर आणि वर्कफ्लो ऑटोमेशनमध्ये तज्ञ असलेली तंत्रज्ञान आणि कृत्रिम बुद्धिमत्ता विकास संस्था"
+    },
+    "aliases": [
+      "PANTHM AI",
+      "PANTHM"
+    ],
+    "statements": {
+      "P31": [
+        {
+          "value": "Q163740",
+          "label": "technology company"
+        },
+        {
+          "value": "Q11487",
+          "label": "business enterprise"
+        }
+      ],
+      "P571": [
+        {
+          "value": "2024",
+          "label": "inception"
+        }
+      ],
+      "P17": [
+        {
+          "value": "Q668",
+          "label": "India"
+        }
+      ],
+      "P276": [
+        {
+          "value": "Q1730",
+          "label": "Pune"
+        }
+      ],
+      "P159": [
+        {
+          "value": "Q1730",
+          "label": "Pune",
+          "qualifiers": {
+            "P6375": "Icon Tower Office No. 702, Sr 114/5, 115/1, 114/6/3, Baner, Pune, Maharashtra 411045"
+          }
+        }
+      ],
+      "P625": [
+        {
+          "latitude": 18.55823,
+          "longitude": 73.78438,
+          "precision": 0.0001,
+          "globe": "http://www.wikidata.org/entity/Q2"
+        }
+      ],
+      "P856": [
+        {
+          "value": "https://panthm.com"
+        }
+      ],
+      "P3500": [
+        {
+          "value": "110580934",
+          "label": "LinkedIn Company ID"
+        }
+      ],
+      "P1997": [
+        {
+          "value": "https://www.linkedin.com/company/110580934/",
+          "label": "LinkedIn URL"
+        }
+      ]
+    }
+  }
+}
