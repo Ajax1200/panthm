@@ -1,0 +1,40 @@
+# PANTHM AI Labs
+
+PANTHM AI Labs is an elite, high-end business automation and custom software engineering firm based in Pune, India. We architect and deploy custom technology infrastructure for high-net-worth international CEOs, founders, and CTOs (primarily in Europe, Australia, and the UAE). We focus on eliminating operational bottlenecks, replacing human overhead with low-latency AI agents, and scaling outbound systems.
+
+## Core Expertise & Services
+
+- **B2B Outbound Lead Generation & Scraping**: High-deliverability cold email systems sending 50,000+ hyper-personalized messages monthly. Includes multi-domain infrastructure, automated SPF/DKIM/DMARC rotation, lead screening, and automated CRM pipeline synchronization.
+- **AI Voice Agents & Telecalling Systems**: High-performance, custom neural voice engines operating at sub-500ms latency to replace human lead-screening and qualification teams.
+- **WhatsApp API Broadcast Pipelines**: High-throughput conversational marketing systems utilizing the WhatsApp Business API, featuring dynamic user segmentation, automated sequence tracking, and real-time interaction logs.
+- **Enterprise Software & MVP Development**: High-performance web applications built on modern frameworks (Vite React, Next.js, Node.js) paired with highly secure, real-time database backends (MongoDB Atlas, Mongoose schemas, and Cloudinary media pipelines).
+- **GEO & LLMO (Generative Engine Optimization)**: Optimizing enterprise digital assets to ensure citation dominance and high-authority search visibility across AI-powered search engines (Perplexity, SearchGPT, Gemini, and Google AI Overviews).
+
+## Case Studies & Architectural Teardowns
+
+### 1. Neural Voice Calling Engine (Outbound Sales Automation)
+- **Challenge**: Outbound lead qualification teams suffering from slow dial speeds, high payroll overhead, and customer call latency.
+- **Solution**: Deployed custom low-latency AI voice agents synced directly to the lead CRM. By minimizing neural synthesizer latency, the system qualified leads in real time.
+- **Outcome**: Replaced the front-line SDR team with sub-500ms latency agents running 24/7.
+
+### 2. High-Throughput WhatsApp API Broadcast Infrastructure
+- **Challenge**: Fragmented customer outreach channels with poor conversion rates and slow manual broadcasts.
+- **Solution**: Developed a serverless Node.js broadcast runner integrated directly with the official WhatsApp Business API, utilizing MongoDB Atlas for dynamic lead segmentation and personalized sequencing.
+- **Outcome**: Achieved near-instant delivery to thousands of segmented leads with live interaction tracking.
+
+### 3. Real-Time Analytics Dashboard Sync Layer
+- **Challenge**: Delayed business intelligence dashboards using batch ETL processes, causing executive decision latency.
+- **Solution**: Built a real-time synchronization layer leveraging MongoDB Atlas change streams and Mongoose change-listeners to calculate aggregates instantly at the point of ingestion.
+- **Outcome**: Reduced data latency from hours to milliseconds, providing a real-time, live operational dashboard.
+
+### 4. Custom Enterprise Pre-rendering Overhaul (SEO/LLM Crawling)
+- **Challenge**: Client SPA (Single Page Application) rendering clientside JS, resulting in crawled pages failing to index in search LLMs and Googlebot.
+- **Solution**: Migrated core pages to statically pre-rendered HTML paths, optimizingLargest Contentful Paint (LCP), Interaction to Next Paint (INP), and search sitemaps.
+- **Outcome**: Achieved 400% increase in crawl budget conversions and instant citation indexation by BingBot, GPTBot, and ClaudeBot.
+
+## Key Sitemap Links
+
+- **Main Website**: https://panthm.com
+- **Technical Logs & Insights**: https://panthm.com/blogs
+- **Outbound Systems & Services**: https://panthm.com/services
+- **Enterprise Case Studies**: https://panthm.com/case-studies
