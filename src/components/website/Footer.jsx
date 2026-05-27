@@ -34,7 +34,7 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <div className="flex gap-4">
                 {[
-                  { Icon: Linkedin, link: "https://www.linkedin.com/company/110580934/" },
+                  { Icon: Linkedin, link: "https://www.linkedin.com/company/110580934/admin/dashboard/" },
                   { Icon: Instagram, link: "/" },
                   { Icon: Facebook, link: "/" },
                   { Icon: Twitter, link: "/" }
@@ -51,12 +51,12 @@ const Footer = () => {
                 ))}
               </div>
               <a
-                href="https://www.linkedin.com/company/110580934/"
+                href="https://www.linkedin.com/company/110580934/admin/dashboard/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-slate-500 hover:text-primary transition-colors break-all block max-w-[240px]"
               >
-                linkedin.com/company/110580934
+                linkedin.com/company/110580934/admin/dashboard
               </a>
             </div>
           </div>
