@@ -9,33 +9,23 @@ const LandingFooter = () => {
         <p className="text-slate-400 text-sm">
           Copyright &copy; {new Date().getFullYear()} PANTHM AI Labs. All rights reserved.
         </p>
-        <div className="flex flex-col items-center md:items-end gap-2">
-          <div className="flex gap-6">
-            {[
-              { icon: Linkedin, link: "https://www.linkedin.com/company/110580934/" },
-              { icon: Instagram, link: "/" },
-              { icon: Facebook, link: "/" },
-              { icon: Twitter, link: "/" },
-            ].map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                target={item.link.startsWith("http") ? "_blank" : "_self"}
-                rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="text-slate-400 hover:text-primary transition-colors"
-              >
-                <item.icon size={20} />
-              </a>
-            ))}
-          </div>
-          <a
-            href="https://www.linkedin.com/company/110580934/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-slate-500 hover:text-primary transition-colors break-all"
-          >
-            linkedin.com/company/110580934
-          </a>
+        <div className="flex gap-6">
+          {[
+            { icon: Linkedin, link: "https://www.linkedin.com/company/110580934/" },
+            { icon: Instagram, link: "/" },
+            { icon: Facebook, link: "/" },
+            { icon: Twitter, link: "/" },
+          ].map((item, index) => (
+            <a
+              key={index}
+              href={item.link}
+              target={item.link.startsWith("http") ? "_blank" : "_self"}
+              rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="text-slate-400 hover:text-primary transition-colors"
+            >
+              <item.icon size={20} />
+            </a>
+          ))}
         </div>
       </div>
     </footer>
