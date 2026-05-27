@@ -45,7 +45,7 @@ const Thankyou = () => {
           <div className="flex flex-col items-center md:items-end gap-2">
             <div className="flex gap-6">
               {[
-                { icon: Linkedin, link: "https://www.linkedin.com/company/110580934/admin/dashboard/" },
+                { icon: Linkedin, link: "https://www.linkedin.com/company/110580934/" },
                 { icon: Instagram, link: "/" },
                 { icon: Facebook, link: "/" },
                 { icon: Twitter, link: "/" },
@@ -62,12 +62,12 @@ const Thankyou = () => {
               ))}
             </div>
             <a
-              href="https://www.linkedin.com/company/110580934/admin/dashboard/"
+              href="https://www.linkedin.com/company/110580934/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-slate-500 hover:text-primary transition-colors break-all"
             >
-              linkedin.com/company/110580934/admin/dashboard
+              linkedin.com/company/110580934
             </a>
           </div>
         </div>
