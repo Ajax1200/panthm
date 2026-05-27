@@ -1,8 +1,8 @@
 {
   "cleanUrls": true,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/",
+      "src": "^/$",
       "has": [
         {
           "type": "header",
@@ -10,10 +10,10 @@
           "value": ".*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner|GPTBot|ChatGPT|OpenAI|Anthropic|Claude|Perplexity|Cohere|Google-Extended|Vertex|AI-Overviews|SearchGPT|Search-Partner).*"
         }
       ],
-      "destination": "/llms.txt"
+      "dest": "/llms.txt"
     },
     {
-      "source": "/(about|services|contact|portfolio|blogs|solutions|blogs/.*|web-development|app-development|ai-calling-agency)",
+      "src": "^/(about|services|contact|portfolio|blogs|solutions|blogs/.*|web-development|app-development|ai-calling-agency)$",
       "has": [
         {
           "type": "header",
@@ -21,11 +21,9 @@
           "value": ".*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner|GPTBot|ChatGPT|OpenAI|Anthropic|Claude|Perplexity|Cohere|Google-Extended|Vertex|AI-Overviews|SearchGPT|Search-Partner).*"
         }
       ],
-      "destination": "/PCA_Whitepaper.md"
+      "dest": "/PCA_Whitepaper.md"
     },
-    {
-      "source": "/((?!static/|favicon.ico|logo.png|manifest.json|robots.txt|sitemap.xml|.*\\.txt|.*\\.md).*).*",
-      "destination": "/index.html"
-    }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
