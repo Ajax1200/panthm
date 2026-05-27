@@ -20,5 +20,3 @@ Allow: /web-development
 Allow: /app-development
 Allow: /ai-calling-agency
 
-# IndexNow
-IndexNow: 09psueD8FVYiUdiro1QbcMvJZ2acByGn
