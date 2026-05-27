@@ -11,18 +11,20 @@ const LandingFooter = () => {
         </p>
         <div className="flex gap-6">
           {[
-            { icon: Linkedin, link: "/" },
+            { icon: Linkedin, link: "https://www.linkedin.com/company/110580934/" },
             { icon: Instagram, link: "/" },
             { icon: Facebook, link: "/" },
             { icon: Twitter, link: "/" },
           ].map((item, index) => (
-            <Link
+            <a
               key={index}
-              to={item.link}
+              href={item.link}
+              target={item.link.startsWith("http") ? "_blank" : "_self"}
+              rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
               className="text-slate-400 hover:text-primary transition-colors"
             >
               <item.icon size={20} />
-            </Link>
+            </a>
           ))}
         </div>
       </div>

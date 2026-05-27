@@ -32,13 +32,20 @@ const Footer = () => {
               Blockchain, and immersive design.
             </p>
             <div className="flex gap-4">
-              {[Linkedin, Instagram, Facebook, Twitter].map((Icon, i) => (
+              {[
+                { Icon: Linkedin, link: "https://www.linkedin.com/company/110580934/" },
+                { Icon: Instagram, link: "/" },
+                { Icon: Facebook, link: "/" },
+                { Icon: Twitter, link: "/" }
+              ].map((item, i) => (
                 <a
                   key={i}
-                  href="/"
+                  href={item.link}
+                  target={item.link.startsWith("http") ? "_blank" : "_self"}
+                  rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
                 >
-                  <Icon size={18} />
+                  <item.Icon size={18} />
                 </a>
               ))}
             </div>
