@@ -1,0 +1,31 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner).*"
+        }
+      ],
+      "destination": "/llms.txt"
+    },
+    {
+      "source": "/(about|services|contact|portfolio|blogs|solutions|blogs/.*|web-development|app-development|ai-calling-agency)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner).*"
+        }
+      ],
+      "destination": "/PCA_Whitepaper.md"
+    },
+    {
+      "source": "/((?!static/|favicon.ico|logo.png|manifest.json|robots.txt|sitemap.xml|.*\\.txt|.*\\.md).*).*",
+      "destination": "/index.html"
+    }
+  ]
+}
