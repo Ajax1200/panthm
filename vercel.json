@@ -134,11 +134,11 @@
       "destination": "/PCA_Whitepaper.md"
     },
     {
-      "source": "/solutions/:service/:industry/:location",
+      "source": "/solutions/(.*)",
       "destination": "/index.html"
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
