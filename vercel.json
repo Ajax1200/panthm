@@ -25,7 +25,7 @@
     },
     {
       "source": "/about-us",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/services",
@@ -40,7 +40,7 @@
     },
     {
       "source": "/services",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/contact",
@@ -55,7 +55,7 @@
     },
     {
       "source": "/contact",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/portfolio",
@@ -70,7 +70,7 @@
     },
     {
       "source": "/portfolio",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/blogs",
@@ -85,7 +85,7 @@
     },
     {
       "source": "/blogs",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/blogs/:slug",
@@ -100,7 +100,7 @@
     },
     {
       "source": "/blogs/:slug",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/solutions",
@@ -115,7 +115,7 @@
     },
     {
       "source": "/solutions",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/solutions/:service/:industry/:location",
@@ -130,7 +130,7 @@
     },
     {
       "source": "/solutions/:service/:industry/:location",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/web-development",
@@ -145,7 +145,7 @@
     },
     {
       "source": "/web-development",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/app-development",
@@ -160,7 +160,7 @@
     },
     {
       "source": "/app-development",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/ai-calling-agency",
@@ -175,15 +175,15 @@
     },
     {
       "source": "/ai-calling-agency",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/solutions/(.*)",
-      "destination": "/index.html"
+      "destination": "/index"
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/index"
     }
   ]
 }
