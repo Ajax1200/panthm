@@ -20,4 +20,4 @@ Allow: /web-development
 Allow: /app-development
 Allow: /ai-calling-agency
 
-IndexNow: A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6
+IndexNow: https://panthm.com/A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6.txt

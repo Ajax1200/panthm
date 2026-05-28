@@ -58,7 +58,6 @@ function App() {
                 </>
               }
             />
-            <Route path="*" element={<Navigate to="/" />} />
             <Route
               path="/"
               element={
@@ -172,6 +171,7 @@ function App() {
                 </>
               }
             />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
           <WhatsAppWidget />
         </SpinnerContextProvider>
