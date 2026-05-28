@@ -148,8 +148,8 @@ function cleanOldTempFiles() {
   }
 }
 
-// Robust wrapper to handle Gemini API rate limit (429) errors with automatic cool-down retries
-async function generateContentWithRetry(model, prompt, maxRetries = 3) {
+// Robust wrapper to handle Gemini API rate limit (429) and temporary service (503) errors with automatic cool-down retries
+async function generateContentWithRetry(model, prompt, maxRetries = 6) {
   let attempt = 0;
   while (attempt < maxRetries) {
     try {
@@ -161,7 +161,8 @@ async function generateContentWithRetry(model, prompt, maxRetries = 3) {
       const is503 = errMsg.includes("503") || errMsg.toLowerCase().includes("high demand") || errMsg.toLowerCase().includes("service unavailable") || errMsg.toLowerCase().includes("overloaded") || err.status === 503;
       
       if ((is429 || is503) && attempt < maxRetries) {
-        let delayMs = is503 ? 10000 : 35000;
+        // Increase delay exponentially on subsequent attempts to allow backend relief
+        let delayMs = is503 ? (attempt * 15000) : 35000;
         if (is429) {
           const match = errMsg.match(/retry in ([0-9.]+)(s|ms)/i);
           if (match) {
@@ -169,7 +170,7 @@ async function generateContentWithRetry(model, prompt, maxRetries = 3) {
             const unit = match[2].toLowerCase();
             delayMs = unit === "s" ? val * 1000 : val;
           }
-          delayMs += 3000; // safety buffer
+          delayMs += 5000; // safety buffer
         }
         logMsg(`[Gemini API] Error hit (${is503 ? '503 Service Unavailable / High Demand' : '429 Rate Limit'}). Retrying in ${(delayMs / 1000).toFixed(1)}s (Attempt ${attempt}/${maxRetries})...`);
         await new Promise(resolve => setTimeout(resolve, delayMs));
@@ -492,7 +493,7 @@ ${linksContext || 'No existing articles.'}
 8. **Structured Q&A**: Include an FAQ section at the end of the post formatted with HTML H3 headings for questions and paragraphs for answers. Also output these isolated Q&As into the separate JSON 'faq' structure.
 9. **Clean HTML Format**: The content MUST be structured HTML using h2, h3, p, strong, and ul/li elements. No markdown.`;
 
-    const result = await generateContentWithRetry(model, prompt);
+    const result = await generateContentWithRetry(model, prompt, 8);
     const blogData = JSON.parse(result.response.text());
     logMsg(`Gemini generated article titled: "${blogData.title}"`);
 
