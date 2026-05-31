@@ -4,18 +4,19 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <url><loc>https://panthm.com/</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://panthm.com/about-us</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/portfolio</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs</loc><lastmod>2026-05-30</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/contact</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://panthm.com/web-development</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/app-development</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/ai-development</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/whatsapp-automation</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/ai-calling</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://panthm.com/about-us</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/portfolio</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs</loc><lastmod>2026-05-31</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/contact</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://panthm.com/web-development</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/app-development</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/ai-development</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/whatsapp-automation</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/ai-calling</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
+  <url><loc>https://panthm.com/blogs/custom-voice-ai-platforms-vs-saas-telecalling-automation-roi-generative-search</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/saas-mvp-database-generative-ai-citation-mongodb-atlas-serverless-geo</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/custom-whatsapp-conversational-ai-generative-search-roi</loc><lastmod>2026-05-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/architecting-ai-first-visuals-spa-ssr-lcp-inp-generative-search-citation-dominance</loc><lastmod>2026-05-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
