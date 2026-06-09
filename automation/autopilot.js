@@ -251,13 +251,18 @@ async function runAutopilot() {
   acquireLock();
   cleanOldTempFiles();
 
-  // If running in production (e.g. GitHub Actions), introduce a random delay between 0 and 12 hours (43,200,000 ms) 
+  // Record the trigger date NOW (before the delay) so the duplicate check always
+  // compares against the correct UTC date, even if the delay pushes us past midnight.
+  const scheduledDateStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD UTC
+
+  // If running in production (e.g. GitHub Actions), introduce a random delay between 0 and 4 hours
   // to scatter blog posting times dynamically so it never posts at the exact same hour every day.
+  // NOTE: Capped at 4 hours (was 12) to stay safely within GitHub Actions' 6-hour job timeout.
   const isCI = process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true';
   if (isCI) {
-    const maxDelayMs = 12 * 60 * 60 * 1000; // 12 hours max
+    const maxDelayMs = 4 * 60 * 60 * 1000; // 4 hours max (safe within 6-hr GH Actions limit)
     const randomDelayMs = Math.floor(Math.random() * maxDelayMs);
-    logMsg(`[Autopilot Scheduler] Running in CI environment. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes...`);
+    logMsg(`[Autopilot Scheduler] Running in CI environment. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes (max 240 min)...`);
     await new Promise(resolve => setTimeout(resolve, randomDelayMs));
   }
 
@@ -299,20 +304,28 @@ async function runAutopilot() {
         existingTitles = existingBlogs.map(b => b.title);
         logMsg(`Fetched ${existingBlogs.length} existing blog records for duplicate prevention and interlinking.`);
 
-        // Failsafe Check: Enforce exactly one blog post per day
-        const todayStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        // Failsafe Check: Enforce exactly one blog post per day.
+        // Compare against scheduledDateStr (captured before the delay) not new Date(),
+        // to correctly handle runs that cross midnight UTC due to the random delay.
         const postToday = blogsRes.data.blogs.find(b => {
           const postDate = new Date(b.createdAt || Date.now()).toISOString().split('T')[0];
-          return postDate === todayStr;
+          return postDate === scheduledDateStr;
         });
 
         if (postToday) {
           logMsg(`[Failsafe] A blog post has already been published today ("${postToday.title}"). Exiting run to enforce exactly one post per day limit.`);
+          releaseLock();
           process.exit(0);
         }
       }
     } catch (err) {
-      logMsg(`Warning: Failed to fetch existing blogs: ${err.message}. Duplicate prevention and interlinking disabled.`);
+      // SAFE ABORT: We cannot verify whether a blog was already posted today.
+      // Proceeding blindly risks creating a duplicate, which is worse than skipping a day.
+      // Exit cleanly (code 0) so GitHub Actions marks the run as passed, not failed.
+      logMsg(`[FAILSAFE ABORT] Could not verify today's post status from CMS API: ${err.message}`);
+      logMsg(`[FAILSAFE ABORT] Aborting run to prevent duplicate posting. Will try again tomorrow.`);
+      releaseLock();
+      process.exit(0);
     }
 
     // 3. Generate a trending SEO / LLMO topic dynamically using Gemini
@@ -675,7 +688,33 @@ ${linksContext || 'No existing articles.'}
     
     while (attempts < maxAttempts) {
       try {
+        // Last-chance duplicate safety gate: do a fresh API check right before posting.
+        // This protects against two parallel runners that both passed the first check
+        // (both started simultaneously, both saw 0 posts) and are now racing to publish.
+        try {
+          const prePubCheck = await axiosWithRetry(() => axios.get('https://blogplatform-backend-cloudinary-tau.vercel.app/api/blogs?page=1&limit=10', {
+            headers: { Authorization: `Bearer ${token}` },
+            timeout: 10000
+          }), 'Pre-publish duplicate gate');
+          const freshBlogs = prePubCheck.data?.blogs || [];
+          const alreadyPostedNow = freshBlogs.find(b => {
+            const postDate = new Date(b.createdAt || Date.now()).toISOString().split('T')[0];
+            return postDate === scheduledDateStr;
+          });
+          if (alreadyPostedNow) {
+            logMsg(`[Pre-Publish Gate] A blog was just posted by a parallel run ("${alreadyPostedNow.title}"). Aborting to avoid duplicate.`);
+            releaseLock();
+            process.exit(0);
+          }
+        } catch (preCheckErr) {
+          // If the pre-check also fails, be conservative and abort rather than risk a duplicate
+          logMsg(`[Pre-Publish Gate] Could not complete final duplicate check: ${preCheckErr.message}. Aborting run safely.`);
+          releaseLock();
+          process.exit(0);
+        }
+
         logMsg(`Attempting publish with slug: "${currentSlug}" (Attempt ${attempts + 1}/${maxAttempts})...`);
+
         const form = new FormData();
         form.append('title', blogData.title);
         form.append('slug', currentSlug);

@@ -6,9 +6,17 @@ on:
     - cron: '0 4 * * *'
   workflow_dispatch: # Enable running manual workflow executions from GitHub UI
 
+# Prevent parallel runs — if a new run is queued while one is already active,
+# the queued run will wait. This is the primary defence against duplicate posts.
+concurrency:
+  group: autopilot-blogging
+  cancel-in-progress: false
+
 jobs:
   run-autopilot:
     runs-on: ubuntu-latest
+    # Hard kill at 330 min — safely under GitHub's 360-min wall, leaving 30 min for cleanup
+    timeout-minutes: 330
 
     steps:
       - name: Checkout repository code
@@ -36,5 +44,6 @@ jobs:
           LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
           LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
           LINKEDIN_MAKE_WEBHOOK_URL: ${{ secrets.LINKEDIN_MAKE_WEBHOOK_URL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           node automation/autopilot.js
