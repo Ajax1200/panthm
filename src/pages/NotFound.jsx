@@ -5,7 +5,7 @@ import SEO from "../components/SEO";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] flex flex-col items-center justify-center px-4">
       <SEO
         title="404 — Page Not Found"
         description="The page you're looking for doesn't exist. Return to PANTHM AI Labs homepage."
@@ -13,21 +13,21 @@ const NotFound = () => {
       <div className="text-center max-w-2xl mx-auto space-y-8">
         {/* Big 404 number */}
         <div className="relative inline-block">
-          <span className="text-[10rem] md:text-[14rem] font-black text-slate-100 leading-none select-none">
+          <span className="text-[10rem] md:text-[14rem] font-black text-slate-100 dark:text-white/5 leading-none select-none">
             404
           </span>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="p-5 rounded-2xl bg-white shadow-xl border border-slate-100">
+            <div className="p-5 rounded-2xl bg-white dark:bg-white/5 shadow-xl border border-slate-100 dark:border-white/10">
               <FileSearch className="w-16 h-16 text-primary" />
             </div>
           </div>
         </div>
 
         <div className="space-y-3">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             Page Not Found
           </h1>
-          <p className="text-slate-500 text-lg">
+          <p className="text-slate-500 dark:text-slate-400 text-lg">
             The page you're looking for doesn't exist or has been moved.
           </p>
         </div>
@@ -42,7 +42,7 @@ const NotFound = () => {
           </Link>
           <Link
             to="/blogs"
-            className="inline-flex items-center gap-2 px-8 py-3.5 border border-slate-200 bg-white text-slate-700 rounded-full font-semibold hover:border-primary hover:text-primary transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-700 dark:text-slate-300 rounded-full font-semibold hover:border-primary hover:text-primary dark:hover:border-primary dark:hover:text-primary transition-all"
           >
             Read Our Blog <ArrowRight size={18} />
           </Link>

@@ -81,14 +81,14 @@ const Blogs = () => {
 
   if (isLoading && page === 1 && allBlogs.length === 0) {
     return (
-      <div className="pt-32 pb-20 bg-slate-50 min-h-screen flex items-center justify-center">
+      <div className="pt-32 pb-20 bg-slate-50 dark:bg-[#0a0a0a] min-h-screen flex items-center justify-center">
         <LoadingSpinner />
       </div>
     );
   }
 
   return (
-    <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div className="pt-32 pb-20 bg-slate-50 dark:bg-[#0a0a0a] min-h-screen">
       <SEO
         title="Blogs"
         description="Read insights, trends, and strategies from PANTHM AI Labs. Expert articles on web development, mobile app development, AI solutions, blockchain, and technology innovation."
@@ -101,7 +101,7 @@ const Blogs = () => {
           <h1 data-aos="fade-up" className="heading">
             Our <span className="text-primary">Journal</span>
           </h1>
-          <p data-aos="fade-up" className="text-slate-600 text-lg">
+          <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
             Insights, trends, and strategies from the forefront of digital
             innovation.
           </p>
@@ -120,7 +120,7 @@ const Blogs = () => {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
                 activeCategory === cat
                   ? "bg-primary text-white border-primary shadow-md shadow-primary/20"
-                  : "bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary"
+                  : "bg-white dark:bg-white/5 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10 hover:border-primary hover:text-primary dark:hover:border-primary dark:hover:text-primary"
               }`}
             >
               {cat}
@@ -149,7 +149,7 @@ const Blogs = () => {
                   key={blog._id}
                   data-aos="fade-up"
                   data-aos-delay={(i % 9) * 60}
-                  className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                  className="group bg-white dark:bg-[#050505] rounded-2xl overflow-hidden border border-slate-100 dark:border-white/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
                   <Link
                     to={`/blogs/${blog.slug}`}
@@ -163,14 +163,14 @@ const Blogs = () => {
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                     {blog.categoryId && (
-                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-primary uppercase tracking-wider">
+                      <div className="absolute top-4 left-4 bg-white/90 dark:bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-primary uppercase tracking-wider">
                         {blog.categoryId.name}
                       </div>
                     )}
                   </Link>
 
                   <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center gap-4 text-xs text-slate-500 mb-3">
+                    <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mb-3">
                       <div className="flex items-center gap-1">
                         <Calendar size={14} />
                         <span>{formatDate(blog.publishDate || blog.createdAt)}</span>
@@ -183,12 +183,12 @@ const Blogs = () => {
 
                     <Link
                       to={`/blogs/${blog.slug}`}
-                      className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors"
+                      className="text-xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 group-hover:text-primary transition-colors"
                     >
                       {blog.title}
                     </Link>
 
-                    <p className="text-slate-600 line-clamp-3 mb-6 flex-grow">
+                    <p className="text-slate-600 dark:text-slate-300 line-clamp-3 mb-6 flex-grow">
                       {blog.excerpt || "Read more about this article..."}
                     </p>
 

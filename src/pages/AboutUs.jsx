@@ -71,7 +71,7 @@ const AboutUs = () => {
 
       <ServicesWeProvide />
 
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 dark:bg-[#0a0a0a] py-20">
         <Testimonials />
       </section>
 
@@ -118,7 +118,7 @@ const AboutUs = () => {
                 key={title}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="p-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
+                className="p-8 bg-white/5 dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
               >
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Icon className="text-white" size={28} />
@@ -183,7 +183,7 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <div className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white">
+            <div className="bg-slate-900 dark:bg-white/5 dark:border dark:border-white/10 rounded-3xl p-8 md:p-12 text-white">
               <h3 className="text-xl font-bold mb-6">Latest Insights</h3>
               <ul className="space-y-4">
                 {[

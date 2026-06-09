@@ -70,7 +70,7 @@ const ShareSidebar = ({ url, title }) => {
           target="_blank"
           rel="noopener noreferrer"
           title={label}
-          className={`w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 transition-all duration-200 shadow-sm ${color}`}
+          className={`w-11 h-11 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-all duration-200 shadow-sm ${color}`}
         >
           <Icon size={18} />
         </a>
@@ -81,7 +81,7 @@ const ShareSidebar = ({ url, title }) => {
         className={`w-11 h-11 rounded-full border flex items-center justify-center transition-all duration-200 shadow-sm ${
           copied
             ? "bg-emerald-500 border-emerald-500 text-white"
-            : "border-slate-200 bg-white text-slate-500 hover:bg-slate-900 hover:border-slate-900 hover:text-white"
+            : "border-slate-200 dark:border-white/10 bg-white dark:bg-[#050505] text-slate-500 dark:text-slate-400 hover:bg-slate-900 hover:border-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900"
         }`}
       >
         {copied ? <Check size={18} /> : <Link2 size={18} />}
@@ -97,8 +97,8 @@ const MobileShareBar = ({ url, title }) => {
   const encodedTitle = encodeURIComponent(title);
 
   return (
-    <div className="xl:hidden flex items-center gap-3 pt-8 border-t border-slate-100">
-      <span className="text-sm font-semibold text-slate-700 mr-2">Share:</span>
+    <div className="xl:hidden flex items-center gap-3 pt-8 border-t border-slate-100 dark:border-white/10">
+      <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 mr-2">Share:</span>
       <a
         href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`}
         target="_blank"
@@ -181,7 +181,7 @@ const BlogDetails = () => {
         <div className="wrapper">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="heading mb-4">Error Loading Blog</h1>
-            <p className="text-slate-600 text-lg">
+            <p className="text-slate-600 dark:text-slate-400 text-lg">
               {error?.message || "Failed to load blog. Please try again later."}
             </p>
           </div>
@@ -275,7 +275,7 @@ const BlogDetails = () => {
           {/* Back link */}
           <Link
             to="/blogs"
-            className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors text-sm mb-8 group"
+            className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors text-sm mb-8 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             Back to Journal
@@ -298,21 +298,21 @@ const BlogDetails = () => {
               )}
 
               {blog.content ? (
-                <div className="prose prose-lg prose-slate max-w-none">
+                <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
                   <div
                     dangerouslySetInnerHTML={{ __html: blog.content }}
                     className="reset-html"
                   />
                 </div>
               ) : (
-                <div className="prose prose-lg prose-slate max-w-none">
-                  <p className="text-slate-600 text-lg">{blog.excerpt}</p>
+                <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
+                  <p className="text-slate-600 dark:text-slate-400 text-lg">{blog.excerpt}</p>
                 </div>
               )}
 
               {/* Tags */}
               {blog.tags && blog.tags.length > 0 && (
-                <div className="mt-10 pt-8 border-t border-slate-200">
+                <div className="mt-10 pt-8 border-t border-slate-200 dark:border-white/10">
                   <div className="flex flex-wrap gap-2">
                     {blog.tags.map((tag, index) => (
                       <span
@@ -334,7 +334,7 @@ const BlogDetails = () => {
       </div>
 
       {/* Related Articles */}
-      <div className="bg-slate-50 py-20">
+      <div className="bg-slate-50 dark:bg-[#0a0a0a] py-20">
         <Suspense fallback={null}>
           <BlogsSection />
         </Suspense>

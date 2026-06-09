@@ -5,8 +5,8 @@ import { Facebook, Instagram, Linkedin, Twitter, CheckCircle2 } from "lucide-rea
 
 const Thankyou = () => {
   return (
-    <div className="min-h-screen flex flex-col justify-between relative bg-slate-50">
-      <div className="fixed top-0 left-0 py-4 z-50 w-full bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div className="min-h-screen flex flex-col justify-between relative bg-slate-50 dark:bg-[#0a0a0a]">
+      <div className="fixed top-0 left-0 py-4 z-50 w-full bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md border-b border-slate-100 dark:border-white/10">
         <div className="wrapper flex items-center justify-between">
           <Link to="/" className="cursor-pointer">
             <img
@@ -24,8 +24,8 @@ const Thankyou = () => {
             <CheckCircle2 size={48} />
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900">Thank You!</h1>
-          <p className="text-xl text-slate-600 leading-relaxed">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">Thank You!</h1>
+          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
             Your message has been successfully sent. Our team will review your inquiry and get back to you within 24 hours.
           </p>
           

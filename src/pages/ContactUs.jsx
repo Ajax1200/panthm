@@ -122,7 +122,7 @@ const ContactUs = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-slate-50 dark:bg-[#0a0a0a]">
         <div className="wrapper">
           <div className="grid md:grid-cols-3 gap-8 -mt-32 relative z-20">
             {[
@@ -149,21 +149,21 @@ const ContactUs = () => {
                 key={index}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100 flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
+                className="bg-white dark:bg-white/5 p-8 rounded-2xl shadow-xl border border-slate-100 dark:border-white/10 flex flex-col items-center text-center hover:-translate-y-2 transition-transform duration-300"
               >
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 text-primary">
                   <item.icon size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{item.title}</h3>
                 {item.link ? (
                   <Link
                     to={item.link}
-                    className="text-slate-600 hover:text-primary transition-colors"
+                    className="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
                   >
                     {item.content}
                   </Link>
                 ) : (
-                  <p className="text-slate-600">{item.content}</p>
+                  <p className="text-slate-600 dark:text-slate-300">{item.content}</p>
                 )}
               </div>
             ))}
@@ -174,7 +174,7 @@ const ContactUs = () => {
               <h2 className="section-heading text-left">
                 Get in Touch
               </h2>
-              <p className="text-slate-600 text-lg leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
                 We're excited to collaborate with you on your next big idea! Whether you need a cutting-edge website, a dynamic mobile app, or innovative AI solutions, our team is ready to help.
               </p>
 
@@ -191,13 +191,13 @@ const ContactUs = () => {
               </a>
               <p className="text-slate-400 text-sm -mt-2">or fill the form below ↓</p>
               
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+              <div className="bg-white dark:bg-white/5 p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-white/10">
                 <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-1">
                       <input
                         type="text"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                        className="w-full px-4 py-3 bg-slate-50 dark:bg-[#050505] border border-slate-200 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                         placeholder="Full Name"
                         {...register("name", { required: "Required" })}
                       />
@@ -206,7 +206,7 @@ const ContactUs = () => {
                     <div className="space-y-1">
                       <input
                         type="email"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                        className="w-full px-4 py-3 bg-slate-50 dark:bg-[#050505] border border-slate-200 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                         placeholder="Email Address"
                         {...register("email", { 
                           required: "Required",
@@ -224,7 +224,7 @@ const ContactUs = () => {
                     <div className="space-y-1">
                       <input
                         type="tel"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                        className="w-full px-4 py-3 bg-slate-50 dark:bg-[#050505] border border-slate-200 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                         placeholder="Phone Number"
                         {...register("phone", { required: "Required" })}
                       />
@@ -233,7 +233,7 @@ const ContactUs = () => {
                     <div className="space-y-1">
                       <input
                         type="text"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                        className="w-full px-4 py-3 bg-slate-50 dark:bg-[#050505] border border-slate-200 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                         placeholder="Subject"
                         {...register("subject", { required: "Required" })}
                       />
@@ -243,7 +243,7 @@ const ContactUs = () => {
 
                   <div className="space-y-1">
                     <textarea
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all min-h-[120px]"
+                      className="w-full px-4 py-3 bg-slate-50 dark:bg-[#050505] border border-slate-200 dark:border-white/10 dark:text-white dark:placeholder:text-slate-500 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all min-h-[120px]"
                       placeholder="Your Message"
                       {...register("message", { required: "Required" })}
                     />
