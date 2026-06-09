@@ -148,8 +148,8 @@ function cleanOldTempFiles() {
   }
 }
 
-// Robust wrapper to handle Gemini API rate limit (429) and temporary service (503) errors with automatic cool-down retries
-async function generateContentWithRetry(model, prompt, maxRetries = 6) {
+// Robust wrapper to handle Gemini API rate limit (429) errors with automatic cool-down retries
+async function generateContentWithRetry(model, prompt, maxRetries = 10) {
   let attempt = 0;
   while (attempt < maxRetries) {
     try {
@@ -161,8 +161,7 @@ async function generateContentWithRetry(model, prompt, maxRetries = 6) {
       const is503 = errMsg.includes("503") || errMsg.toLowerCase().includes("high demand") || errMsg.toLowerCase().includes("service unavailable") || errMsg.toLowerCase().includes("overloaded") || err.status === 503;
       
       if ((is429 || is503) && attempt < maxRetries) {
-        // Increase delay exponentially on subsequent attempts to allow backend relief
-        let delayMs = is503 ? (attempt * 15000) : 35000;
+        let delayMs = is503 ? 10000 : 35000;
         if (is429) {
           const match = errMsg.match(/retry in ([0-9.]+)(s|ms)/i);
           if (match) {
@@ -170,12 +169,51 @@ async function generateContentWithRetry(model, prompt, maxRetries = 6) {
             const unit = match[2].toLowerCase();
             delayMs = unit === "s" ? val * 1000 : val;
           }
-          delayMs += 5000; // safety buffer
+          delayMs += 3000; // safety buffer
         }
         logMsg(`[Gemini API] Error hit (${is503 ? '503 Service Unavailable / High Demand' : '429 Rate Limit'}). Retrying in ${(delayMs / 1000).toFixed(1)}s (Attempt ${attempt}/${maxRetries})...`);
         await new Promise(resolve => setTimeout(resolve, delayMs));
         continue;
       }
+      
+      // All SDK retries exhausted or non-transient error -> Trigger Failsafe Open API Fallback (OpenRouter)
+      logMsg(`[Gemini API] Failed permanently. Triggering failsafe fallback to OpenRouter API...`);
+      const openRouterKey = process.env.OPENROUTER_API_KEY;
+      if (openRouterKey && openRouterKey !== 'sk-or-v1-placeholder-keys-go-here') {
+        try {
+          const response = await axios.post(
+            'https://openrouter.ai/api/v1/chat/completions',
+            {
+              model: 'google/gemini-2.5-flash:free',
+              messages: [{ role: 'user', content: prompt }],
+              response_format: { type: 'json_object' }
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${openRouterKey}`,
+                'HTTP-Referer': 'https://panthm.com',
+                'X-Title': 'PANTHM BMS Autopilot'
+              },
+              timeout: 60000
+            }
+          );
+          
+          if (response.data?.choices?.[0]?.message?.content) {
+            logMsg(`[OpenRouter Fallback] Success! Retreived content using OpenRouter.`);
+            // Mock Gemini SDK response structure for downstream JSON.parse compatibility
+            return {
+              response: {
+                text: () => response.data.choices[0].message.content
+              }
+            };
+          }
+        } catch (openRouterErr) {
+          logMsg(`[OpenRouter Fallback] FAILED: ${openRouterErr.message}`);
+        }
+      } else {
+        logMsg(`[OpenRouter Fallback] Skipped (No valid OPENROUTER_API_KEY configured in .env).`);
+      }
+      
       throw err;
     }
   }
@@ -493,7 +531,7 @@ ${linksContext || 'No existing articles.'}
 8. **Structured Q&A**: Include an FAQ section at the end of the post formatted with HTML H3 headings for questions and paragraphs for answers. Also output these isolated Q&As into the separate JSON 'faq' structure.
 9. **Clean HTML Format**: The content MUST be structured HTML using h2, h3, p, strong, and ul/li elements. No markdown.`;
 
-    const result = await generateContentWithRetry(model, prompt, 8);
+    const result = await generateContentWithRetry(model, prompt);
     const blogData = JSON.parse(result.response.text());
     logMsg(`Gemini generated article titled: "${blogData.title}"`);
 
