@@ -7,8 +7,8 @@ const CustomCursor = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // Disable completely on mobile/touch devices
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    // Disable on mobile/tablets by checking screen width instead of pointer (more reliable)
+    if (window.innerWidth < 768 || 'ontouchstart' in window) {
       setIsTouchDevice(true);
       return;
     }
@@ -59,7 +59,7 @@ const CustomCursor = () => {
       {/* The Cursor Container */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[99999] flex items-center justify-center mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] flex items-center justify-center"
         style={{
           opacity: isHidden ? 0 : 1,
           transition: 'opacity 0.3s ease',
@@ -68,17 +68,17 @@ const CustomCursor = () => {
       >
         {/* The dynamic ring */}
         <div 
-          className={`absolute rounded-full border border-white flex items-center justify-center transition-all duration-300 ease-out shadow-[0_0_15px_rgba(255,255,255,0.3)] ${
+          className={`absolute rounded-full border flex items-center justify-center transition-all duration-300 ease-out ${
             isHovering 
-              ? 'w-16 h-16 bg-white/10 backdrop-blur-sm scale-110 border-transparent' 
-              : 'w-8 h-8 bg-transparent'
+              ? 'w-16 h-16 bg-[#2563eb]/20 backdrop-blur-sm scale-110 border-[#2563eb]/50 shadow-[0_0_20px_rgba(37,99,235,0.4)]' 
+              : 'w-8 h-8 bg-transparent border-[#2563eb] shadow-[0_0_10px_rgba(37,99,235,0.2)]'
           }`}
           style={{ transitionProperty: 'width, height, background-color, transform, border-color' }}
         >
           {/* The inner dot */}
           <div 
-            className={`rounded-full bg-white transition-all duration-300 ease-out ${
-              isHovering ? 'w-0 h-0 opacity-0' : 'w-1.5 h-1.5 opacity-100 shadow-[0_0_10px_#fff]'
+            className={`rounded-full bg-[#2563eb] transition-all duration-300 ease-out shadow-[0_0_8px_#2563eb] ${
+              isHovering ? 'w-0 h-0 opacity-0' : 'w-2 h-2 opacity-100'
             }`}
           />
         </div>
