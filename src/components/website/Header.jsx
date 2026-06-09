@@ -5,15 +5,14 @@ import { Divide as Hamburger } from "hamburger-react";
 import "react-modern-drawer/dist/index.css";
 import { X, ArrowRight, ChevronDown } from "lucide-react";
 import { companyDetails, logo } from "../../data/constant";
+import { services } from "../../data/services";
 
-const serviceLinks = [
-  { name: "AI Calling Agency", path: "/services/ai-calling-agency" },
-  { name: "Web Development", path: "/services/web-development" },
-  { name: "App Development", path: "/services/app-development" },
-  { name: "UI/UX Design", path: "/services/ui-ux-design" },
-  { name: "WhatsApp Automation", path: "/services/whatsapp-automation" },
-  { name: "Data Analytics", path: "/services/data-analytics" },
-];
+const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
+const serviceLinks = services.map(service => ({
+  name: service.title,
+  path: `/services/${slugify(service.title)}`
+}));
 
 const links = [
   { name: "Home", path: "/" },
