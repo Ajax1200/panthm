@@ -17,13 +17,13 @@ const Portfolio = ({ page }) => {
     portfolioList = webPortfolio.slice(0, 3).concat(appPortfolio.slice(0, 3));
   }
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-20 bg-slate-50 dark:bg-[#0a0a0a]">
       <div className="wrapper">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 data-aos="fade-up" className="section-heading">
             Our Recent Work
           </h2>
-          <p data-aos="fade-up" className="text-slate-600 text-lg">
+          <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
             Showcasing our expertise in delivering high-impact digital solutions.
           </p>
         </div>
@@ -37,7 +37,7 @@ const Portfolio = ({ page }) => {
               rel="noopener noreferrer"
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white block"
+              className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-white/5 block"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img

@@ -55,7 +55,7 @@ const Portfolio = () => {
   const filteredPortfolio = getFilteredPortfolio();
 
   return (
-    <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+    <div className="pt-32 pb-20 bg-slate-50 dark:bg-[#0a0a0a] min-h-screen">
       <SEO
         title="Portfolio"
         description="Explore PANTHM AI Labs portfolio showcasing successful web development and mobile app development projects. View our work across e-commerce, enterprise solutions, and innovative digital platforms."
@@ -67,7 +67,7 @@ const Portfolio = () => {
           <h1 data-aos="fade-up" className="heading">
             Our <span className="text-primary">Portfolio</span>
           </h1>
-          <p data-aos="fade-up" className="text-slate-600 text-lg">
+          <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
             Showcasing our expertise in delivering high-impact digital solutions
             across web and mobile platforms.
           </p>
@@ -85,7 +85,7 @@ const Portfolio = () => {
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                 activeFilter === filter.id
                   ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
-                  : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200"
+                  : "bg-white dark:bg-white/5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10"
               }`}
             >
               {filter.label}
@@ -96,7 +96,7 @@ const Portfolio = () => {
         {/* Portfolio Grid */}
         {filteredPortfolio.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-slate-600 text-lg">No projects found.</p>
+            <p className="text-slate-600 dark:text-slate-400 text-lg">No projects found.</p>
           </div>
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -108,7 +108,7 @@ const Portfolio = () => {
                 rel="noopener noreferrer"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white block"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-white/5 block"
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
