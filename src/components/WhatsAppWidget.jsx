@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const WHATSAPP_URL =
   "https://wa.me/917558646366?text=Hi%20PANTHM%20AI%20Labs!%20I%20visited%20your%20website%20and%20would%20like%20to%20know%20more%20about%20your%20services.";
@@ -15,23 +15,41 @@ const styles = {
     gap: "8px",
   },
   tooltip: {
-    backgroundColor: "#1a1a1a",
-    color: "#fff",
-    fontSize: "13px",
+    backgroundColor: "#fff",
+    color: "#0f172a",
+    fontSize: "14px",
     fontWeight: 500,
-    padding: "6px 12px",
-    borderRadius: "8px",
+    padding: "12px 16px",
+    borderRadius: "12px",
+    borderBottomRightRadius: "4px",
     whiteSpace: "nowrap",
-    boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
-    pointerEvents: "none",
+    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+    border: "1px solid #e2e8f0",
+    pointerEvents: "auto",
     opacity: 1,
-    transform: "translateY(0)",
-    transition: "opacity 0.2s ease, transform 0.2s ease",
+    transform: "translateY(0) scale(1)",
+    transformOrigin: "bottom right",
+    transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
     fontFamily: "'Inter', 'Segoe UI', sans-serif",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
   },
   tooltipHidden: {
     opacity: 0,
-    transform: "translateY(4px)",
+    transform: "translateY(10px) scale(0.95)",
+    pointerEvents: "none",
+  },
+  closeBtn: {
+    background: "none",
+    border: "none",
+    color: "#94a3b8",
+    cursor: "pointer",
+    padding: "4px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: "4px",
   },
   button: {
     width: "60px",
@@ -87,19 +105,53 @@ const injectKeyframes = (() => {
 export default function WhatsAppWidget() {
   injectKeyframes();
   const [hovered, setHovered] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  // Auto-show the prompt after 5 seconds to grab attention
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!dismissed) {
+        setShowPrompt(true);
+      }
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [dismissed]);
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowPrompt(false);
+    setDismissed(true);
+  };
+
+  const isVisible = hovered || showPrompt;
 
   return (
     <div style={styles.wrapper}>
-      {/* Tooltip */}
-      <div
+      {/* Welcome Bubble */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
+          textDecoration: "none",
           ...styles.tooltip,
-          ...(hovered ? {} : styles.tooltipHidden),
+          ...(isVisible ? {} : styles.tooltipHidden),
         }}
-        aria-hidden="true"
       >
-        Chat with us on WhatsApp
-      </div>
+        <span>👋 Hi! Need help with a project?</span>
+        <button 
+          onClick={handleDismiss} 
+          style={styles.closeBtn}
+          aria-label="Close"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </a>
 
       {/* Button */}
       <a
