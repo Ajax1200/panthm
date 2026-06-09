@@ -2,8 +2,8 @@ name: PANTHM Autopilot Blogging
 
 on:
   schedule:
-    # Trigger runs twice daily: 9:00 AM (03:30 UTC) and 6:00 PM (12:30 UTC)
-    - cron: '30 3,12 * * *'
+    # Trigger runs once daily at 4:00 AM UTC (9:30 AM IST)
+    - cron: '0 4 * * *'
   workflow_dispatch: # Enable running manual workflow executions from GitHub UI
 
 jobs:

@@ -250,6 +250,17 @@ async function axiosWithRetry(fn, label = 'API call', maxRetries = 3) {
 async function runAutopilot() {
   acquireLock();
   cleanOldTempFiles();
+
+  // If running in production (e.g. GitHub Actions), introduce a random delay between 0 and 12 hours (43,200,000 ms) 
+  // to scatter blog posting times dynamically so it never posts at the exact same hour every day.
+  const isCI = process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true';
+  if (isCI) {
+    const maxDelayMs = 12 * 60 * 60 * 1000; // 12 hours max
+    const randomDelayMs = Math.floor(Math.random() * maxDelayMs);
+    logMsg(`[Autopilot Scheduler] Running in CI environment. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes...`);
+    await new Promise(resolve => setTimeout(resolve, randomDelayMs));
+  }
+
   logMsg("Starting autonomous blogging run...");
 
   // Verify Gemini API Key
@@ -282,10 +293,23 @@ async function runAutopilot() {
       const blogsRes = await axiosWithRetry(() => axios.get('https://blogplatform-backend-cloudinary-tau.vercel.app/api/blogs?page=1&limit=50', {
         headers: { Authorization: `Bearer ${token}` }
       }), 'Fetch blogs');
+      
       if (blogsRes.data?.blogs && Array.isArray(blogsRes.data.blogs)) {
-        existingBlogs = blogsRes.data.blogs.map(b => ({ title: b.title, slug: b.slug }));
+        existingBlogs = blogsRes.data.blogs.map(b => ({ title: b.title, slug: b.slug, createdAt: b.createdAt }));
         existingTitles = existingBlogs.map(b => b.title);
         logMsg(`Fetched ${existingBlogs.length} existing blog records for duplicate prevention and interlinking.`);
+
+        // Failsafe Check: Enforce exactly one blog post per day
+        const todayStr = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+        const postToday = blogsRes.data.blogs.find(b => {
+          const postDate = new Date(b.createdAt || Date.now()).toISOString().split('T')[0];
+          return postDate === todayStr;
+        });
+
+        if (postToday) {
+          logMsg(`[Failsafe] A blog post has already been published today ("${postToday.title}"). Exiting run to enforce exactly one post per day limit.`);
+          process.exit(0);
+        }
       }
     } catch (err) {
       logMsg(`Warning: Failed to fetch existing blogs: ${err.message}. Duplicate prevention and interlinking disabled.`);
