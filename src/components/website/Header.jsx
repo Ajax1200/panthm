@@ -132,7 +132,7 @@ const Header = () => {
           )}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="flex items-center gap-4">
           <button 
             onClick={toggleTheme}
             className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all duration-300"
@@ -140,23 +140,24 @@ const Header = () => {
           >
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+          
           <Link
             to={`https://wa.me/${companyDetails.phone}`}
-            className="primary-btn text-sm px-6 py-2.5"
+            className="hidden lg:flex primary-btn text-sm px-6 py-2.5"
           >
             Let's Talk <ArrowRight size={18} />
           </Link>
-        </div>
 
-        {/* Mobile Menu Toggle */}
-        <div className="lg:hidden z-50">
-          <Hamburger
-            toggled={isOpen}
-            toggle={setIsOpen}
-            size={24}
-            color="#0F172A"
-            rounded
-          />
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden z-50">
+            <Hamburger
+              toggled={isOpen}
+              toggle={setIsOpen}
+              size={24}
+              color={isDarkMode ? "#ffffff" : "#0F172A"}
+              rounded
+            />
+          </div>
         </div>
       </div>
 
@@ -171,13 +172,6 @@ const Header = () => {
           <div className="flex justify-between items-center mb-10">
             <img src={logo} alt="logo" className="h-10 object-contain dark:invert dark:hue-rotate-180 transition-all duration-300" />
             <div className="flex items-center gap-2">
-              <button 
-                onClick={toggleTheme}
-                className="p-2 hover:bg-slate-100 dark:hover:bg-white/10 rounded-full transition-colors"
-                aria-label="Toggle Dark Mode"
-              >
-                {isDarkMode ? <Sun size={20} className="text-slate-300" /> : <Moon size={20} className="text-slate-600" />}
-              </button>
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 hover:bg-slate-100 dark:hover:bg-white/10 rounded-full transition-colors"
