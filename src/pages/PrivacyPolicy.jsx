@@ -63,10 +63,10 @@ const PrivacyPolicy = () => {
             <p className="text-slate-300 leading-relaxed text-sm md:text-base">
               For questions, contact support at{" "}
               <a 
-                href="mailto:ajayshelkeofficial@gmail.com" 
+                href="mailto:info@panthm.com" 
                 className="text-amber-400 hover:text-amber-300 underline transition-colors"
               >
-                ajayshelkeofficial@gmail.com
+                info@panthm.com
               </a>
             </p>
           </section>
