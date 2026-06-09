@@ -18,6 +18,7 @@ import LandingFooter from "./components/landingPage/LandingFooter";
 import { Toaster } from "react-hot-toast";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import CustomCursor from "./components/website/CustomCursor";
+import { ThemeProvider } from "./components/ThemeContext";
 
 // Lazy loading components
 const Home = lazy(() => import("./pages/Home"));
@@ -44,9 +45,10 @@ AOS.init({
 
 function App() {
   return (
-    <Router>
-      <Suspense fallback={<LoadingSpinner />}>
-        <SpinnerContextProvider>
+    <ThemeProvider>
+      <Router>
+        <Suspense fallback={<LoadingSpinner />}>
+          <SpinnerContextProvider>
           <LoadingSpinnerContext />
           <ScrollToTop />
           <Toaster position="top-center" />
@@ -191,6 +193,7 @@ function App() {
         </SpinnerContextProvider>
       </Suspense>
     </Router>
+    </ThemeProvider>
   );
 }
 

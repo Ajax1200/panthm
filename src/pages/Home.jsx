@@ -115,7 +115,7 @@ const AnimatedCounter = ({ stat, idx }) => {
       data-aos-delay={idx * 80}
       className="text-center group"
     >
-      <div className="text-4xl md:text-5xl font-black text-slate-900 mb-2 tabular-nums">
+      <div className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-2 tabular-nums">
         <span>{count}</span>
         <span className="text-primary">{stat.suffix}</span>
       </div>
@@ -249,7 +249,7 @@ const Home = () => {
       </section>
 
       {/* Animated Stats Counter Section */}
-      <section className="py-16 bg-white border-b border-slate-100">
+      <section className="py-16 bg-white dark:bg-[#050505] border-b border-slate-100 dark:border-white/5">
         <div className="wrapper">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -265,7 +265,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-slate-50 py-20">
+      <section className="bg-slate-50 dark:bg-[#0a0a0a] py-20">
         <Testimonials />
       </section>
 
@@ -273,14 +273,14 @@ const Home = () => {
       <ServicesWeProvide />
 
       {/* Industries Section */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 skew-x-12 z-0"></div>
+      <section className="py-20 bg-white dark:bg-[#050505] relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 dark:bg-white/5 skew-x-12 z-0"></div>
         <div className="wrapper relative z-10 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <h2 data-aos="fade-up" className="section-heading">
+            <h2 data-aos="fade-up" className="section-heading dark:text-white">
               Industries We Revolutionize
             </h2>
-            <p data-aos="fade-up" className="text-slate-600 text-lg">
+            <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
               Deploying industry-specific intelligence to solve complex challenges across sectors.
             </p>
           </div>
@@ -291,12 +291,12 @@ const Home = () => {
                 data-aos="fade-up"
                 data-aos-delay={index * 50}
                 key={item.title}
-                className="group p-6 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-primary/20 transition-all duration-300 flex flex-col items-center gap-4 text-center"
+                className="group p-6 bg-white dark:bg-[#0a0a0a] rounded-2xl shadow-sm border border-slate-100 dark:border-white/10 hover:shadow-xl hover:border-primary/20 dark:hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-4 text-center"
               >
-                <div className="p-4 rounded-full bg-slate-50 group-hover:bg-primary/10 transition-colors duration-300">
-                  <item.icon className="w-8 h-8 text-slate-400 group-hover:text-primary transition-colors duration-300" />
+                <div className="p-4 rounded-full bg-slate-50 dark:bg-white/5 group-hover:bg-primary/10 transition-colors duration-300">
+                  <item.icon className="w-8 h-8 text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-primary transition-colors duration-300" />
                 </div>
-                <p className="font-semibold text-slate-700 group-hover:text-slate-900 transition-colors">
+                <p className="font-semibold text-slate-700 dark:text-slate-200 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                   {item.title}
                 </p>
               </div>
@@ -400,13 +400,13 @@ const Home = () => {
       </section>
 
       {/* Why Work With Us Section */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-slate-50 dark:bg-[#050505]">
         <div className="wrapper space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <h2 data-aos="fade-up" className="section-heading">
+            <h2 data-aos="fade-up" className="section-heading dark:text-white">
               Why Industry Leaders Choose Us
             </h2>
-            <p data-aos="fade-up" className="text-slate-600 text-lg">
+            <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
               We deliver more than just code; we deliver competitive advantage.
             </p>
           </div>

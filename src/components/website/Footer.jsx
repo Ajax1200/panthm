@@ -14,7 +14,7 @@ import { companyDetails, logo } from "../../data/constant";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-50 pt-20 pb-10 border-t border-slate-200 relative overflow-hidden">
+    <footer className="bg-slate-50 dark:bg-[#050505] pt-20 pb-10 border-t border-slate-200 dark:border-white/5 relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-purpleColor to-secondary"></div>
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
@@ -27,7 +27,7 @@ const Footer = () => {
             <Link to="/" className="inline-block">
               <img src={logo} alt="PANTHM" className="h-12 object-contain" />
             </Link>
-            <p className="text-slate-600 leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Pioneering the future of digital interaction through AI,
               Blockchain, and immersive design.
             </p>
@@ -43,7 +43,7 @@ const Footer = () => {
                   href={item.link}
                   target={item.link.startsWith("http") ? "_blank" : "_self"}
                   rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-500 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 shadow-sm"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white dark:hover:border-primary hover:border-primary transition-all duration-300 shadow-sm"
                 >
                   <item.Icon size={18} />
                 </a>
@@ -53,13 +53,13 @@ const Footer = () => {
 
           {/* Services Column */}
           <div>
-            <h4 className="text-lg font-bold text-slate-900 mb-6">Expertise</h4>
+            <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Expertise</h4>
             <ul className="space-y-4">
               {services.slice(0, 5).map((service, index) => (
                 <li key={index}>
                   <Link
                     to={`/services/${service.title}`}
-                    className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2 group"
+                    className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary transition-colors"></span>
                     {service.title}
@@ -71,7 +71,7 @@ const Footer = () => {
 
           {/* Quick Links Column */}
           <div>
-            <h4 className="text-lg font-bold text-slate-900 mb-6">Company</h4>
+            <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Company</h4>
             <ul className="space-y-4">
               {[
                 { name: "About Us", path: "/about-us" },
@@ -82,7 +82,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-slate-600 hover:text-primary transition-colors flex items-center gap-2 group"
+                    className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary transition-colors"></span>
                     {link.name}
@@ -94,7 +94,7 @@ const Footer = () => {
 
           {/* Contact Column */}
           <div>
-            <h4 className="text-lg font-bold text-slate-900 mb-6">
+            <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-6">
               Get in Touch
             </h4>
             <ul className="space-y-6">
@@ -102,7 +102,7 @@ const Footer = () => {
                 <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-primary/10 text-primary">
                   <MapPin size={20} />
                 </div>
-                <p className="text-slate-600 text-sm leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                   {companyDetails.address}
                 </p>
               </li>
@@ -112,7 +112,7 @@ const Footer = () => {
                 </div>
                 <a
                   href={`tel:${companyDetails.phone}`}
-                  className="text-slate-600 hover:text-primary transition-colors font-medium"
+                  className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors font-medium"
                 >
                   {companyDetails.phone}
                 </a>
@@ -123,7 +123,7 @@ const Footer = () => {
                 </div>
                 <a
                   href={`mailto:${companyDetails.email}`}
-                  className="text-slate-600 hover:text-primary transition-colors font-medium"
+                  className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors font-medium"
                 >
                   {companyDetails.email}
                 </a>
@@ -132,7 +132,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-start items-center gap-4">
+        <div className="border-t border-slate-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-start items-center gap-4">
           <p className="text-slate-500 text-sm">
             &copy; {new Date().getFullYear()} PANTHM AI Labs. All rights
             reserved.

@@ -8,13 +8,13 @@ const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace
 
 const ServicesWeProvide = () => {
   return (
-    <section id="services" className="py-20 bg-slate-50">
+    <section id="services" className="py-20 bg-slate-50 dark:bg-[#0a0a0a]">
       <div className="wrapper">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 data-aos="fade-up" className="section-heading">
+          <h2 data-aos="fade-up" className="section-heading dark:text-white">
             Our Expertise
           </h2>
-          <p data-aos="fade-up" className="text-slate-600 text-lg">
+          <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
             Comprehensive digital solutions engineered for growth and scalability.
           </p>
         </div>
@@ -25,7 +25,7 @@ const ServicesWeProvide = () => {
               key={item.title}
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-primary/20 flex flex-col h-full"
+              className="group relative bg-white dark:bg-white/5 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-white/10 hover:border-primary/20 dark:hover:border-primary/50 flex flex-col h-full"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-2xl"></div>
               
@@ -39,11 +39,11 @@ const ServicesWeProvide = () => {
                 </div>
               </div>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-primary transition-colors">
                 {item.title}
               </h3>
               
-              <p className="text-slate-600 mb-6 flex-grow leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 mb-6 flex-grow leading-relaxed">
                 {item.shortDesc}
               </p>
 
@@ -52,13 +52,13 @@ const ServicesWeProvide = () => {
                   {item.technologies.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200"
+                      className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/5"
                     >
                       {tech}
                     </span>
                   ))}
                   {item.technologies.length > 3 && (
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-50 text-slate-500 border border-slate-200">
+                    <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-50 dark:bg-white/5 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-white/5">
                       +{item.technologies.length - 3}
                     </span>
                   )}
