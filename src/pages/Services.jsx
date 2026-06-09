@@ -41,6 +41,13 @@ const Services = () => {
             "@type": "Service",
             "name": "AI Solutions"
           }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Data Analytics"
+          }
         }
       ]
     }
@@ -50,8 +57,8 @@ const Services = () => {
     <>
       <SEO
         title="Services"
-        description="Comprehensive software development services including web development, mobile app development, AI solutions, blockchain, game development, and UI/UX design. Expert team delivering cutting-edge technology solutions."
-        keywords="web development services, mobile app development services, AI solutions, blockchain development, game development, UI/UX design, software development services, custom software development"
+        description="Comprehensive software development services including web development, mobile app development, AI solutions, Data Analytics, blockchain, game development, and UI/UX design. Expert team delivering cutting-edge technology solutions."
+        keywords="web development services, mobile app development services, AI solutions, data analytics services, business intelligence, blockchain development, game development, UI/UX design, software development services, custom software development"
         structuredData={structuredData}
       />
       {/* Hero Section */}

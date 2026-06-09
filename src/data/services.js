@@ -584,4 +584,69 @@ export const services = [
   `,
     },
   },
+  {
+    title: "Data Analytics",
+    image: require("../assets/images/data-analytics-vector.png"),
+    shortDesc:
+      "Transforming raw data into actionable intelligence with custom BI and machine learning dashboards.",
+    technologies: ["Python", "SQL", "Tableau", "PowerBI", "Pandas"],
+    detailsPageImages: {
+      first: require("../assets/images/services/dataanalytics1.webp"),
+      second: require("../assets/images/services/dataanalytics2.webp"),
+      third: require("../assets/images/services/dataanalytics3.webp"),
+    },
+    html: {
+      firstSection: `<h2 class="text-xl font-semibold mb-4">
+    Unlock the Power of Your Data
+  </h2>
+  <p class="mb-6">
+    Data is the new oil, but only if it's refined. In today's digital landscapes, businesses generate massive amounts of data daily, but few know how to turn it into strategic growth.
+    At <span class="font-semibold">PANTHM AI Labs</span>, we build high-fidelity data architectures and predictive modeling systems to help businesses make smart, data-driven decisions.
+  </p>
+  <p class="mb-10">
+    Whether it is setting up automated ETL pipelines, building real-time interactive business dashboards, or executing complex machine learning analytics to forecast customer churn and demand patterns, we provide the ultimate analytical foundation for your business operations.
+  </p>
+  `,
+      secondSection: `<h2 class="text-xl font-semibold mb-4">
+    Our Data Analytics Capabilities:
+  </h2>
+  <ul class="list-decimal pl-6 mb-6">
+    <li class="mb-3">
+      <span class="font-semibold">Interactive BI Dashboards:</span> 
+      Consolidate disparate data sources into clear, unified, and real-time visualization dashboards. We design custom charts and interactive controls using Tableau, PowerBI, and bespoke React interfaces.
+    </li>
+    <li class="mb-3">
+      <span class="font-semibold">Predictive Analytics & Forecasting:</span> 
+      Utilize advanced machine learning models to forecast future trends, detect anomalies, predict sales peaks, and optimize inventory management levels before challenges arise.
+    </li>
+    <li class="mb-3">
+      <span class="font-semibold">ETL & Data Warehousing:</span> 
+      Design secure, scalable, and automated pipelines to extract, transform, and load (ETL) data from all your business tools directly into modern cloud data warehouses like Snowflake and BigQuery.
+    </li>
+    <li class="mb-3">
+      <span class="font-semibold">Customer Journey Analytics:</span> 
+      Track, map, and analyze user actions across your digital platforms to uncover hidden conversion barriers, optimize sales funnels, and boost overall customer retention.
+    </li>
+  </ul>
+  `,
+      thirdSection: `<h2 class="text-xl font-semibold mb-4">
+    Why Choose PANTHM Analytics?
+  </h2>
+  <ul class="list-disc pl-6 mb-6">
+    <li class="mb-3">
+      <span class="font-semibold">Actionable Intelligence:</span>
+      We do not just present data; we deliver clear, actionable recommendations that directly influence your bottom line.
+    </li>
+    <li class="mb-3">
+      <span class="font-semibold">Real-Time Processing:</span>
+      Access real-time business insights instead of waiting for delayed end-of-month financial and operational reports.
+    </li>
+    <li class="mb-3">
+      <span class="font-semibold">Highest Standards of Privacy:</span>
+      Your business intelligence remains completely secure with our industry-leading encryption and database access compliance policies.
+    </li>
+  </ul>
+  `,
+    },
+  },
 ];

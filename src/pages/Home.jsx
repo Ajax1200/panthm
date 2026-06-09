@@ -109,7 +109,8 @@ const Home = () => {
       "Blockchain Development",
       "Game Development",
       "UI/UX Design",
-      "Cloud Infrastructure"
+      "Cloud Infrastructure",
+      "Data Analytics"
     ]
   };
 
@@ -117,8 +118,8 @@ const Home = () => {
     <>
       <SEO
         title="Home"
-        description="PANTHM AI Labs - Leading technology company specializing in web development, mobile app development, AI solutions, blockchain, and game development. Transform your digital presence with cutting-edge technology."
-        keywords="web development, app development, AI solutions, blockchain development, game development, mobile app development, React development, Node.js, Python, machine learning, software development company, Pune, India"
+        description="PANTHM AI Labs - Leading technology company specializing in web development, mobile app development, AI solutions, Data Analytics, blockchain, and game development. Transform your digital presence with cutting-edge technology."
+        keywords="web development, app development, AI solutions, data analytics services, business intelligence dashboards, blockchain development, game development, mobile app development, React development, Node.js, Python, machine learning, software development company, Pune, India"
         structuredData={structuredData}
       />
       {/* Hero Section */}

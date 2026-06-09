@@ -41,8 +41,8 @@ const AboutUs = () => {
     <>
       <SEO
         title="About Us"
-        description="Learn about PANTHM AI Labs - a leading technology company in Pune, India. We specialize in web development, mobile apps, AI solutions, blockchain, and game development. Expert team delivering innovative digital solutions."
-        keywords="about PANTHM AI Labs, software development company Pune, technology company India, web development company, app development team, AI solutions provider"
+        description="Learn about PANTHM AI Labs - a leading technology company in Pune, India. We specialize in web development, mobile apps, AI solutions, Data Analytics, blockchain, and game development. Expert team delivering innovative digital solutions."
+        keywords="about PANTHM AI Labs, software development company Pune, technology company India, web development company, app development team, AI solutions provider, data analytics consulting"
         structuredData={structuredData}
       />
       {/* Hero Section */}
