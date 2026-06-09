@@ -31,6 +31,7 @@ const LandingPage = lazy(() => import("./pages/LandingPage"));
 const Thankyou = lazy(() => import("./pages/Thankyou"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
 AOS.init({
   once: true,
@@ -89,6 +90,16 @@ function App() {
               }
             />
             <Route path="/thank-you" element={<Thankyou />} />
+            <Route
+              path="/privacy-policy"
+              element={
+                <>
+                  <Header />
+                  <PrivacyPolicy />
+                  <Footer />
+                </>
+              }
+            />
 
             {/* Services */}
             <Route

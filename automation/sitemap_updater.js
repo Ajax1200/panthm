@@ -48,6 +48,7 @@ const STATIC_PAGES = [
   { loc: '/ai-development',       changefreq: 'monthly', priority: '0.9' },
   { loc: '/whatsapp-automation',  changefreq: 'monthly', priority: '0.8' },
   { loc: '/ai-calling',           changefreq: 'monthly', priority: '0.8' },
+  { loc: '/privacy-policy',       changefreq: 'monthly', priority: '0.5' },
 ];
 
 function isoDate(dateStr) {
