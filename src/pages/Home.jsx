@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import bannerVid from "../assets/vids/banner.mp4";
 import {
@@ -74,6 +74,56 @@ const industries = [
   { icon: BrainCircuit, title: "AI & ML" },
 ];
 
+// Animated counter that triggers count-up on scroll into view
+const AnimatedCounter = ({ stat, idx }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const duration = 1500;
+          const steps = 60;
+          const increment = stat.value / steps;
+          let current = 0;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= stat.value) {
+              setCount(stat.value);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, duration / steps);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [stat.value]);
+
+  return (
+    <div
+      ref={ref}
+      data-aos="fade-up"
+      data-aos-delay={idx * 80}
+      className="text-center group"
+    >
+      <div className="text-4xl md:text-5xl font-black text-slate-900 mb-2 tabular-nums">
+        <span>{count}</span>
+        <span className="text-primary">{stat.suffix}</span>
+      </div>
+      <p className="text-slate-500 font-medium text-sm md:text-base">{stat.label}</p>
+    </div>
+  );
+};
+
 const Home = () => {
   const structuredData = {
     "@context": "https://schema.org",
@@ -98,7 +148,7 @@ const Home = () => {
     },
     "sameAs": [
       "https://www.linkedin.com/company/panthm-ai-labs",
-      "https://twitter.com/panthm",
+      "https://x.com/panthmailabs",
       "https://www.facebook.com/panthm"
     ],
     "areaServed": "Worldwide",
@@ -193,6 +243,22 @@ const Home = () => {
                 <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
                 <p className="text-slate-300 leading-relaxed">{item.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Animated Stats Counter Section */}
+      <section className="py-16 bg-white border-b border-slate-100">
+        <div className="wrapper">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { label: "Projects Delivered", value: 50, suffix: "+" },
+              { label: "Industries Served", value: 12, suffix: "+" },
+              { label: "Client Satisfaction", value: 98, suffix: "%" },
+              { label: "Years of Excellence", value: 5, suffix: "+" },
+            ].map((stat, idx) => (
+              <AnimatedCounter key={stat.label} stat={stat} idx={idx} />
             ))}
           </div>
         </div>

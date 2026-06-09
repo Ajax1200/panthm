@@ -32,6 +32,7 @@ const Thankyou = lazy(() => import("./pages/Thankyou"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 AOS.init({
   once: true,
@@ -182,7 +183,7 @@ function App() {
                 </>
               }
             />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <WhatsAppWidget />
         </SpinnerContextProvider>

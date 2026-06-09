@@ -148,6 +148,9 @@ const BlogsSection = () => {
     return null; // Don't show the section if loading or no blogs
   }
 
+  const PLACEHOLDER_IMG =
+    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f1f5f9'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%2394a3b8'%3EPANTHM AI Labs%3C/text%3E%3C/svg%3E";
+
   const BlogCard = ({ blog }) => (
     <Link
       to={`/blogs/${blog.slug}`}
@@ -155,9 +158,10 @@ const BlogsSection = () => {
     >
       <div className="relative overflow-hidden aspect-video">
         <img
-          src={blog.imageUrl || "https://via.placeholder.com/800x450"}
+          src={blog.imageUrl || PLACEHOLDER_IMG}
           alt={blog.imageAlt || blog.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
         {blog.categoryId && (

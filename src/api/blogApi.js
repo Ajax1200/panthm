@@ -1,14 +1,27 @@
 const API_BASE_URL = "https://blogplatform-backend-cloudinary-tau.vercel.app";
 
 /**
- * Fetch all published blogs
- * @returns {Promise<{success: boolean, blogs: Array, totalCount: number, currentPage: number, totalPages: number | null}>}
+ * Fetch published blogs with pagination and optional category filter
+ * @param {number} page - Page number (1-based)
+ * @param {number} limit - Blogs per page
+ * @param {string} [category] - Optional category name filter
+ * @returns {Promise<{success: boolean, blogs: Array, totalCount: number, currentPage: number, totalPages: number}>}
+ */
+export const fetchPublishedBlogsPaginated = async (page = 1, limit = 9, category = "") => {
+  const params = new URLSearchParams({ page, limit });
+  if (category) params.append("category", category);
+  const response = await fetch(`${API_BASE_URL}/api/blogs/published?${params}`);
+  if (!response.ok) throw new Error("Failed to fetch published blogs");
+  return response.json();
+};
+
+/**
+ * Fetch all published blogs (used by homepage slider — no pagination)
+ * @returns {Promise<{success: boolean, blogs: Array}>}
  */
 export const fetchPublishedBlogs = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/blogs/published`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch published blogs");
-  }
+  const response = await fetch(`${API_BASE_URL}/api/blogs/published?limit=6`);
+  if (!response.ok) throw new Error("Failed to fetch published blogs");
   return response.json();
 };
 
@@ -19,9 +32,7 @@ export const fetchPublishedBlogs = async () => {
  */
 export const fetchBlogBySlug = async (slug) => {
   const response = await fetch(`${API_BASE_URL}/api/blogs/slug/${slug}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch blog");
-  }
+  if (!response.ok) throw new Error("Failed to fetch blog");
   return response.json();
 };
 

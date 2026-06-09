@@ -1,6 +1,6 @@
 import React, { lazy, useContext } from "react";
 import banner from "../assets/images/contactus-banner.jpg";
-import { Mail, MapPin, PhoneCall, ArrowRight } from "lucide-react";
+import { Mail, MapPin, PhoneCall, ArrowRight, MessageSquare } from "lucide-react";
 import { companyDetails } from "../data/constant";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
@@ -175,8 +175,21 @@ const ContactUs = () => {
                 Get in Touch
               </h2>
               <p className="text-slate-600 text-lg leading-relaxed">
-                We’re excited to collaborate with you on your next big idea! Whether you need a cutting-edge website, a dynamic mobile app, or innovative blockchain solutions, our team is here to help.
+                We're excited to collaborate with you on your next big idea! Whether you need a cutting-edge website, a dynamic mobile app, or innovative AI solutions, our team is ready to help.
               </p>
+
+              {/* WhatsApp quick-connect */}
+              <a
+                href={`https://wa.me/${companyDetails.phone}?text=Hi%20PANTHM%20AI%20Labs%2C%20I%27d%20like%20to%20discuss%20a%20project.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-[#25D366] text-white font-semibold hover:bg-[#1ebe5e] transition-all duration-200 shadow-lg shadow-[#25D366]/20 hover:-translate-y-0.5 w-full sm:w-auto justify-center sm:justify-start"
+              >
+                <MessageSquare size={22} />
+                Chat Instantly on WhatsApp
+                <ArrowRight size={18} className="ml-auto sm:ml-0" />
+              </a>
+              <p className="text-slate-400 text-sm -mt-2">or fill the form below ↓</p>
               
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
                 <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
