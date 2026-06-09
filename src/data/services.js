@@ -627,6 +627,10 @@ export const services = [
       <span class="font-semibold">Customer Journey Analytics:</span> 
       Track, map, and analyze user actions across your digital platforms to uncover hidden conversion barriers, optimize sales funnels, and boost overall customer retention.
     </li>
+    <li class="mb-3">
+      <span class="font-semibold">B2B Data Provisioning & Lead Generation:</span> 
+      Source, clean, and enrich highly targeted B2B contact lists legally under legitimate interest frameworks. We automate targeted data extraction to fuel your outbound sales pipelines with verified, high-quality prospects.
+    </li>
   </ul>
   `,
       thirdSection: `<h2 class="text-xl font-semibold mb-4">
