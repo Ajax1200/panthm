@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ArrowLinkButton } from "../ArrowButtons";
 
+const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
 const ServicesWeProvide = () => {
   return (
     <section id="services" className="py-20 bg-slate-50">
@@ -63,7 +65,7 @@ const ServicesWeProvide = () => {
                 </div>
 
                 <Link
-                  to={`/services/${item.title}`}
+                  to={`/services/${slugify(item.title)}`}
                   className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all duration-300"
                 >
                   Explore Service <ArrowRight size={18} />

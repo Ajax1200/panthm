@@ -6,9 +6,11 @@ import { companyDetails } from "../data/constant";
 
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
 
+const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+
 const ServiceDetails = () => {
   const { name } = useParams();
-  const data = services.find((service) => service.title === name);
+  const data = services.find((service) => service.title === name || slugify(service.title) === name);
   if (!data) return <Navigate to="/" />;
 
   const structuredData = {
