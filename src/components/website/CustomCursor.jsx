@@ -70,7 +70,7 @@ const CustomCursor = () => {
         <div 
           className={`absolute rounded-full border flex items-center justify-center transition-all duration-300 ease-out ${
             isHovering 
-              ? 'w-16 h-16 bg-[#2563eb]/20 backdrop-blur-sm scale-110 border-[#2563eb]/50 shadow-[0_0_20px_rgba(37,99,235,0.4)]' 
+              ? 'w-16 h-16 bg-[#2563eb]/10 scale-110 border-[#2563eb]/50 shadow-[0_0_20px_rgba(37,99,235,0.4)]' 
               : 'w-8 h-8 bg-transparent border-[#2563eb] shadow-[0_0_10px_rgba(37,99,235,0.2)]'
           }`}
           style={{ transitionProperty: 'width, height, background-color, transform, border-color' }}

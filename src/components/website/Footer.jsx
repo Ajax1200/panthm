@@ -25,7 +25,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link to="/" className="inline-block">
-              <img src={logo} alt="PANTHM" className="h-12 object-contain" />
+              <img src={logo} alt="PANTHM" className="h-12 object-contain dark:invert dark:hue-rotate-180 transition-all duration-300" />
             </Link>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Pioneering the future of digital interaction through AI,

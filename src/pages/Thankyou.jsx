@@ -12,7 +12,7 @@ const Thankyou = () => {
             <img
               src={logo}
               alt="PANTHM AI Labs"
-              className="h-10 md:h-12 object-contain"
+              className="h-10 md:h-12 object-contain dark:invert dark:hue-rotate-180 transition-all duration-300"
             />
           </Link>
         </div>

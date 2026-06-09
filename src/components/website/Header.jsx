@@ -62,7 +62,7 @@ const Header = () => {
           <img
             src={logo}
             alt="PANTHM AI Labs"
-            className="h-10 md:h-12 object-contain"
+            className="h-10 md:h-12 object-contain dark:invert dark:hue-rotate-180 transition-all duration-300"
           />
         </Link>
 
@@ -169,7 +169,7 @@ const Header = () => {
       >
         <div className="h-full flex flex-col p-6 dark:text-slate-200">
           <div className="flex justify-between items-center mb-10">
-            <img src={logo} alt="logo" className="h-10 object-contain" />
+            <img src={logo} alt="logo" className="h-10 object-contain dark:invert dark:hue-rotate-180 transition-all duration-300" />
             <div className="flex items-center gap-2">
               <button 
                 onClick={toggleTheme}
