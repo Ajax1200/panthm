@@ -24,10 +24,10 @@ import { ReactComponent as icon1 } from "../assets/svg/services/Web Development.
 import { ReactComponent as icon2 } from "../assets/svg/services/App Development.svg";
 import { Link } from "react-router-dom";
 import howWeBuildCover from "../assets/images/how-we-build.jpeg";
-import whyWorkWithUs1 from "../assets/images/whyworkwithus1.png";
-import whyWorkWithUs2 from "../assets/images/whyworkwithus2.png";
-import whyWorkWithUs3 from "../assets/images/whyworkwithus3.png";
-import whyWorkWithUs4 from "../assets/images/whyworkwithus4.png";
+import whyWorkWithUs1 from "../assets/images/whyworkwithus1.webp";
+import whyWorkWithUs2 from "../assets/images/whyworkwithus2.webp";
+import whyWorkWithUs3 from "../assets/images/whyworkwithus3.webp";
+import whyWorkWithUs4 from "../assets/images/whyworkwithus4.webp";
 import { ArrowLinkButton } from "../components/ArrowButtons";
 import SEO from "../components/SEO";
 import { companyDetails } from "../data/constant";

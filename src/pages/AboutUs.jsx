@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import bannerImg from "../assets/images/aboutus-banner.webp";
 import ourValuesBg from "../assets/images/our-values-bg.jpeg";
 import { ArrowRight, Gem, MessagesSquare, PersonStanding, CheckCircle2 } from "lucide-react";
-import img1 from "../assets/images/aboutus-1.png";
+import img1 from "../assets/images/aboutus-1.webp";
 import img2 from "../assets/images/aboutus-2.png";
 import { Link } from "react-router-dom";
 import { ArrowLinkButton } from "../components/ArrowButtons";

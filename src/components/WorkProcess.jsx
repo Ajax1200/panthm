@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import img from "../assets/images/work-process.png";
+import img from "../assets/images/work-process.webp";
 import { workingProcess } from "../data/constant";
 import { ChevronDown, CheckCircle2 } from "lucide-react";
 
