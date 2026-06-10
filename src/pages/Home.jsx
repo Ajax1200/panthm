@@ -32,13 +32,14 @@ import { ArrowLinkButton } from "../components/ArrowButtons";
 import SEO from "../components/SEO";
 import { companyDetails } from "../data/constant";
 
+import TechMarquee from '../components/TechMarquee';
+
 const ContactForm = lazy(() => import("../components/ContactForm"));
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
 const Testimonials = lazy(() => import("../components/Testimonials"));
 const ServicesWeProvide = lazy(() =>
   import("../components/website/ServicesWeProvide")
 );
-import TechMarquee from '../components/TechMarquee';
 
 const bannerServices = [
   {
