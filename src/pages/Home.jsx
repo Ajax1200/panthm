@@ -33,6 +33,7 @@ import SEO from "../components/SEO";
 import { companyDetails } from "../data/constant";
 
 import TechMarquee from '../components/TechMarquee';
+import FAQ, { faqData } from "../components/FAQ";
 
 const ContactForm = lazy(() => import("../components/ContactForm"));
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
@@ -173,6 +174,7 @@ const Home = () => {
         description="PANTHM AI Labs - Building intelligent products that redefine industries. Transform your digital presence with cutting-edge technology."
         keywords="web development, app development, AI solutions, data analytics services, business intelligence dashboards, blockchain development, game development, mobile app development, React development, Node.js, Python, machine learning, software development company, Pune, India"
         structuredData={structuredData}
+        faqs={faqData}
       />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden banner">
@@ -476,6 +478,7 @@ const Home = () => {
       </section>
 
       <BlogsSection />
+      <FAQ />
       <ContactForm />
     </>
   );

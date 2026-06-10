@@ -3,6 +3,7 @@ import bannerImg from "../assets/images/services-banner.webp";
 import { ArrowLinkButton } from "../components/ArrowButtons";
 import { ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
+import FAQ, { faqData } from "../components/FAQ";
 
 const ContactForm = lazy(() => import("../components/ContactForm"));
 const ServicesWeProvide = lazy(() => import("../components/website/ServicesWeProvide"));
@@ -60,6 +61,7 @@ const Services = () => {
         description="PANTHM AI Labs helps companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands. Expert team delivering cutting-edge technology solutions."
         keywords="web development services, mobile app development services, AI solutions, data analytics services, business intelligence, blockchain development, game development, UI/UX design, software development services, custom software development"
         structuredData={structuredData}
+        faqs={faqData}
       />
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
@@ -86,6 +88,7 @@ const Services = () => {
       </section>
 
       <ServicesWeProvide />
+      <FAQ />
       <ContactForm />
     </>
   );

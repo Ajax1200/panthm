@@ -10,11 +10,12 @@ const SEO = ({
   url,
   type = "website",
   structuredData,
+  faqs,
 }) => {
   const location = useLocation();
   const baseUrl = "https://panthm.com"; // Canonical domain
   const currentUrl = `${baseUrl}${location.pathname}`;
-  const ogImage = image || `${baseUrl}/logo.png`;
+  const ogImage = image || `${baseUrl}/social_card.png`;
   const pageTitle = title
     ? `${title} | ${companyDetails.name}`
     : `${companyDetails.name} - Building Intelligent Products That Redefine Industries`;
@@ -110,6 +111,26 @@ const SEO = ({
       breadcrumbSchema
     ]
   };
+
+  // Generate FAQPage Schema if faqs array provided
+  if (faqs && faqs.length > 0) {
+    const faqSchema = {
+      "@type": "FAQPage",
+      "@id": `${currentUrl}#faq`,
+      "isPartOf": {
+        "@id": `${currentUrl}#webpage`
+      },
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+    graphSchema["@graph"].push(faqSchema);
+  }
 
   // Merge page-specific structured data into the unified graph
   if (structuredData) {

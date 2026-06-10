@@ -16,6 +16,7 @@ import {
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import SEO from "../components/SEO";
 import { companyDetails } from "../data/constant";
+import { addSemanticLinks } from "../utils/linkHelper";
 import { lazy, Suspense } from "react";
 
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
@@ -300,7 +301,7 @@ const BlogDetails = () => {
               {blog.content ? (
                 <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
                   <div
-                    dangerouslySetInnerHTML={{ __html: blog.content }}
+                    dangerouslySetInnerHTML={{ __html: addSemanticLinks(blog.content) }}
                     className="reset-html"
                   />
                 </div>
