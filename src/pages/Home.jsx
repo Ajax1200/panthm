@@ -214,7 +214,7 @@ const Home = () => {
             </p>
 
             <div data-aos="fade-up" data-aos-delay="300" className="flex flex-wrap gap-4">
-              <Link to="/contact" className="primary-btn text-lg px-8 py-4">
+              <Link to="/contact" className="liquid-glass-button text-lg px-8 py-4">
                 Start Your Journey <ArrowRight size={20} />
               </Link>
               <Link to="/services" className="px-8 py-4 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 transition-all backdrop-blur-sm">
@@ -229,7 +229,7 @@ const Home = () => {
                 key={item.id}
                 data-aos="fade-up"
                 data-aos-delay={400 + index * 100}
-                className="group p-8 rounded-2xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2"
+                className="group p-8 rounded-2xl liquid-glass-card"
               >
                 <div className="flex justify-between items-start mb-6">
                   <div className="p-4 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all">
@@ -401,7 +401,7 @@ const Home = () => {
               Join forces with PANTHM AI Labs and transform your innovative ideas into market-leading reality.
             </p>
             <div className="pt-4">
-              <Link to="/contact" className="primary-btn text-lg inline-flex">
+              <Link to="/contact" className="liquid-glass-button text-lg inline-flex">
                 Start a Conversation <ArrowRight size={20} />
               </Link>
             </div>

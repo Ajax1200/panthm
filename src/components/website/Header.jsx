@@ -143,7 +143,7 @@ const Header = () => {
           
           <Link
             to={`https://wa.me/${companyDetails.phone}`}
-            className="hidden lg:flex primary-btn text-sm px-6 py-2.5"
+            className="hidden lg:flex liquid-glass-button text-sm px-6 py-2.5"
           >
             Let's Talk <ArrowRight size={18} />
           </Link>

@@ -27,7 +27,7 @@ const ServicesWeProvide = () => {
               key={item.title}
               data-aos="fade-up"
               data-aos-delay={index * 100}
-              className="group relative bg-white dark:bg-white/5 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-white/10 hover:border-primary/20 dark:hover:border-primary/50 flex flex-col h-full glow-border"
+              className="group relative liquid-glass-card rounded-2xl p-8 flex flex-col h-full"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-2xl"></div>
               
