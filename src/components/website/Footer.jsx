@@ -28,8 +28,7 @@ const Footer = () => {
               <img src={logo} alt="PANTHM" className="h-12 object-contain dark:invert dark:hue-rotate-180 transition-all duration-300" />
             </Link>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Pioneering the future of digital interaction through AI,
-              Blockchain, and immersive design.
+              Building intelligent products that redefine industries.
             </p>
             <div className="flex gap-4">
               {[

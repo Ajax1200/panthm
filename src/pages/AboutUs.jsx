@@ -23,7 +23,7 @@ const AboutUs = () => {
     "mainEntity": {
       "@type": "Organization",
       "name": companyDetails.name,
-      "description": "Leading technology company specializing in web development, mobile app development, AI solutions, blockchain, and game development.",
+      "description": "Building intelligent products that redefine industries.",
       "foundingDate": "2020",
       "numberOfEmployees": "50-100",
       "address": {
@@ -41,7 +41,7 @@ const AboutUs = () => {
     <>
       <SEO
         title="About Us"
-        description="Learn about PANTHM AI Labs - a leading technology company in Pune, India. We specialize in web development, mobile apps, AI solutions, Data Analytics, blockchain, and game development. Expert team delivering innovative digital solutions."
+        description="Learn about PANTHM AI Labs. We help companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands. Expert team delivering innovative digital solutions."
         keywords="about PANTHM AI Labs, software development company Pune, technology company India, web development company, app development team, AI solutions provider, data analytics consulting"
         structuredData={structuredData}
       />

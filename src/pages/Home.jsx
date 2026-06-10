@@ -133,7 +133,7 @@ const Home = () => {
     "name": companyDetails.name,
     "url": "https://panthm.com",
     "logo": "https://panthm.com/logo.png",
-    "description": "Leading technology company specializing in web development, mobile app development, AI solutions, blockchain, and game development.",
+    "description": "Building intelligent products that redefine industries.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Icon Tower Office No. 702 Sr 114/5 ,115/1 ,114/6/3 BANER",
@@ -170,7 +170,7 @@ const Home = () => {
     <>
       <SEO
         title="Home"
-        description="PANTHM AI Labs - Leading technology company specializing in web development, mobile app development, AI solutions, Data Analytics, blockchain, and game development. Transform your digital presence with cutting-edge technology."
+        description="PANTHM AI Labs - Building intelligent products that redefine industries. Transform your digital presence with cutting-edge technology."
         keywords="web development, app development, AI solutions, data analytics services, business intelligence dashboards, blockchain development, game development, mobile app development, React development, Node.js, Python, machine learning, software development company, Pune, India"
         structuredData={structuredData}
       />
@@ -209,8 +209,7 @@ const Home = () => {
             </h1>
 
             <p data-aos="fade-up" data-aos-delay="200" className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-              We empower visionary enterprises with cutting-edge web, mobile, and AI technologies.
-              Transform your digital presence into a growth engine.
+              Building intelligent products that redefine industries. Transform your digital presence into a growth engine.
             </p>
 
             <div data-aos="fade-up" data-aos-delay="300" className="flex flex-wrap gap-4">
@@ -431,8 +430,8 @@ const Home = () => {
                 reverse: false,
               },
               {
-                title: "Holistic Digital Solutions",
-                desc: "From AI to Blockchain, Web to Mobile, we offer a comprehensive suite of services to cover every aspect of your digital journey.",
+                title: "Holistic Outcomes",
+                desc: "We help companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands.",
                 img: whyWorkWithUs2,
                 bg: "bg-sky-500",
                 reverse: true,

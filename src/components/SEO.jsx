@@ -17,7 +17,7 @@ const SEO = ({
   const ogImage = image || `${baseUrl}/logo.png`;
   const pageTitle = title
     ? `${title} | ${companyDetails.name}`
-    : `${companyDetails.name} - Web & App Development Company`;
+    : `${companyDetails.name} - Building Intelligent Products That Redefine Industries`;
 
   useEffect(() => {
     // Update document title

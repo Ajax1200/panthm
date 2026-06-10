@@ -16,8 +16,8 @@ const ServicesWeProvide = () => {
           <h2 data-aos="fade-up" className="section-heading dark:text-white">
             Our Expertise
           </h2>
-          <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
-            Comprehensive digital solutions engineered for growth and scalability.
+          <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+            We help companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands.
           </p>
         </div>
 

@@ -57,7 +57,7 @@ const Services = () => {
     <>
       <SEO
         title="Services"
-        description="Comprehensive software development services including web development, mobile app development, AI solutions, Data Analytics, blockchain, game development, and UI/UX design. Expert team delivering cutting-edge technology solutions."
+        description="PANTHM AI Labs helps companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands. Expert team delivering cutting-edge technology solutions."
         keywords="web development services, mobile app development services, AI solutions, data analytics services, business intelligence, blockchain development, game development, UI/UX design, software development services, custom software development"
         structuredData={structuredData}
       />
@@ -76,8 +76,8 @@ const Services = () => {
           <h1 data-aos="fade-up" className="heading text-white">
             Engineering <span className="text-primary">Excellence</span>
           </h1>
-          <p data-aos="fade-up" data-aos-delay="100" className="text-lg md:text-xl text-slate-300 leading-relaxed">
-            We specialize in delivering innovative software solutions that empower businesses to succeed in the digital age. From web platforms to immersive games, we bring your vision to life.
+          <p data-aos="fade-up" data-aos-delay="100" className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            We help companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands.
           </p>
           <div data-aos="fade-up" data-aos-delay="200" className="pt-4">
             <ArrowLinkButton to="/contact">Start Your Project</ArrowLinkButton>

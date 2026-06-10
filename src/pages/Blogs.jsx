@@ -91,7 +91,7 @@ const Blogs = () => {
     <div className="pt-32 pb-20 bg-slate-50 dark:bg-[#0a0a0a] min-h-screen">
       <SEO
         title="Blogs"
-        description="Read insights, trends, and strategies from PANTHM AI Labs. Expert articles on web development, mobile app development, AI solutions, blockchain, and technology innovation."
+        description="Read insights, trends, and strategies from PANTHM AI Labs. We help companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands."
         keywords="technology blog, web development blog, app development blog, AI blog, software development articles, tech insights, digital innovation blog"
         structuredData={structuredData}
       />
