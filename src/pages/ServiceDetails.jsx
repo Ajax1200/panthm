@@ -39,7 +39,7 @@ const ServiceDetails = () => {
   };
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 bg-white dark:bg-[#0a0a0a] min-h-screen">
       <SEO
         title={data.title}
         description={data.shortDesc || `Professional ${data.title} services by PANTHM AI Labs. Expert team delivering cutting-edge solutions using ${data.technologies.join(", ")}.`}
@@ -48,7 +48,7 @@ const ServiceDetails = () => {
         url={`https://panthm.com/services/${encodeURIComponent(data.title)}`}
         structuredData={structuredData}
       />
-      <div className="bg-slate-900 py-20 text-white">
+      <div className="bg-slate-900 dark:bg-[#050505] py-20 text-white border-b border-white/5">
         <div className="wrapper">
           <h1 className="heading max-w-4xl text-white">{data.title}</h1>
         </div>
@@ -58,7 +58,7 @@ const ServiceDetails = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div
-              className="prose prose-lg prose-slate"
+              className="prose prose-lg prose-slate dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: data.html.firstSection }}
             ></div>
           </div>
@@ -81,7 +81,7 @@ const ServiceDetails = () => {
           </div>
           <div className="order-1 lg:order-2 space-y-6">
             <div
-              className="prose prose-lg prose-slate"
+              className="prose prose-lg prose-slate dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: data.html.secondSection }}
             ></div>
           </div>
@@ -90,7 +90,7 @@ const ServiceDetails = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div
-              className="prose prose-lg prose-slate"
+              className="prose prose-lg prose-slate dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: data.html.thirdSection }}
             ></div>
           </div>
@@ -104,7 +104,7 @@ const ServiceDetails = () => {
         </div>
       </div>
       
-      <div className="bg-slate-50 py-20">
+      <div className="bg-slate-50 dark:bg-[#050505] py-20 border-t border-slate-100 dark:border-white/5">
         <BlogsSection />
       </div>
     </div>
