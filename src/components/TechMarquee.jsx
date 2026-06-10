@@ -1,6 +1,8 @@
 import React from 'react';
 
 const technologies = [
+  { name: 'Artificial Intelligence', icon: '🤖' },
+  { name: 'Generative AI', icon: '✨' },
   { name: 'React', icon: '⚛️' },
   { name: 'Next.js', icon: '▲' },
   { name: 'Node.js', icon: '⬢' },
