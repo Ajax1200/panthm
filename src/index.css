@@ -153,10 +153,10 @@
   position: absolute;
   inset: -50%;
   background: 
-    radial-gradient(ellipse at 20% 50%, rgba(155, 0, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(14, 165, 233, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 40% 80%, rgba(155, 0, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 50%, rgba(155, 0, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(14, 165, 233, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 80%, rgba(155, 0, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(14, 165, 233, 0.22) 0%, transparent 50%);
   animation: meshShift 20s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
@@ -225,37 +225,37 @@
 .floating-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
+  filter: blur(100px);
+  opacity: 0.3;
   pointer-events: none;
   animation: orbFloat 15s ease-in-out infinite;
 }
 .floating-orb.orb-1 {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background: #9B00FF;
-  top: 10%;
-  left: -5%;
+  top: 5%;
+  left: -8%;
   animation-delay: 0s;
 }
 .floating-orb.orb-2 {
-  width: 300px;
-  height: 300px;
+  width: 450px;
+  height: 450px;
   background: #0EA5E9;
-  bottom: 10%;
-  right: -5%;
+  bottom: 5%;
+  right: -8%;
   animation-delay: -5s;
   animation-duration: 18s;
 }
 .floating-orb.orb-3 {
-  width: 250px;
-  height: 250px;
+  width: 350px;
+  height: 350px;
   background: #9B00FF;
   top: 50%;
   left: 40%;
   animation-delay: -10s;
   animation-duration: 22s;
-  opacity: 0.08;
+  opacity: 0.15;
 }
 
 @keyframes orbFloat {

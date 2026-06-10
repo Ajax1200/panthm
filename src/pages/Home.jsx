@@ -269,8 +269,11 @@ const Home = () => {
       <TechMarquee />
 
       {/* Testimonials Section */}
-      <section className="bg-slate-50 dark:bg-[#0a0a0a] py-20">
-        <Testimonials />
+      <section className="bg-slate-50 dark:bg-[#0a0a0a] py-20 gradient-mesh relative overflow-hidden">
+        <div className="floating-orb orb-3"></div>
+        <div className="relative z-10">
+          <Testimonials />
+        </div>
       </section>
 
       {/* Services Section */}

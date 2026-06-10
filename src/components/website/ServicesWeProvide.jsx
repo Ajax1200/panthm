@@ -8,8 +8,10 @@ const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace
 
 const ServicesWeProvide = () => {
   return (
-    <section id="services" className="py-20 bg-slate-50 dark:bg-[#0a0a0a]">
-      <div className="wrapper">
+    <section id="services" className="py-20 bg-slate-50 dark:bg-[#0a0a0a] gradient-mesh noise-overlay relative overflow-hidden">
+      <div className="floating-orb orb-1"></div>
+      <div className="floating-orb orb-2"></div>
+      <div className="wrapper relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 data-aos="fade-up" className="section-heading dark:text-white">
             Our Expertise
