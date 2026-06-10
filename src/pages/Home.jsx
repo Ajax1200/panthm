@@ -38,6 +38,7 @@ const Testimonials = lazy(() => import("../components/Testimonials"));
 const ServicesWeProvide = lazy(() =>
   import("../components/website/ServicesWeProvide")
 );
+import TechMarquee from '../components/TechMarquee';
 
 const bannerServices = [
   {
@@ -264,6 +265,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Tech Stack Marquee */}
+      <TechMarquee />
+
       {/* Testimonials Section */}
       <section className="bg-slate-50 dark:bg-[#0a0a0a] py-20">
         <Testimonials />
@@ -273,7 +277,9 @@ const Home = () => {
       <ServicesWeProvide />
 
       {/* Industries Section */}
-      <section className="py-20 bg-white dark:bg-[#050505] relative overflow-hidden">
+      <section className="py-20 bg-white dark:bg-[#050505] relative overflow-hidden noise-overlay">
+        <div className="floating-orb orb-1"></div>
+        <div className="floating-orb orb-2"></div>
         <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 dark:bg-white/5 skew-x-12 z-0"></div>
         <div className="wrapper relative z-10 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -400,7 +406,7 @@ const Home = () => {
       </section>
 
       {/* Why Work With Us Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#050505]">
+      <section className="py-20 bg-slate-50 dark:bg-[#050505] gradient-mesh noise-overlay">
         <div className="wrapper space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <h2 data-aos="fade-up" className="section-heading dark:text-white">
