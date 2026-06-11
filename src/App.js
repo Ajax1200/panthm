@@ -20,6 +20,7 @@ import WhatsAppWidget from "./components/WhatsAppWidget";
 import CustomCursor from "./components/website/CustomCursor";
 import { ThemeProvider } from "./components/ThemeContext";
 import { useCanonical } from "./hooks/useCanonical";
+import { useEntropicPrefetcher } from "./hooks/useEntropicPrefetcher";
 
 // Lazy loading components
 const Home = lazy(() => import("./pages/Home"));
@@ -46,6 +47,7 @@ AOS.init({
 
 function AppContent() {
   useCanonical();
+  useEntropicPrefetcher();
 
   return (
     <Suspense fallback={<LoadingSpinner />}>
