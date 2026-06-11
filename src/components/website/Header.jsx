@@ -20,6 +20,7 @@ const links = [
   { name: "About Us", path: "/about-us" },
   { name: "Services", path: "/services", hasDropdown: true },
   { name: "Portfolio", path: "/portfolio" },
+  { name: "Simulator", path: "/pca-simulator" },
   { name: "Blogs", path: "/blogs" },
   { name: "Contact Us", path: "/contact" },
 ];
