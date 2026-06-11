@@ -16,7 +16,7 @@ export const addSemanticLinks = (html) => {
         "AI Calling",
         "Voice SDR"
       ],
-      url: "/services"
+      url: "/ai-calling-agency"
     },
     {
       words: [
@@ -25,7 +25,7 @@ export const addSemanticLinks = (html) => {
         "custom web development",
         "Web Development"
       ],
-      url: "/services"
+      url: "/web-development"
     },
     {
       words: [
@@ -34,7 +34,7 @@ export const addSemanticLinks = (html) => {
         "hybrid apps",
         "App Development"
       ],
-      url: "/services"
+      url: "/app-development"
     },
     {
       words: [
@@ -87,4 +87,76 @@ export const addSemanticLinks = (html) => {
   });
 
   return processedTokens.join("");
+};
+
+/**
+ * Automatically injects SEO-optimized alt tags and Cloudinary next-gen formats 
+ * (WebP/AVIF compression) into raw HTML strings.
+ */
+export const optimizeHtmlImages = (html, blogTitle) => {
+  if (!html) return "";
+  
+  // Create a temporary DOM element to safely parse and modify HTML
+  // (We use regex here since it runs on both server and client, but for a React SPA, regex is safer than full DOM parsing in strings)
+  
+  let optimized = html;
+
+  // 1. Inject alt attributes if missing or empty
+  optimized = optimized.replace(/<img([^>]+)>/gi, (match, attrs) => {
+    let newAttrs = attrs;
+    if (!/alt\s*=\s*(['"])(.*?)\1/i.test(attrs) || /alt\s*=\s*(['"])\1/i.test(attrs)) {
+      // Remove empty alt if it exists
+      newAttrs = newAttrs.replace(/alt\s*=\s*(['"])\1/gi, "");
+      // Inject descriptive alt
+      newAttrs += ` alt="Illustration for ${blogTitle.replace(/"/g, '&quot;')}"`;
+    }
+    return `<img${newAttrs}>`;
+  });
+
+  // 2. Add Cloudinary transforms (f_auto, q_auto)
+  optimized = optimized.replace(/(res\.cloudinary\.com\/[^/]+\/image\/upload\/)(v\d+\/.*?\.(jpg|jpeg|png|gif|webp))/gi, (match, p1, p2) => {
+    // If it already has f_auto or q_auto, don't duplicate
+    if (p1.includes('f_auto') || p2.includes('f_auto')) return match;
+    return `${p1}f_auto,q_auto/${p2}`;
+  });
+
+  return optimized;
+};
+
+/**
+ * Extracts <h2> and <h3> tags from HTML, assigns them an ID, and generates a Table of Contents.
+ */
+export const generateTocAndAddIds = (html) => {
+  if (!html) return { html: "", toc: [] };
+
+  const toc = [];
+  let tocIndex = 0;
+
+  const updatedHtml = html.replace(/<(h[23])([^>]*)>(.*?)<\/\1>/gi, (match, tag, attrs, content) => {
+    let idMatch = attrs.match(/id\s*=\s*(['"])(.*?)\1/i);
+    let id = idMatch ? idMatch[2] : null;
+
+    const textContent = content.replace(/<[^>]*>/g, '').trim();
+
+    if (!id) {
+      id = textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      if (!id) id = `heading-${tocIndex}`;
+      
+      // Inject the ID if it doesn't have one
+      attrs = `${attrs} id="${id}"`;
+    }
+
+    if (textContent) {
+      toc.push({
+        id,
+        text: textContent,
+        level: tag.toLowerCase() === 'h2' ? 2 : 3
+      });
+      tocIndex++;
+    }
+
+    return `<${tag}${attrs}>${content}</${tag}>`;
+  });
+
+  return { html: updatedHtml, toc };
 };

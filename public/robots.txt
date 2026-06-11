@@ -4,8 +4,66 @@ Allow: /
 
 # Sitemap
 Sitemap: https://panthm.com/sitemap.xml
+Sitemap: https://panthm.com/sitemap_pseo_index.xml
+
+# Block AI Scrapers from normal assets but Allow access to dynamic LLM directories and sitemaps
+User-agent: GPTBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: ChatGPT-User
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: Claude-Web
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: anthropic-ai
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: ClaudeBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: Google-Extended
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/llms.txt
+Allow: /solutions/
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
 
 # Disallow admin and private areas (if any)
+User-agent: *
 Disallow: /thank-you
 Disallow: /api/
 

@@ -16,7 +16,7 @@ import {
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import SEO from "../components/SEO";
 import { companyDetails } from "../data/constant";
-import { addSemanticLinks } from "../utils/linkHelper";
+import { addSemanticLinks, optimizeHtmlImages, generateTocAndAddIds } from "../utils/linkHelper";
 import { lazy, Suspense } from "react";
 
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
@@ -60,7 +60,7 @@ const ShareSidebar = ({ url, title }) => {
   };
 
   return (
-    <div className="hidden xl:flex flex-col items-center gap-3 sticky top-32 self-start">
+    <aside className="hidden xl:flex flex-col items-center gap-3 sticky top-32 self-start" aria-label="Social Share Sidebar">
       <span className="text-xs text-slate-400 font-medium uppercase tracking-widest rotate-0 mb-1">
         Share
       </span>
@@ -87,7 +87,7 @@ const ShareSidebar = ({ url, title }) => {
       >
         {copied ? <Check size={18} /> : <Link2 size={18} />}
       </button>
-    </div>
+    </aside>
   );
 };
 
@@ -98,7 +98,7 @@ const MobileShareBar = ({ url, title }) => {
   const encodedTitle = encodeURIComponent(title);
 
   return (
-    <div className="xl:hidden flex items-center gap-3 pt-8 border-t border-slate-100 dark:border-white/10">
+    <aside className="xl:hidden flex items-center gap-3 pt-8 border-t border-slate-100 dark:border-white/10" aria-label="Mobile Social Share">
       <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 mr-2">Share:</span>
       <a
         href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`}
@@ -136,7 +136,7 @@ const MobileShareBar = ({ url, title }) => {
       >
         {copied ? <Check size={16} /> : <Link2 size={16} />}
       </button>
-    </div>
+    </aside>
   );
 };
 
@@ -216,14 +216,15 @@ const BlogDetails = () => {
       },
     },
     mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": articleUrl,
+      "@id": `${articleUrl}#webpage`,
     },
     keywords: blog.metaKeywords?.join(", ") || blog.tags?.join(", ") || "",
   };
 
+  const { html: processedHtml, toc } = blog.content ? generateTocAndAddIds(optimizeHtmlImages(addSemanticLinks(blog.content), blog.title)) : { html: null, toc: [] };
+
   return (
-    <div className="pt-20">
+    <main className="pt-20">
       <SEO
         title={blog.title}
         description={
@@ -255,10 +256,10 @@ const BlogDetails = () => {
             {blog.title}
           </h1>
           <div className="flex items-center justify-center gap-6 text-sm text-slate-300 flex-wrap">
-            <span className="flex items-center gap-2">
+            <time dateTime={blog.publishDate || blog.createdAt} className="flex items-center gap-2">
               <Calendar size={16} />
               {formatDate(blog.publishDate || blog.createdAt)}
-            </span>
+            </time>
             <span className="flex items-center gap-2">
               <User size={16} />
               {blog.author?.name || blog.authorId?.name || "PANTHM Editorial"}
@@ -274,15 +275,17 @@ const BlogDetails = () => {
       <div className="wrapper py-12">
         <div className="max-w-5xl mx-auto">
           {/* Back link */}
-          <Link
-            to="/blogs"
-            className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors text-sm mb-8 group"
-          >
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            Back to Journal
-          </Link>
+          <nav aria-label="Breadcrumb">
+            <Link
+              to="/blogs"
+              className="inline-flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors text-sm mb-8 group"
+            >
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+              Back to Journal
+            </Link>
+          </nav>
 
-          <div className="flex gap-10 items-start">
+          <article className="flex gap-10 items-start">
             {/* Sticky share sidebar (desktop) */}
             <ShareSidebar url={articleUrl} title={blog.title} />
 
@@ -298,10 +301,28 @@ const BlogDetails = () => {
                 </div>
               )}
 
-              {blog.content ? (
+              {toc && toc.length > 0 && (
+                <nav className="mb-10 bg-slate-50 dark:bg-slate-900/50 p-6 rounded-2xl border border-slate-100 dark:border-white/5" aria-label="Table of Contents">
+                  <h2 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">Table of Contents</h2>
+                  <ul className="space-y-2">
+                    {toc.map((item, index) => (
+                      <li key={index} className={`${item.level === 3 ? 'ml-4' : ''}`}>
+                        <a 
+                          href={`#${item.id}`}
+                          className="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm"
+                        >
+                          {item.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              )}
+
+              {processedHtml ? (
                 <div className="prose prose-lg prose-slate dark:prose-invert max-w-none">
                   <div
-                    dangerouslySetInnerHTML={{ __html: addSemanticLinks(blog.content) }}
+                    dangerouslySetInnerHTML={{ __html: processedHtml }}
                     className="reset-html"
                   />
                 </div>
@@ -330,7 +351,7 @@ const BlogDetails = () => {
               {/* Mobile share bar */}
               <MobileShareBar url={articleUrl} title={blog.title} />
             </div>
-          </div>
+          </article>
         </div>
       </div>
 
@@ -340,7 +361,7 @@ const BlogDetails = () => {
           <BlogsSection />
         </Suspense>
       </div>
-    </div>
+    </main>
   );
 };
 

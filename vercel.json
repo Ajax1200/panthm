@@ -1,6 +1,19 @@
 {
   "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
+    {
+      "source": "/llms.txt",
+      "destination": "/api/llms-full"
+    },
+    {
+      "source": "/llms-full.txt",
+      "destination": "/api/llms-full"
+    },
+    {
+      "source": "/.well-known/llms.txt",
+      "destination": "/api/llms-full"
+    },
     {
       "source": "/",
       "has": [

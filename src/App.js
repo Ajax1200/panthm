@@ -19,6 +19,7 @@ import { Toaster } from "react-hot-toast";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import CustomCursor from "./components/website/CustomCursor";
 import { ThemeProvider } from "./components/ThemeContext";
+import { useCanonical } from "./hooks/useCanonical";
 
 // Lazy loading components
 const Home = lazy(() => import("./pages/Home"));
@@ -43,16 +44,16 @@ AOS.init({
   offset: -500,
 });
 
-function App() {
+function AppContent() {
+  useCanonical();
+
   return (
-    <ThemeProvider>
-      <Router>
-        <Suspense fallback={<LoadingSpinner />}>
-          <SpinnerContextProvider>
-          <LoadingSpinnerContext />
-          <ScrollToTop />
-          <Toaster position="top-center" />
-          <Routes>
+    <Suspense fallback={<LoadingSpinner />}>
+      <SpinnerContextProvider>
+      <LoadingSpinnerContext />
+      <ScrollToTop />
+      <Toaster position="top-center" />
+      <Routes>
             <Route
               path="/solutions/:service/:industry/:location"
               element={
@@ -192,7 +193,15 @@ function App() {
           <CustomCursor />
         </SpinnerContextProvider>
       </Suspense>
-    </Router>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <Router>
+        <AppContent />
+      </Router>
     </ThemeProvider>
   );
 }
