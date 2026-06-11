@@ -37,7 +37,6 @@ const Portfolio = lazy(() => import("./pages/Portfolio"));
 const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const PCASimulator = lazy(() => import("./pages/PCASimulator"));
 
 AOS.init({
   once: true,
@@ -98,16 +97,6 @@ function AppContent() {
               }
             />
             <Route path="/thank-you" element={<Thankyou />} />
-            <Route
-              path="/pca-simulator"
-              element={
-                <>
-                  <Header />
-                  <PCASimulator />
-                  <Footer />
-                </>
-              }
-            />
             <Route
               path="/privacy-policy"
               element={
