@@ -184,6 +184,21 @@
       "destination": "/index"
     },
     {
+      "source": "/solutions/:locale(ar|de|es|fr|ja)/:service/:industry/:location",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner|GPTBot|ChatGPT|OpenAI|Anthropic|Claude|Perplexity|Cohere|Google-Extended|Vertex|AI-Overviews|SearchGPT|Search-Partner).*"
+        }
+      ],
+      "destination": "/api/bot-handler?path=solutions&locale=:locale&service=:service&industry=:industry&location=:location"
+    },
+    {
+      "source": "/solutions/:locale(ar|de|es|fr|ja)/:service/:industry/:location",
+      "destination": "/index"
+    },
+    {
       "source": "/solutions/:service/:industry/:location",
       "has": [
         {
