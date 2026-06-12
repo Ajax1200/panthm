@@ -6604,6 +6604,18 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+libsodium-wrappers@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.npmjs.org/libsodium-wrappers/-/libsodium-wrappers-0.8.4.tgz"
+  integrity sha512-mu8aAWucZjTB5O/BtGXtW4e1agy7uHxNYG7zPthmmD1jU43LCDmSWZLN4JhflbdPXj3yDO4lxM1O9hLDgIOXDw==
+  dependencies:
+    libsodium "^0.8.0"
+
+libsodium@^0.8.0:
+  version "0.8.4"
+  resolved "https://registry.npmjs.org/libsodium/-/libsodium-0.8.4.tgz"
+  integrity sha512-lMcYaRi0zcs7tarATsQUYC7rstliIXZuoq0c6zXSgNtSNtdvBgkSegjWhpMJAXzKX3SUSwIp7+zEsob+j3LuRw==
+
 lilconfig@^2.0.3:
   version "2.1.0"
   resolved "https://registry.npmjs.org/lilconfig/-/lilconfig-2.1.0.tgz"
