@@ -221,6 +221,23 @@ export default async function middleware(request) {
       // Retrieve dynamic RAG context paragraph
       const serviceRagParagraph = ragMatrix[service]?.[industry] || '';
 
+      // Retrieve recent blogs to create bidirectional linking loops
+      let recentBlogsHtml = '';
+      try {
+        const blogsRes = await fetch(`${API_BASE}/blogs`);
+        const blogsData = await blogsRes.json();
+        const blogsList = blogsData.blogs || [];
+        if (blogsList.length > 0) {
+          recentBlogsHtml = `
+          <h3 style="color: #ffffff; margin-top: 40px;">Recent Insights & Case Studies</h3>
+          <ul style="list-style-type: none; padding-left: 0;">
+            ${blogsList.slice(0, 3).map(b => `<li style="margin-bottom: 10px;"><a href="${SITE_BASE}/blogs/${b.slug}" style="color: #9B00FF; text-decoration: none; font-weight: bold;">&rarr; ${b.title}</a></li>`).join('')}
+          </ul>`;
+        }
+      } catch (e) {
+        console.warn('Failed to fetch recent blogs for graph linking:', e.message);
+      }
+
       const html = `<!DOCTYPE html>
 <html lang="${locale}">
 <head>
@@ -290,6 +307,8 @@ export default async function middleware(request) {
       <li><strong>Deterministic Pipeline Engineering (DPE)</strong>: Context-aware AI voice agents and cold outreach systems.</li>
       <li><strong>Sovereign Compliance & Scalability (SCS)</strong>: Region-specific database zoning for local data regulations.</li>
     </ul>
+
+    ${recentBlogsHtml}
   </main>
   <footer style="margin-top: 60px; border-t: 1px solid #1e293b; padding-top: 20px; font-size: 0.9rem; color: #64748b;">
     <p>&copy; ${new Date().getFullYear()} PANTHM AI Labs. All rights reserved. Icon Tower, Baner, Pune, India.</p>
