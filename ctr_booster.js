@@ -1,11 +1,53 @@
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+
+// Initialize the stealth plugin to override bot fingerprints
+puppeteer.use(StealthPlugin());
+
+// Emulate human typing speed variations
+async function humanType(page, selector, text) {
+  const element = await page.$(selector);
+  if (!element) return;
+  await element.focus();
+  for (const char of text) {
+    await page.keyboard.sendCharacter(char);
+    // Random pause between keystrokes to simulate natural typing speed (50ms - 150ms)
+    await new Promise(resolve => setTimeout(resolve, Math.random() * 100 + 50));
+  }
+}
+
+// Emulate human page reading and scrolling behavior
+async function humanScroll(page) {
+  try {
+    await page.evaluate(async () => {
+      await new Promise((resolve) => {
+        let totalHeight = 0;
+        const distance = Math.floor(Math.random() * 80) + 40; // Random scroll intervals
+        const timer = setInterval(() => {
+          const scrollHeight = document.body.scrollHeight;
+          window.scrollBy(0, distance);
+          totalHeight += distance;
+
+          // Stop when we reach the bottom or after a certain depth
+          if (totalHeight >= scrollHeight - window.innerHeight || totalHeight > 3000) {
+            clearInterval(timer);
+            resolve();
+          }
+        }, 150 + Math.random() * 150); // Random scroll timing
+      });
+    });
+    console.log('[CTR Booster] Completed human scroll simulation.');
+  } catch (err) {
+    console.warn('[CTR Booster] Scroll simulation warning:', err.message);
+  }
+}
 
 async function runCTRBooster() {
-  console.log('[CTR Booster] Starting organic search session...');
+  console.log('[CTR Booster] Starting organic search session (Quantum Stealth Mode)...');
   
   let browser;
   try {
-    // Launch headless browser with args optimized for GitHub Actions Linux environment
+    // Launch headless browser with stealth configs
     browser = await puppeteer.launch({
       headless: true,
       args: [
@@ -13,7 +55,8 @@ async function runCTRBooster() {
         '--disable-setuid-sandbox', 
         '--disable-dev-shm-usage', 
         '--disable-accelerated-2d-canvas', 
-        '--disable-gpu'
+        '--disable-gpu',
+        '--window-size=1280,800'
       ]
     });
 
@@ -38,9 +81,9 @@ async function runCTRBooster() {
         await new Promise(resolve => setTimeout(resolve, 1500));
       }
 
-      // 2. Search for PANTHM AI Labs
-      console.log('[CTR Booster] Searching for "PANTHM AI Labs"...');
-      await page.type('textarea[name="q"]', 'PANTHM AI Labs');
+      // 2. Search for PANTHM AI Labs using human typing simulation
+      console.log('[CTR Booster] Searching for "PANTHM AI Labs" with human typing delays...');
+      await humanType(page, 'textarea[name="q"]', 'PANTHM AI Labs');
       await page.keyboard.press('Enter');
       await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
 
@@ -107,8 +150,10 @@ async function runCTRBooster() {
       await page.goto('https://panthm.com', { waitUntil: 'networkidle2', timeout: 30000 });
     }
 
-    // Wait and simulate reading engagement
-    await new Promise(resolve => setTimeout(resolve, 15000));
+    // Wait and simulate reading engagement by scrolling the page
+    console.log('[CTR Booster] Simulating page scroll & reading engagement...');
+    await humanScroll(page);
+    await new Promise(resolve => setTimeout(resolve, 8000));
 
     // Interact with the site: Click a random link (e.g. Services, About, Blogs) to simulate multi-page session
     try {
@@ -123,7 +168,10 @@ async function runCTRBooster() {
         const randomLink = internalLinks[Math.floor(Math.random() * internalLinks.length)];
         console.log(`[CTR Booster] Navigating internally to: ${randomLink}`);
         await page.goto(randomLink, { waitUntil: 'networkidle2', timeout: 20000 });
-        await new Promise(resolve => setTimeout(resolve, 8000));
+        
+        // Scroll the subpage too!
+        await humanScroll(page);
+        await new Promise(resolve => setTimeout(resolve, 5000));
       }
     } catch (navErr) {
       console.warn('[CTR Booster] Internal site navigation simulation failed:', navErr.message);
