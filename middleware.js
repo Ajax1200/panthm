@@ -1,4 +1,4 @@
-import ragMatrix from './src/data/rag_matrix.json';
+import ragMatrix from './src/data/rag_matrix.json' assert { type: 'json' };
 
 export const config = {
   matcher: [
