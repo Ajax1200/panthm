@@ -263,6 +263,10 @@
       "destination": "/index"
     },
     {
+      "source": "/google21a602606c3c9141",
+      "destination": "/google21a602606c3c9141.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index"
     }
