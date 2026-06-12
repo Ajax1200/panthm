@@ -224,7 +224,12 @@ export default async function middleware(request) {
       // Retrieve recent blogs to create bidirectional linking loops
       let recentBlogsHtml = '';
       try {
-        const blogsRes = await fetch(`${API_BASE}/blogs`);
+        const blogsRes = await fetch(`${API_BASE}/blogs`, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Vercel Edge)',
+            'Accept': 'application/json'
+          }
+        });
         const blogsData = await blogsRes.json();
         const blogsList = blogsData.blogs || [];
         if (blogsList.length > 0) {
