@@ -240,7 +240,7 @@ export default async function middleware(request) {
           </ul>`;
         }
       } catch (e) {
-        console.warn('Failed to fetch recent blogs for graph linking:', e.message);
+        recentBlogsHtml = `<!-- Fetch Error: ${e.message} -->`;
       }
 
       const html = `<!DOCTYPE html>
