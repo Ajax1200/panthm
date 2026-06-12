@@ -22,6 +22,83 @@ const ENTITIES = {
 
 const LOCALES = ['en', 'ar', 'de', 'es', 'fr', 'ja'];
 
+// ── Hydration Dictionaries for Scaled Content Spam Prevention ───────────────
+const INDUSTRY_DATA = {
+  'real-estate': {
+    painPoint: 'managing fragmented MLS listing data, dealing with delay-ridden lead generation updates, and keeping real-time agent/client schedules synchronized.',
+    outcome: 'We custom-integrate MLS and IDX data streams directly into your database schema, ensuring property listings are indexed in real-time. By deploying automated scheduling pipelines, property updates and matching alerts are instantly dispatched, increasing site-visitor conversion rates.'
+  },
+  'healthcare': {
+    painPoint: 'maintaining strict patient data privacy compliance, managing patient booking queues without API latency, and syncing records directly to EHR/EMR platforms.',
+    outcome: 'We engineer HIPAA-compliant database structures featuring database-level payload encryption. Our custom appointment scheduling queues sync instantly with medical provider calendars, bypassing costly intermediate SaaS scheduling services.'
+  },
+  'finance': {
+    painPoint: 'securing transaction ledgers against leakage, complying with KYC/AML validation protocols, and handling high-velocity data points under sub-millisecond network latency.',
+    outcome: 'We implement bank-grade client-side encryption alongside SOC2 compliant backend architectures. Transaction ledgers are written directly to optimized database layers, achieving 0ms interface latency and eliminating Zapier translation loops.'
+  },
+  'retail': {
+    painPoint: 'handling sudden traffic spikes during promotional runs, synchronizing inventory databases across brick-and-mortar POS and online storefronts, and avoiding abandoned shopping cart losses.',
+    outcome: 'We optimize inventory databases for high-concurrency requests, matching stock counts in real-time. Direct database trigger loops instantly initiate recovery campaigns when cart checkouts are interrupted.'
+  },
+  'logistics': {
+    painPoint: 'managing complex dispatch routing coordinates, tracking moving assets with real-time GPS precision, and aligning driver rosters with client orders.',
+    outcome: 'Our developers code native tracking interfaces that hook directly into map APIs and vehicle tracking hardware. Fleet routes are calculated instantly in serverless background processes, preventing system delays.'
+  },
+  'ecommerce': {
+    painPoint: 'ensuring pages load under 500ms to maximize checkout conversion, managing global multi-currency VAT tax calculations, and caching product listings at the edge.',
+    outcome: 'By compiling product catalog pages directly at Vercel Edge nodes, we deliver 0ms static site loading speeds. We code localized transaction and VAT calculations directly into payment gateway webhooks.'
+  },
+  'education': {
+    painPoint: 'providing low-latency virtual classroom features, managing high-throughput student portal access, and keeping course files secure.',
+    outcome: 'We build tailored learning portals capable of streaming media content and cataloging student responses without database locking.'
+  },
+  'legal': {
+    painPoint: 'protecting sensitive client data, maintaining encrypted archives, and managing billing/invoice pipelines.',
+    outcome: 'Our team designs end-to-end encrypted file repositories. Case updates automatically compile invoices and trigger client notifications, eliminating manual overhead.'
+  },
+  'automotive': {
+    painPoint: 'integrating massive dealer inventory catalogs, configuring multi-option model builders, and routing buyer inquiries to local showrooms.',
+    outcome: 'We build high-performance search grids to filter vehicle datasets instantly. Inquiry routers dispatch leads to local sales centers based on regional geocoding.'
+  },
+  'manufacturing': {
+    painPoint: 'tracking supply chains in real-time, syncing warehouse inventory with online orders, and managing parts directories.',
+    outcome: 'We connect production line database registers directly to online sales systems, giving clients transparent delivery timelines.'
+  }
+};
+
+const SERVICE_DATA = {
+  'ai-calling-agency': {
+    description: 'Bespoke AI Voice SDR Agents that handle outbound lead qualification, inbound support, and appointment setting.',
+    stack: 'Node.js, WebRTC, Twilio, custom voice synthesis layers, and OpenAI models.',
+    latency: 'Sub-500ms response time matching human speech patterns.'
+  },
+  'web-development': {
+    description: 'High-performance React/Vite frontends with vanilla CSS for zero-latency page navigation.',
+    stack: 'React, Vite, Vanilla CSS, TailwindCSS, and serverless hosting.',
+    latency: 'Sub-500ms Largest Contentful Paint (LCP) and zero Interaction to Next Paint (INP) lag.'
+  },
+  'app-development': {
+    description: 'Custom native and cross-platform mobile apps for iOS and Android optimized for hardware performance.',
+    stack: 'Swift, Kotlin, Flutter, and React Native.',
+    latency: 'Fluid 60fps rendering layouts and offline-capable synchronization.'
+  },
+  'custom-software': {
+    description: 'Bespoke software platforms built from the ground up to replace third-party SaaS middleware.',
+    stack: 'Node.js, Express, MongoDB Atlas, and custom database APIs.',
+    latency: 'Direct core integrations eliminating Zapier translation delays.'
+  },
+  'ai-automation': {
+    description: 'Automated workflow pipelines and background task orchestration engines.',
+    stack: 'Serverless Edge functions, event listeners, and data pipelines.',
+    latency: 'Automated background tasks executing with 0ms operational overhead.'
+  },
+  'blockchain': {
+    description: 'Decentralized ledgers, smart contracts, and Web3 token integrations.',
+    stack: 'Solidity, Ethereum, Web3.js, and secure cryptographic storage.',
+    latency: 'Immutable transaction ledger records synchronized with zero system latency.'
+  }
+};
+
 // Helper to normalize strings (e.g. web-development -> Web Development)
 const normalize = (slug) => {
   if (!slug) return '';
@@ -111,6 +188,18 @@ export default async function middleware(request) {
         }
       };
 
+      // Retrieve Industry & Service specific pain-points & outcomes
+      const industryInfo = INDUSTRY_DATA[industry] || {
+        painPoint: 'maintaining connection speed, avoiding data synchronization lags, and managing complex third-party API dependencies.',
+        outcome: 'We custom-engineer the database and routing schemas to link directly with standard CRMs, databases, and third-party APIs. By eliminating intermediate middleware layers, we reduce operational overhead and secure data transit.'
+      };
+
+      const serviceInfo = SERVICE_DATA[service] || {
+        description: 'Bespoke high-performance software systems designed specifically to optimize business operations.',
+        stack: 'React, Node.js, serverless cloud functions, and database layers.',
+        latency: 'Highly optimized page load speeds and API transit latency.'
+      };
+
       const html = `<!DOCTYPE html>
 <html lang="${locale}">
 <head>
@@ -140,10 +229,25 @@ export default async function middleware(request) {
   </header>
   <main style="margin-top: 40px;">
     <h1 style="font-size: 2.2rem; color: #ffffff;">Custom ${displayService} for ${displayIndustry} in ${displayLocation}</h1>
+    
     <p style="font-size: 1.1rem; color: #94a3b8; margin-top: 20px;">
-      PANTHM AI Labs designs, builds, and deploys high-velocity <strong>${displayService}</strong> platforms engineered specifically to meet the compliance, latency, and system integration needs of <strong>${displayIndustry}</strong> organizations operating in <strong>${displayLocation}</strong>.
+      In ${displayLocation}, ${displayIndustry} enterprises frequently face bottlenecks ${industryInfo.painPoint}
     </p>
     
+    <p style="font-size: 1.1rem; color: #f1f5f9; margin-top: 15px;">
+      PANTHM AI Labs solves this by delivering bespoke, high-velocity <strong>${displayService}</strong> platforms. ${industryInfo.outcome}
+    </p>
+    
+    <h2 style="color: #ffffff; margin-top: 40px;">Architecture Overview & Specifications</h2>
+    <p>
+      Our <strong>${displayService}</strong> implementations are built from first principles for clients in ${displayLocation}:
+    </p>
+    <ul>
+      <li><strong>Operational Model</strong>: ${serviceInfo.description}</li>
+      <li><strong>Core Tech Stack</strong>: ${serviceInfo.stack}</li>
+      <li><strong>Performance Metric</strong>: ${serviceInfo.latency}</li>
+    </ul>
+
     <h2 style="color: #ffffff; margin-top: 40px;">The PANTHM Consolidation Architecture (PCA)</h2>
     <p>
       By wrapping user presentation, task queuing, conversational pipelines, and global data residency controls into a single consolidated codebase, we eliminate third-party SaaS middleware dependencies, Zapier friction, and double-billing server licenses.
