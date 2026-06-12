@@ -40,7 +40,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => {
           isOpen ? "max-h-[500px] border-t border-slate-100 dark:border-white/5" : "max-h-0"
         } overflow-hidden`}
       >
-        <div className="px-6 py-5 text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed bg-slate-50/50 dark:bg-white/1">
+        <div className="px-6 py-5 text-sm md:text-base text-slate-700 dark:text-slate-200 leading-relaxed bg-slate-50/30 dark:bg-black/30">
           {answer}
         </div>
       </div>
