@@ -297,7 +297,8 @@ export default async function middleware(request) {
         const blog = data.blog;
 
         if (!apiRes.ok || !blog) {
-          return new Response('Blog Not Found', { status: 404 });
+          // If CMS API fails or is loading (e.g. database cold starts), fallback to React client shell
+          return;
         }
 
         const title = blog.metaTitle || blog.title;
