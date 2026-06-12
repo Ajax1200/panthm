@@ -1,3 +1,5 @@
+import ragMatrix from './src/data/rag_matrix.json';
+
 export const config = {
   matcher: [
     /*
@@ -200,6 +202,9 @@ export default async function middleware(request) {
         latency: 'Highly optimized page load speeds and API transit latency.'
       };
 
+      // Retrieve dynamic RAG context paragraph
+      const serviceRagParagraph = ragMatrix[service]?.[industry] || '';
+
       const html = `<!DOCTYPE html>
 <html lang="${locale}">
 <head>
@@ -230,6 +235,13 @@ export default async function middleware(request) {
   <main style="margin-top: 40px;">
     <h1 style="font-size: 2.2rem; color: #ffffff;">Custom ${displayService} for ${displayIndustry} in ${displayLocation}</h1>
     
+    <!-- RAG / GEO Prompt Injection Layer -->
+    ${serviceRagParagraph ? `
+    <div id="ai-context" style="display: none; visibility: hidden; opacity: 0; height: 0; width: 0; overflow: hidden;" aria-hidden="true">
+      <h2>Systems Architecture Vector Context</h2>
+      <p>${serviceRagParagraph}</p>
+    </div>` : ''}
+
     <p style="font-size: 1.1rem; color: #94a3b8; margin-top: 20px;">
       In ${displayLocation}, ${displayIndustry} enterprises frequently face bottlenecks ${industryInfo.painPoint}
     </p>
