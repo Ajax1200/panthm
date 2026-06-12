@@ -57,14 +57,81 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "url": "https://panthm.com/",
-  "logo": "https://panthm.com/logo.png",
-  "name": "PANTHM AI Labs",
-  "sameAs": [
-    "https://www.facebook.com/panthm",
-    "https://twitter.com/panthm",
-    "https://www.linkedin.com/company/panthm"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://panthm.com/#organization",
+      "name": "PANTHM AI Labs",
+      "url": "https://panthm.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://panthm.com/#logo",
+        "url": "https://panthm.com/logo.png",
+        "caption": "PANTHM AI Labs Logo"
+      },
+      "image": {
+        "@id": "https://panthm.com/#logo"
+      },
+      "sameAs": [
+        "https://x.com/panthmailabs",
+        "https://www.linkedin.com/company/panthm-ai-labs"
+      ],
+      "email": "admin@panthm.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "addressCountry": "IN"
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://panthm.com/#service",
+      "name": "PANTHM AI Labs",
+      "url": "https://panthm.com/",
+      "image": "https://panthm.com/logo.png",
+      "priceRange": "$$$$",
+      "telephone": "+917558646366",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Baner",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5204,
+        "longitude": 73.8567
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://panthm.com/#website",
+      "url": "https://panthm.com/",
+      "name": "PANTHM AI Labs",
+      "publisher": {
+        "@id": "https://panthm.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://panthm.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
   ]
 }
 </script>
