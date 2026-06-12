@@ -43,7 +43,7 @@ async function runGSCTracker() {
     console.log(`[GSC Tracker] Fetching performance data from ${startDate} to ${endDate}...`);
 
     const response = await webmasters.searchanalytics.query({
-      siteUrl: 'sc-domain:panthm.com',
+      siteUrl: 'https://www.panthm.com/',
       requestBody: {
         startDate,
         endDate,
