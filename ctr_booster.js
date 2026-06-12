@@ -42,12 +42,144 @@ async function humanScroll(page) {
   }
 }
 
+async function runGoogleSearch(page) {
+  console.log('[CTR Booster] Navigating to Google...');
+  await page.goto('https://www.google.com', { waitUntil: 'networkidle2', timeout: 20000 });
+
+  // Handle cookie consent if visible (often visible in EU runners)
+  const consentButton = await page.$('button[id="L2AGLb"]');
+  if (consentButton) {
+    console.log('[CTR Booster] Accepting Google consent policy...');
+    await consentButton.click();
+    await new Promise(resolve => setTimeout(resolve, 1500));
+  }
+
+  // Search for PANTHM AI Labs
+  console.log('[CTR Booster] Searching on Google with human typing delays...');
+  await humanType(page, 'textarea[name="q"]', 'PANTHM AI Labs');
+  await page.keyboard.press('Enter');
+  await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+
+  // CHECK: Look for "Search instead for" correction link (either text match OR nfpr=1 / spell=0 url parameters)
+  console.log('[CTR Booster] Analyzing Google search results page...');
+  const correctionLink = await page.evaluateHandle(() => {
+    const anchors = Array.from(document.querySelectorAll('a'));
+    return anchors.find(a => 
+      (a.textContent && a.textContent.includes('Search instead for')) || 
+      (a.href && (a.href.includes('nfpr=1') || a.href.includes('spell=0')))
+    );
+  });
+
+  if (correctionLink && correctionLink.asElement()) {
+    console.log('[CTR Booster] 🎯 Spelling override link matched. Clicking override...');
+    await correctionLink.asElement().click();
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+  } else {
+    console.log('[CTR Booster] No spelling correction link detected. Spelling is already recognized.');
+  }
+
+  // Locating panthm.com in organic results
+  let resultLink = null;
+  let pageNum = 1;
+  const maxPages = 3;
+
+  while (pageNum <= maxPages) {
+    console.log(`[CTR Booster] Scanning Google page ${pageNum} for panthm.com...`);
+    resultLink = await page.evaluateHandle(() => {
+      const anchors = Array.from(document.querySelectorAll('a'));
+      return anchors.find(a => a.href && (a.href.includes('panthm.com') || a.href.includes('panthm.com/')));
+    });
+
+    if (resultLink && resultLink.asElement()) {
+      console.log('[CTR Booster] 🎯 Found organic target result on Google!');
+      break;
+    }
+
+    const nextButton = await page.$('a[id="pnnext"]');
+    if (!nextButton) break;
+
+    await nextButton.click();
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+    pageNum++;
+  }
+
+  if (resultLink && resultLink.asElement()) {
+    console.log('[CTR Booster] Clicking target link on Google...');
+    await resultLink.asElement().click();
+    return true;
+  }
+
+  throw new Error('Target result not found on Google results pages.');
+}
+
+async function runBingSearch(page) {
+  console.log('[CTR Booster] 🔄 Fallback: Navigating to Bing...');
+  await page.goto('https://www.bing.com', { waitUntil: 'networkidle2', timeout: 20000 });
+
+  // Handle cookie consent if visible on Bing
+  const consentButton = await page.$('button[id="bnp_btn_accept"]');
+  if (consentButton) {
+    console.log('[CTR Booster] Accepting Bing consent policy...');
+    await consentButton.click();
+    await new Promise(resolve => setTimeout(resolve, 1500));
+  }
+
+  console.log('[CTR Booster] Searching on Bing with human typing delays...');
+  await humanType(page, 'input[name="q"]', 'PANTHM AI Labs');
+  await page.keyboard.press('Enter');
+  await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+
+  // Click spelling correction override if present on Bing (usually "Showing results for... Search instead for...")
+  const correctionLink = await page.evaluateHandle(() => {
+    const anchors = Array.from(document.querySelectorAll('a'));
+    return anchors.find(a => a.textContent && a.textContent.toLowerCase().includes('search instead for'));
+  });
+
+  if (correctionLink && correctionLink.asElement()) {
+    console.log('[CTR Booster] 🎯 Bing spelling override link found. Clicking...');
+    await correctionLink.asElement().click();
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+  }
+
+  // Scanning Bing search pages
+  let resultLink = null;
+  let pageNum = 1;
+  const maxPages = 3;
+
+  while (pageNum <= maxPages) {
+    console.log(`[CTR Booster] Scanning Bing page ${pageNum} for panthm.com...`);
+    resultLink = await page.evaluateHandle(() => {
+      const anchors = Array.from(document.querySelectorAll('a'));
+      return anchors.find(a => a.href && (a.href.includes('panthm.com') || a.href.includes('panthm.com/')));
+    });
+
+    if (resultLink && resultLink.asElement()) {
+      console.log('[CTR Booster] 🎯 Found organic target result on Bing!');
+      break;
+    }
+
+    const nextButton = await page.$('a[title="Next page"]');
+    if (!nextButton) break;
+
+    await nextButton.click();
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+    pageNum++;
+  }
+
+  if (resultLink && resultLink.asElement()) {
+    console.log('[CTR Booster] Clicking target link on Bing...');
+    await resultLink.asElement().click();
+    return true;
+  }
+
+  throw new Error('Target result not found on Bing results pages.');
+}
+
 async function runCTRBooster() {
-  console.log('[CTR Booster] Starting organic search session (Quantum Stealth Mode)...');
+  console.log('[CTR Booster] Starting organic search session (Bulletproof Failsafe Mode)...');
   
   let browser;
   try {
-    // Launch headless browser with stealth configs
     browser = await puppeteer.launch({
       headless: true,
       args: [
@@ -61,101 +193,37 @@ async function runCTRBooster() {
     });
 
     const page = await browser.newPage();
-    
-    // Set realistic viewport and User-Agent
     await page.setViewport({ width: 1280, height: 800 });
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
 
     let clickedLink = false;
 
+    // 1. Try Google Search first
     try {
-      // 1. Go to Google
-      console.log('[CTR Booster] Navigating to Google...');
-      await page.goto('https://www.google.com', { waitUntil: 'networkidle2', timeout: 20000 });
-
-      // Handle cookie consent if visible (often visible in EU runners)
-      const consentButton = await page.$('button[id="L2AGLb"]');
-      if (consentButton) {
-        console.log('[CTR Booster] Accepting Google consent policy...');
-        await consentButton.click();
-        await new Promise(resolve => setTimeout(resolve, 1500));
-      }
-
-      // 2. Search for PANTHM AI Labs using human typing simulation
-      console.log('[CTR Booster] Searching for "PANTHM AI Labs" with human typing delays...');
-      await humanType(page, 'textarea[name="q"]', 'PANTHM AI Labs');
-      await page.keyboard.press('Enter');
-      await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
-
-      // 3. Look for "Search instead for" correction link
-      console.log('[CTR Booster] Analyzing search results page...');
+      clickedLink = await runGoogleSearch(page);
+    } catch (googleErr) {
+      console.warn('[CTR Booster] Google Search failed or was blocked:', googleErr.message);
       
-      const searchInsteadForText = 'Search instead for';
-      const linkToClick = await page.evaluateHandle((text) => {
-        const anchors = Array.from(document.querySelectorAll('a'));
-        return anchors.find(a => a.textContent && a.textContent.includes(text));
-      }, searchInsteadForText);
-
-      if (linkToClick && linkToClick.asElement()) {
-        console.log('[CTR Booster] 🎯 Did-you-mean correction found. Clicking "Search instead for PANTHM AI Labs"...');
-        await linkToClick.asElement().click();
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
-      } else {
-        console.log('[CTR Booster] No "Did you mean" spell correction visible. Spelling is already recognized.');
+      // 2. Fallback to Bing Search if Google fails
+      try {
+        clickedLink = await runBingSearch(page);
+      } catch (bingErr) {
+        console.warn('[CTR Booster] Bing Search fallback failed or was blocked:', bingErr.message);
       }
-
-      // 4. Click the link to our website (panthm.com) in search results (paginated)
-      console.log('[CTR Booster] Locating organic search result for panthm.com...');
-      let resultLink = null;
-      let pageNum = 1;
-      const maxPages = 3;
-
-      while (pageNum <= maxPages) {
-        console.log(`[CTR Booster] Scanning page ${pageNum} for panthm.com...`);
-        resultLink = await page.evaluateHandle(() => {
-          const anchors = Array.from(document.querySelectorAll('a'));
-          return anchors.find(a => a.href && (a.href.includes('panthm.com') || a.href.includes('panthm.com/')));
-        });
-
-        if (resultLink && resultLink.asElement()) {
-          console.log('[CTR Booster] 🎯 Found organic target result!');
-          break;
-        }
-
-        // If not found, go to the next page
-        const nextButton = await page.$('a[id="pnnext"]');
-        if (!nextButton) {
-          console.log('[CTR Booster] No "Next" page button found.');
-          break;
-        }
-
-        console.log('[CTR Booster] Navigating to next page...');
-        await nextButton.click();
-        await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
-        pageNum++;
-      }
-
-      if (resultLink && resultLink.asElement()) {
-        console.log('[CTR Booster] Clicking link to panthm.com...');
-        await resultLink.asElement().click();
-        clickedLink = true;
-      }
-    } catch (searchErr) {
-      console.warn('[CTR Booster] Google Search navigation/interaction failed:', searchErr.message);
     }
 
-    // Fallback: If search failed or couldn't find the link, perform Direct Navigation simulation
+    // 3. Ultimate Fallback: Direct Navigation
     if (!clickedLink) {
-      console.log('[CTR Booster] 🔄 Fallback: Simulating direct navigation to https://panthm.com...');
+      console.log('[CTR Booster] 🔄 Ultimate Fallback: Simulating direct navigation to https://panthm.com...');
       await page.goto('https://panthm.com', { waitUntil: 'networkidle2', timeout: 30000 });
     }
 
-    // Wait and simulate reading engagement by scrolling the page
+    // Reading engagement simulation
     console.log('[CTR Booster] Simulating page scroll & reading engagement...');
     await humanScroll(page);
     await new Promise(resolve => setTimeout(resolve, 8000));
 
-    // Interact with the site: Click a random link (e.g. Services, About, Blogs) to simulate multi-page session
+    // Internal navigation loop
     try {
       console.log('[CTR Booster] Simulating internal page navigation...');
       const internalLinks = await page.$$eval('a', anchors => 
@@ -169,7 +237,6 @@ async function runCTRBooster() {
         console.log(`[CTR Booster] Navigating internally to: ${randomLink}`);
         await page.goto(randomLink, { waitUntil: 'networkidle2', timeout: 20000 });
         
-        // Scroll the subpage too!
         await humanScroll(page);
         await new Promise(resolve => setTimeout(resolve, 5000));
       }
@@ -180,7 +247,9 @@ async function runCTRBooster() {
     console.log(`[CTR Booster] Completed session on: ${page.url()}`);
 
   } catch (err) {
-    console.error('[CTR Booster] ❌ Core Session Error:', err.message);
+    console.error('[CTR Booster] ❌ System Error:', err.message);
+    // Exit with code 1 to alert GitHub Actions on critical system failure (e.g. library crash)
+    process.exit(1);
   } finally {
     if (browser) {
       await browser.close();
@@ -189,4 +258,4 @@ async function runCTRBooster() {
   }
 }
 
-runCTRBooster().catch(console.error);
+runCTRBooster().catch(() => process.exit(1));
