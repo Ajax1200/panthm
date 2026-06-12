@@ -20,14 +20,14 @@ async function runGSCTracker() {
   }
 
   try {
-    const auth = new google.auth.JWT(
-      credentials.client_email,
-      null,
-      credentials.private_key,
-      ['https://www.googleapis.com/auth/webmasters.readonly']
-    );
+    // Authenticate using the robust GoogleAuth client from googleapis
+    const auth = new google.auth.GoogleAuth({
+      credentials,
+      scopes: ['https://www.googleapis.com/auth/webmasters.readonly']
+    });
+    const authClient = await auth.getClient();
 
-    const webmasters = google.webmasters({ version: 'v3', auth });
+    const webmasters = google.webmasters({ version: 'v3', auth: authClient });
 
     // Calculate a 7-day range ending 3 days ago (Search Console data lag)
     const today = new Date();
@@ -91,7 +91,9 @@ async function runGSCTracker() {
 
   } catch (err) {
     console.error('[GSC Tracker] ❌ API Execution failed:', err.message);
+    // Exit with 1 if GSC API fails so we get alerts
+    process.exit(1);
   }
 }
 
-runGSCTracker().catch(console.error);
+runGSCTracker().catch(() => process.exit(1));
