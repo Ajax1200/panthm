@@ -11,6 +11,7 @@
     "cra-template": "1.2.0",
     "dotenv": "^16.4.5",
     "form-data": "^4.0.0",
+    "googleapis": "^173.0.0",
     "hamburger-react": "^2.5.2",
     "keen-slider": "^6.8.6",
     "leaflet": "^1.9.4",

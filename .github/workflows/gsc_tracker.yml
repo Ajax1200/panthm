@@ -1,0 +1,36 @@
+name: Google Search Console Tracker
+
+on:
+  schedule:
+    # Trigger runs once daily at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Enable manual run from GitHub Actions UI
+
+concurrency:
+  group: gsc-tracker
+  cancel-in-progress: true
+
+jobs:
+  run-tracker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci || npm install
+
+      - name: Run Search Console Query
+        env:
+          GSC_API_KEY_JSON: ${{ secrets.GSC_API_KEY_JSON }}
+        run: |
+          node gsc_tracker.js
