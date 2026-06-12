@@ -360,6 +360,34 @@ async function runAutopilot() {
     const selectedNiche = DOMAIN_NICHES[Math.floor(Math.random() * DOMAIN_NICHES.length)];
     logMsg(`Selected Domain Niche for this run: "${selectedNiche.name}"`);
 
+    // 3. Load GSC report if available for real-world search insights
+    const GSC_REPORT_FILE = path.join(__dirname, 'gsc_report.json');
+    let gscContext = '';
+    if (fs.existsSync(GSC_REPORT_FILE)) {
+      try {
+        const gscData = JSON.parse(fs.readFileSync(GSC_REPORT_FILE, 'utf-8'));
+        logMsg('Found GSC search analytics report. Parsing insights...');
+
+        let insights = [];
+        if (gscData.lowCtrQueries && gscData.lowCtrQueries.length > 0) {
+          insights.push(`- High Impressions, Low CTR keywords/queries (immediately target these to improve click relevance): [${gscData.lowCtrQueries.join(', ')}]`);
+        }
+        if (gscData.thresholdQueries && gscData.thresholdQueries.length > 0) {
+          insights.push(`- Threshold Ranking keywords/queries (currently ranking position 5-15; write high-value content containing these terms to boost them to page 1): [${gscData.thresholdQueries.join(', ')}]`);
+        }
+        if (gscData.topQueries && gscData.topQueries.length > 0) {
+          const topTerms = gscData.topQueries.slice(0, 10).map(q => q.query).join(', ');
+          insights.push(`- Already-ranking top organic keywords (maintain relevance for these): [${topTerms}]`);
+        }
+
+        if (insights.length > 0) {
+          gscContext = `\nREAL-WORLD SEARCH CONSOLE INSIGHTS FOR THIS RUN:\n${insights.join('\n')}\nUse these search insights to guide your selection of the topic and target focus keywords. Prioritize targeting threshold queries or low-CTR keywords that align with the chosen niche!`;
+        }
+      } catch (err) {
+        logMsg(`Warning parsing GSC report: ${err.message}`);
+      }
+    }
+
     logMsg("Invoking Google Gemini to suggest a trending SEO / LLMO tech topic...");
     const genAI = new GoogleGenerativeAI(geminiKey);
     const topicModel = genAI.getGenerativeModel({
@@ -381,6 +409,7 @@ async function runAutopilot() {
 
     const topicPrompt = `Suggest a trending, high-impact blog topic focused on SEO (Search Engine Optimization), LLMO (Large Language Model Optimization), or GEO (Generative Engine Optimization) in the tech and software industry today.
 The goal is to increase visibility on search engines and citation dominance in AI search engines (like Perplexity, SearchGPT, Gemini, ChatGPT Search) specifically for PANTHM AI LABS.
+${gscContext}
 
 Crucial Domain Focus:
 For this specific run, the topic and keywords MUST stay strictly within the following domain niche:

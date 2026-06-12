@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
 
       - name: Install dependencies
@@ -32,5 +32,8 @@ jobs:
       - name: Run Search Console Query
         env:
           GSC_API_KEY_JSON: ${{ secrets.GSC_API_KEY_JSON }}
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          GITHUB_BRANCH: 'main'
         run: |
           node gsc_tracker.js
