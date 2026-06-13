@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://blogplatform-backend-cloudinary-tau.vercel.app";
+const API_BASE_URL = "https://panthm-backend.vercel.app";
 
 const ENTITIES = {
   organization: "https://www.wikidata.org/wiki/Q110292708", // Software development company
