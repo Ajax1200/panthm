@@ -279,7 +279,7 @@ async function runAutopilot() {
   try {
     // 1. Login to Panthm Admin CMS first to retrieve token
     logMsg("Authenticating with Panthm CMS API...");
-    const authRes = await axiosWithRetry(() => axios.post('https://blogplatform-backend-cloudinary-tau.vercel.app/api/auth/login', {
+    const authRes = await axiosWithRetry(() => axios.post('https://panthm-backend.vercel.app/api/auth/login', {
       email: 'admin@panthm.com',
       password: 'admin@123'
     }), 'Authentication');
@@ -295,7 +295,7 @@ async function runAutopilot() {
     let existingTitles = [];
     try {
       logMsg("Fetching list of existing blogs from database...");
-      const blogsRes = await axiosWithRetry(() => axios.get('https://blogplatform-backend-cloudinary-tau.vercel.app/api/blogs?page=1&limit=50', {
+      const blogsRes = await axiosWithRetry(() => axios.get('https://panthm-backend.vercel.app/api/blogs?page=1&limit=50', {
         headers: { Authorization: `Bearer ${token}` }
       }), 'Fetch blogs');
       
@@ -472,14 +472,14 @@ Requirements for the topic selection:
     };
 
     // Fetch live categories to resolve category ID
-    const catRes = await axiosWithRetry(() => axios.get('https://blogplatform-backend-cloudinary-tau.vercel.app/api/categories', {
+    const catRes = await axiosWithRetry(() => axios.get('https://panthm-backend.vercel.app/api/categories', {
       headers: { Authorization: `Bearer ${token}` }
     }), 'Fetch categories');
     const matchCat = catRes.data?.categories?.find(c => c.name.toLowerCase().includes(selection.category.toLowerCase())) || catRes.data?.categories?.[0];
     const categoryId = matchCat?._id;
 
     // Fetch live authors list to resolve or register target expert author
-    const authListRes = await axiosWithRetry(() => axios.get('https://blogplatform-backend-cloudinary-tau.vercel.app/api/authors', {
+    const authListRes = await axiosWithRetry(() => axios.get('https://panthm-backend.vercel.app/api/authors', {
       headers: { Authorization: `Bearer ${token}` }
     }), 'Fetch authors');
     
@@ -492,7 +492,7 @@ Requirements for the topic selection:
     } else {
       logMsg(`Expert author "${targetExpert.name}" not found in database. Registering new profile...`);
       try {
-        const createRes = await axiosWithRetry(() => axios.post('https://blogplatform-backend-cloudinary-tau.vercel.app/api/authors', {
+        const createRes = await axiosWithRetry(() => axios.post('https://panthm-backend.vercel.app/api/authors', {
           name: targetExpert.name
         }, {
           headers: { Authorization: `Bearer ${token}` }
@@ -721,7 +721,7 @@ ${linksContext || 'No existing articles.'}
         // This protects against two parallel runners that both passed the first check
         // (both started simultaneously, both saw 0 posts) and are now racing to publish.
         try {
-          const prePubCheck = await axiosWithRetry(() => axios.get('https://blogplatform-backend-cloudinary-tau.vercel.app/api/blogs?page=1&limit=10', {
+          const prePubCheck = await axiosWithRetry(() => axios.get('https://panthm-backend.vercel.app/api/blogs?page=1&limit=10', {
             headers: { Authorization: `Bearer ${token}` },
             timeout: 10000
           }), 'Pre-publish duplicate gate');
@@ -766,7 +766,7 @@ ${linksContext || 'No existing articles.'}
         // Need to recreate the stream for each attempt since streams are consumed on upload
         form.append('image', fs.createReadStream(tempImgPath), { filename: 'banner.png' });
 
-        uploadRes = await axios.post('https://blogplatform-backend-cloudinary-tau.vercel.app/api/blogs', form, {
+        uploadRes = await axios.post('https://panthm-backend.vercel.app/api/blogs', form, {
           headers: {
             ...form.getHeaders(),
             Authorization: `Bearer ${token}`

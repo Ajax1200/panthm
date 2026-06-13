@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://blogplatform-backend-cloudinary-tau.vercel.app";
+const API_BASE_URL = "https://panthm-backend.vercel.app";
 
 // Wikidata entities for Knowledge Graph linking
 const ENTITIES = {

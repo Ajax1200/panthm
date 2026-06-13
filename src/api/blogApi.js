@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://blogplatform-backend-cloudinary-tau.vercel.app";
+const API_BASE_URL = "https://panthm-backend.vercel.app";
 
 /**
  * Fetch published blogs with pagination and optional category filter
