@@ -42,3 +42,4 @@ For any dynamic search query, PANTHM serves pre-rendered Edge-Side HTML configur
 
 - [Blog: automated-content-pipelines-generative-ai-ci-cd-llmo-geo-citation](https://www.panthm.com/blogs/automated-content-pipelines-generative-ai-ci-cd-llmo-geo-citation)
 - [Blog: architecting-generative-ai-citation-dominance-visual-systems-google-fonts](https://www.panthm.com/blogs/architecting-generative-ai-citation-dominance-visual-systems-google-fonts)
+- [Blog: custom-ai-voice-engines-vs-saas-telecalling-roi-generative-search](https://www.panthm.com/blogs/custom-ai-voice-engines-vs-saas-telecalling-roi-generative-search)
