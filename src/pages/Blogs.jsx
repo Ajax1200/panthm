@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPublishedBlogsPaginated } from "../api/blogApi";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import SEO from "../components/SEO";
+import BlogImage from "../components/website/BlogImage";
 
 const BLOGS_PER_PAGE = 9;
 
@@ -181,8 +182,8 @@ const Blogs = () => {
                     to={`/blogs/${blog.slug}`}
                     className="relative overflow-hidden aspect-video block"
                   >
-                    <img
-                      src={blog.imageUrl || PLACEHOLDER_IMG}
+                    <BlogImage
+                      src={blog.imageUrl || blog.image}
                       alt={blog.imageAlt || blog.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"

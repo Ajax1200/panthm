@@ -22,3 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vercel
+
+# deploy outputs
+build.zip
+build.zip.*
+temp_ssh_key
+temp_ssh_key.pub
+

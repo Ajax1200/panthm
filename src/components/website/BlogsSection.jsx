@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPublishedBlogs } from "../../api/blogApi";
 import { ArrowLeft, ArrowRight, Calendar, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import BlogImage from "./BlogImage";
 
 const BlogsSection = () => {
   const { data, isLoading } = useQuery({
@@ -157,8 +158,8 @@ const BlogsSection = () => {
       className="group bg-white dark:bg-white/5 rounded-2xl overflow-hidden border border-slate-100 dark:border-white/10 shadow-sm flex flex-col h-full"
     >
       <div className="relative overflow-hidden aspect-video">
-        <img
-          src={blog.imageUrl || PLACEHOLDER_IMG}
+        <BlogImage
+          src={blog.imageUrl || blog.image}
           alt={blog.imageAlt || blog.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"

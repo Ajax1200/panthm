@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import SEO from "../components/SEO";
+import BlogImage from "../components/website/BlogImage";
 import { companyDetails } from "../data/constant";
 import { addSemanticLinks, optimizeHtmlImages, generateTocAndAddIds } from "../utils/linkHelper";
 import { lazy, Suspense } from "react";
@@ -199,7 +200,7 @@ const BlogDetails = () => {
     "@type": "BlogPosting",
     headline: blog.title,
     description: blog.excerpt || blog.metaDescription || "",
-    image: blog.imageUrl || "",
+    image: blog.imageUrl || blog.image || "",
     datePublished: blog.publishDate || blog.createdAt,
     dateModified: blog.updatedAt || blog.createdAt,
     author: {
@@ -237,7 +238,7 @@ const BlogDetails = () => {
           blog.tags?.join(", ") ||
           "technology, web development, software development"
         }
-        image={blog.imageUrl}
+        image={blog.imageUrl || blog.image}
         url={articleUrl}
         type="article"
         structuredData={structuredData}
@@ -291,10 +292,10 @@ const BlogDetails = () => {
 
             {/* Main content */}
             <div className="flex-1 min-w-0">
-              {blog.imageUrl && (
+              {(blog.imageUrl || blog.image) && (
                 <div className="rounded-2xl overflow-hidden shadow-xl mb-10">
-                  <img
-                    src={blog.imageUrl || PLACEHOLDER_IMG}
+                  <BlogImage
+                    src={blog.imageUrl || blog.image}
                     className="w-full aspect-video object-cover"
                     alt={blog.imageAlt || blog.title}
                   />
