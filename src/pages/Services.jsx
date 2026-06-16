@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import bannerImg from "../assets/images/services-banner.webp";
 import { ArrowLinkButton } from "../components/ArrowButtons";
-import { ArrowRight } from "lucide-react";
+
 import SEO from "../components/SEO";
 import FAQ, { faqData } from "../components/FAQ";
 

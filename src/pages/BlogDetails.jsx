@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBlogBySlug } from "../api/blogApi";

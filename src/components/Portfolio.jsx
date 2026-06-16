@@ -2,7 +2,6 @@ import React from "react";
 import {
   appPortfolio,
   webPortfolio,
-  aiCallingPortfolio,
 } from "../data/portfolio";
 import { ArrowUpRight } from "lucide-react";
 

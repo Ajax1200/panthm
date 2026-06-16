@@ -25,7 +25,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.me https://wa.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://blogplatform-backend-cloudinary-tau.vercel.app https://api.indexnow.org; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; upgrade-insecure-requests;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.me https://wa.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://panthm-backend.vercel.app https://api.indexnow.org; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; upgrade-insecure-requests;"
         },
         {
           "key": "X-Frame-Options",
@@ -106,6 +106,21 @@
     },
     {
       "source": "/services",
+      "destination": "/index"
+    },
+    {
+      "source": "/services/:name",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner|GPTBot|ChatGPT|OpenAI|Anthropic|Claude|Perplexity|Cohere|Google-Extended|Vertex|AI-Overviews|SearchGPT|Search-Partner).*"
+        }
+      ],
+      "destination": "/api/bot-handler?path=services&name=:name"
+    },
+    {
+      "source": "/services/:name",
       "destination": "/index"
     },
     {

@@ -1,9 +1,10 @@
 import {
   BrowserRouter as Router,
-  Navigate,
   Route,
   Routes,
+  useLocation,
 } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SpinnerContextProvider, {
@@ -21,6 +22,9 @@ import CustomCursor from "./components/website/CustomCursor";
 import { ThemeProvider } from "./components/ThemeContext";
 import { useCanonical } from "./hooks/useCanonical";
 import { useEntropicPrefetcher } from "./hooks/useEntropicPrefetcher";
+import ErrorBoundary from "./components/ErrorBoundary";
+import ScrollProgressBar from "./components/website/ScrollProgressBar";
+import PageTransition from "./components/website/PageTransition";
 
 // Lazy loading components
 const Home = lazy(() => import("./pages/Home"));
@@ -37,6 +41,7 @@ const Portfolio = lazy(() => import("./pages/Portfolio"));
 const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const SolutionsDirectory = lazy(() => import("./pages/SolutionsDirectory"));
 
 AOS.init({
   once: true,
@@ -46,6 +51,7 @@ AOS.init({
 });
 
 function AppContent() {
+  const location = useLocation();
   useCanonical();
   useEntropicPrefetcher();
 
@@ -54,57 +60,69 @@ function AppContent() {
       <SpinnerContextProvider>
       <LoadingSpinnerContext />
       <ScrollToTop />
+      <ScrollProgressBar />
       <Toaster position="top-center" />
-      <Routes>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
             <Route
               path="/solutions/:service/:industry/:location"
               element={
-                <>
-                  <Header />
+                <PageTransition>
+<Header />
                   <IntersectionLanding />
                   <Footer />
-                </>
+                </PageTransition>
               }
             />
             <Route
               path="/"
               element={
-                <>
-                  <Header />
+                <PageTransition>
+<Header />
                   <Home />
                   <Footer />
-                </>
+                </PageTransition>
               }
             />
             <Route
               path="/about-us"
               element={
-                <>
-                  <Header />
+                <PageTransition>
+<Header />
                   <AboutUs />
                   <Footer />
-                </>
+                </PageTransition>
               }
             />
             <Route
               path="/contact"
               element={
-                <>
-                  <Header />
+                <PageTransition>
+<Header />
                   <ContactUs />
                   <Footer />
-                </>
+                </PageTransition>
               }
             />
             <Route path="/thank-you" element={<Thankyou />} />
             <Route
+              path="/solutions"
+              element={
+                <PageTransition>
+                  <Header />
+                  <SolutionsDirectory />
+                  <Footer />
+                </PageTransition>
+              }
+            />
+            <Route
               path="/privacy-policy"
               element={
-                <>
-                  <Header />
+                <PageTransition>
+<Header />
                   <PrivacyPolicy />
                   <Footer />
-                </>
+                </PageTransition>
               }
             />
 
@@ -112,19 +130,19 @@ function AppContent() {
             <Route
               path="/services"
               element={
-                <>
-                  <Header /> <Services /> <Footer />
-                </>
+                <PageTransition>
+<Header /> <Services /> <Footer />
+                </PageTransition>
               }
             />
             <Route path="/services">
               <Route
                 path=":name"
                 element={
-                  <>
-                    <Header /> <ServiceDetails /> <Footer />
-                  </>
-                }
+                <PageTransition>
+<Header /> <ServiceDetails /> <Footer />
+                </PageTransition>
+              }
               />
             </Route>
 
@@ -132,19 +150,19 @@ function AppContent() {
             <Route
               path="/blogs"
               element={
-                <>
-                  <Header /> <Blogs /> <Footer />
-                </>
+                <PageTransition>
+<Header /> <Blogs /> <Footer />
+                </PageTransition>
               }
             />
             <Route path="/blogs">
               <Route
                 path=":slug"
                 element={
-                  <>
-                    <Header /> <BlogDetails /> <Footer />
-                  </>
-                }
+                <PageTransition>
+<Header /> <BlogDetails /> <Footer />
+                </PageTransition>
+              }
               />
             </Route>
 
@@ -152,9 +170,9 @@ function AppContent() {
             <Route
               path="/portfolio"
               element={
-                <>
-                  <Header /> <Portfolio /> <Footer />
-                </>
+                <PageTransition>
+<Header /> <Portfolio /> <Footer />
+                </PageTransition>
               }
             />
 
@@ -162,35 +180,36 @@ function AppContent() {
             <Route
               path="/web-development"
               element={
-                <>
-                  <LandingHeader />
+                <PageTransition>
+<LandingHeader />
                   <LandingPage page="web" />
                   <LandingFooter />
-                </>
+                </PageTransition>
               }
             />
             <Route
               path="/app-development"
               element={
-                <>
-                  <LandingHeader />
+                <PageTransition>
+<LandingHeader />
                   <LandingPage page="app" />
                   <LandingFooter />
-                </>
+                </PageTransition>
               }
             />
             <Route
               path="/ai-calling-agency"
               element={
-                <>
-                  <LandingHeader />
+                <PageTransition>
+<LandingHeader />
                   <LandingPage page="ai-calling" />
                   <LandingFooter />
-                </>
+                </PageTransition>
               }
             />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
           <WhatsAppWidget />
           <CustomCursor />
         </SpinnerContextProvider>
@@ -201,9 +220,11 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <AppContent />
-      </Router>
+      <ErrorBoundary>
+        <Router>
+          <AppContent />
+        </Router>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }

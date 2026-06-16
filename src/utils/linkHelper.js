@@ -102,7 +102,7 @@ export const optimizeHtmlImages = (html, blogTitle) => {
   let optimized = html;
 
   // 1. Inject alt attributes if missing or empty
-  optimized = optimized.replace(/<img([^>]+)>/gi, (match, attrs) => {
+  optimized = optimized.replace(/<img alt=""([^>]+)>/gi, (match, attrs) => {
     let newAttrs = attrs;
     if (!/alt\s*=\s*(['"])(.*?)\1/i.test(attrs) || /alt\s*=\s*(['"])\1/i.test(attrs)) {
       // Remove empty alt if it exists
@@ -110,7 +110,7 @@ export const optimizeHtmlImages = (html, blogTitle) => {
       // Inject descriptive alt
       newAttrs += ` alt="Illustration for ${blogTitle.replace(/"/g, '&quot;')}"`;
     }
-    return `<img${newAttrs}>`;
+    return `<img alt=""${newAttrs}>`;
   });
 
   // 2. Add Cloudinary transforms (f_auto, q_auto)

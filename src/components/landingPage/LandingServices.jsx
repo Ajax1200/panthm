@@ -5,7 +5,6 @@ import {
   aiCallingServices,
 } from "../../data/constant";
 import { ArrowScrollButton } from "../ArrowButtons";
-import { ArrowRight } from "lucide-react";
 
 const LandingServices = ({ page }) => {
   let services;

@@ -7,9 +7,10 @@ const API_BASE_URL = "https://panthm-backend.vercel.app";
  * @param {string} [category] - Optional category name filter
  * @returns {Promise<{success: boolean, blogs: Array, totalCount: number, currentPage: number, totalPages: number}>}
  */
-export const fetchPublishedBlogsPaginated = async (page = 1, limit = 9, category = "") => {
+export const fetchPublishedBlogsPaginated = async (page = 1, limit = 9, category = "", search = "") => {
   const params = new URLSearchParams({ page, limit });
   if (category) params.append("category", category);
+  if (search) params.append("search", search);
   const response = await fetch(`${API_BASE_URL}/api/blogs/published?${params}`);
   if (!response.ok) throw new Error("Failed to fetch published blogs");
   return response.json();

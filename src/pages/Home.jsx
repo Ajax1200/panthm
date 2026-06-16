@@ -28,12 +28,13 @@ import whyWorkWithUs1 from "../assets/images/whyworkwithus1.webp";
 import whyWorkWithUs2 from "../assets/images/whyworkwithus2.webp";
 import whyWorkWithUs3 from "../assets/images/whyworkwithus3.webp";
 import whyWorkWithUs4 from "../assets/images/whyworkwithus4.webp";
-import { ArrowLinkButton } from "../components/ArrowButtons";
+
 import SEO from "../components/SEO";
 import { companyDetails } from "../data/constant";
 
 import TechMarquee from '../components/TechMarquee';
 import FAQ, { faqData } from "../components/FAQ";
+import Tilt from "react-parallax-tilt";
 
 const ContactForm = lazy(() => import("../components/ContactForm"));
 const BlogsSection = lazy(() => import("../components/website/BlogsSection"));
@@ -41,6 +42,7 @@ const Testimonials = lazy(() => import("../components/Testimonials"));
 const ServicesWeProvide = lazy(() =>
   import("../components/website/ServicesWeProvide")
 );
+const CaseStudies = lazy(() => import("../components/CaseStudies"));
 
 const bannerServices = [
   {
@@ -170,7 +172,7 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Home"
+        title="AI Calling & Automation Agency in Pune"
         description="PANTHM AI Labs - Building intelligent products that redefine industries. Transform your digital presence with cutting-edge technology."
         keywords="web development, app development, AI solutions, data analytics services, business intelligence dashboards, blockchain development, game development, mobile app development, React development, Node.js, Python, machine learning, software development company, Pune, India"
         structuredData={structuredData}
@@ -281,6 +283,9 @@ const Home = () => {
       {/* Services Section */}
       <ServicesWeProvide />
 
+      {/* Case Studies Section */}
+      <CaseStudies />
+
       {/* Industries Section */}
       <section className="py-20 bg-white dark:bg-[#050505] relative overflow-hidden noise-overlay">
         <div className="floating-orb orb-1"></div>
@@ -298,11 +303,19 @@ const Home = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {industries.map((item, index) => (
+              <Tilt
+                key={item.title}
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                perspective={1000}
+                transitionSpeed={1000}
+                scale={1.05}
+                gyroscope={true}
+              >
               <div
                 data-aos="fade-up"
                 data-aos-delay={index * 50}
-                key={item.title}
-                className="group p-6 bg-white dark:bg-[#0a0a0a] rounded-2xl shadow-sm border border-slate-100 dark:border-white/10 hover:shadow-xl hover:border-primary/20 dark:hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-4 text-center"
+                className="h-full group p-6 bg-white dark:bg-[#0a0a0a] rounded-2xl shadow-sm border border-slate-100 dark:border-white/10 hover:shadow-xl hover:border-primary/20 dark:hover:border-primary/50 transition-all duration-300 flex flex-col items-center gap-4 text-center"
               >
                 <div className="p-4 rounded-full bg-slate-50 dark:bg-white/5 group-hover:bg-primary/10 transition-colors duration-300">
                   <item.icon className="w-8 h-8 text-slate-400 dark:text-slate-500 group-hover:text-primary dark:group-hover:text-primary transition-colors duration-300" />
@@ -311,6 +324,7 @@ const Home = () => {
                   {item.title}
                 </p>
               </div>
+              </Tilt>
             ))}
           </div>
         </div>
@@ -362,11 +376,24 @@ const Home = () => {
                 color: "from-emerald-500 to-teal-500",
               },
             ].map((item, index) => (
-              <div
+              <Tilt
                 key={item.title}
+                tiltMaxAngleX={5}
+                tiltMaxAngleY={5}
+                perspective={1000}
+                transitionSpeed={1000}
+                scale={1.02}
+                glareEnable={true}
+                glareMaxOpacity={0.15}
+                glareColor="#ffffff"
+                glarePosition="all"
+                glareBorderRadius="1rem"
+                className={index === 3 || index === 4 ? "md:col-span-1.5" : ""}
+              >
+              <div
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
-                className={`p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group ${index === 3 || index === 4 ? "md:col-span-1.5" : ""}`}
+                className={`h-full p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group`}
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-6 shadow-lg`}>
                   <item.icon className="text-white" size={24} />
@@ -374,6 +401,7 @@ const Home = () => {
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-slate-400 leading-relaxed">{item.desc}</p>
               </div>
+              </Tilt>
             ))}
           </div>
         </div>

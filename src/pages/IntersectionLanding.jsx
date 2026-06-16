@@ -1,20 +1,17 @@
 import React from "react";
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { services } from "../data/services";
 import SEO from "../components/SEO";
 import ContactForm from "../components/ContactForm";
 import { companyDetails } from "../data/constant";
 import { 
-  Zap, 
   ShieldCheck, 
   Cpu, 
   MapPin, 
   Building, 
   Globe, 
-  ChevronRight, 
   ArrowRight,
   TrendingUp,
-  MessageSquare
 } from "lucide-react";
 
 // Normalizes slugs to title case (e.g., real-estate -> Real Estate)
@@ -79,8 +76,6 @@ const IntersectionLanding = () => {
 
   // Fallback defaults if service metadata doesn't exist
   const technologies = matchedService?.technologies || ["React", "Python", "Cloud Native", "AI Integration"];
-  const shortDesc = matchedService?.shortDesc || `Tailored ${serviceTitle} solutions designed to scale.`;
-
   // Dynamically compile JSON-LD schema
   const structuredData = {
     "@context": "https://schema.org",

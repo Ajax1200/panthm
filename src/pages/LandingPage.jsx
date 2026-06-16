@@ -25,6 +25,7 @@ import Portfolio from "../components/Portfolio";
 
 const ContactForm = lazy(() => import("../components/ContactForm"));
 const Testimonials = lazy(() => import("../components/Testimonials"));
+const CaseStudies = lazy(() => import("../components/CaseStudies"));
 
 const industries = [
   { icon: Ambulance, title: "Healthcare" },
@@ -126,6 +127,8 @@ const LandingPage = ({ page }) => {
       <LandingServices page={page} />
 
       <Portfolio  />
+
+      <CaseStudies />
 
       <section className="py-20 bg-slate-900 text-white">
         <div className="wrapper space-y-16">

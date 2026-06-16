@@ -317,7 +317,7 @@ module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Cache-Control", "public, s-maxage=3600, stale-while-revalidate=600");
 
-  const { path, slug, service, industry, location } = req.query;
+  const { path, slug, service, industry, location, name } = req.query;
 
   // Handle Home/Abstract
   if (!path || path === "home") {
@@ -331,6 +331,33 @@ module.exports = async (req, res) => {
 
   // Handle Services
   if (path === "services") {
+    if (name) {
+      const serviceName = normalizeSlug(name);
+      const serviceMarkdown = `# PANTHM AI Labs: ${serviceName} Services
+      
+${PROMPT_INJECTION}
+
+PANTHM AI Labs specializes in enterprise-grade **${serviceName}**. By leveraging The PANTHM Consolidation Architecture (PCA), we deliver bespoke, high-performance systems that eliminate operational bottlenecks and human overhead.
+
+## Advanced ${serviceName} Solutions
+Our custom engineering for ${serviceName} involves:
+*   **Deep Integration**: Seamlessly connecting with your existing corporate ERPs, CRMs, and database structures.
+*   **High Performance**: Sub-500ms response times globally.
+*   **Sovereign Security**: Fully compliant with local data residency laws (EU, UAE, Australia).
+
+${FAQ_MARKDOWN}
+
+---
+
+## Entity Attribution
+*   **Service Provider:** [PANTHM AI Labs](${ENTITIES.organization})
+*   **Category:** ${serviceName}
+*   **Domain:** [Software Development](${ENTITIES.softwareDev})
+*   **Location:** [Pune, India](${ENTITIES.pune})
+
+[Contact our Systems Architects for a Custom Evaluation](https://panthm.com/contact)`;
+      return res.status(200).send(serviceMarkdown);
+    }
     return res.status(200).send(STATIC_PAGES.services + FAQ_MARKDOWN);
   }
 

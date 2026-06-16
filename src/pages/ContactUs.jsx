@@ -211,7 +211,7 @@ const ContactUs = () => {
                         {...register("email", { 
                           required: "Required",
                           pattern: {
-                            value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                            value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                             message: "Invalid email",
                           },
                         })}

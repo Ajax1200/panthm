@@ -13,7 +13,7 @@ export const config = {
 };
 
 const SITE_BASE = 'https://www.panthm.com';
-const API_BASE = 'https://blogplatform-backend-cloudinary-tau.vercel.app/api';
+const API_BASE = 'https://panthm-backend.vercel.app/api';
 
 const ENTITIES = {
   organization: "https://www.wikidata.org/wiki/Q110292708",
@@ -224,7 +224,7 @@ export default async function middleware(request) {
       // Retrieve recent blogs to create bidirectional linking loops
       let recentBlogsHtml = '';
       try {
-        const blogsRes = await fetch(`${API_BASE}/blogs`, {
+        const blogsRes = await fetch(`${API_BASE}/blogs/published?limit=3`, {
           headers: {
             'User-Agent': 'Mozilla/5.0 (Vercel Edge)',
             'Accept': 'application/json'
@@ -334,7 +334,7 @@ export default async function middleware(request) {
     if (pathSegments[0] === 'blogs' && pathSegments[1]) {
       const slug = pathSegments[1];
       try {
-        const apiRes = await fetch(`${API_BASE}/blogs/${slug}`);
+        const apiRes = await fetch(`${API_BASE}/blogs/slug/${slug}`);
         const data = await apiRes.json();
         const blog = data.blog;
 

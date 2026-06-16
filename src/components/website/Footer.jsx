@@ -54,17 +54,20 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Expertise</h4>
             <ul className="space-y-4">
-              {services.slice(0, 5).map((service, index) => (
-                <li key={index}>
-                  <Link
-                    to={`/services/${service.title}`}
-                    className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary transition-colors"></span>
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
+              {services.slice(0, 5).map((service, index) => {
+                const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                return (
+                  <li key={index}>
+                    <Link
+                      to={`/services/${slugify(service.title)}`}
+                      className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center gap-2 group"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary transition-colors"></span>
+                      {service.title}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -76,6 +79,7 @@ const Footer = () => {
                 { name: "About Us", path: "/about-us" },
                 { name: "Our Work", path: "/portfolio" }, // Assuming portfolio exists or links to section
                 { name: "Insights", path: "/blogs" },
+                { name: "Solutions Directory", path: "/solutions" },
                 { name: "Contact", path: "/contact" },
               ].map((link, index) => (
                 <li key={index}>

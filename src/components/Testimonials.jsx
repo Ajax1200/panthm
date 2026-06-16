@@ -1,6 +1,5 @@
 import React from "react";
 import { useKeenSlider } from "keen-slider/react";
-import cornIcon from "../assets/images/Corn_Icon.png";
 import { ArrowLeft, ArrowRight, Star, Award } from "lucide-react";
 import { testimonials } from "../data/constant";
 

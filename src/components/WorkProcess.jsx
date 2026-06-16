@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import img from "../assets/images/work-process.webp";
 import { workingProcess } from "../data/constant";
-import { ChevronDown, CheckCircle2 } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const WorkProcess = () => {
   const [currentIdx, setCurrentIdx] = useState(0);

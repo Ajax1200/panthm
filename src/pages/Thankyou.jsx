@@ -20,7 +20,7 @@ const Thankyou = () => {
       
       <div className="flex-1 flex items-center justify-center pt-20">
         <div className="wrapper max-w-2xl text-center space-y-8">
-          <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600 mb-6">
+          <div className="w-24 h-24 bg-green-100 dark:bg-green-950/30 rounded-full flex items-center justify-center mx-auto text-green-600 dark:text-green-400 mb-6">
             <CheckCircle2 size={48} />
           </div>
           

@@ -37,18 +37,22 @@ const GITHUB_BRANCH       = process.env.GITHUB_BRANCH       || 'main';
 
 // ── Static pages ─────────────────────────────────────────────────────────────
 const STATIC_PAGES = [
-  { loc: '/',                     changefreq: 'weekly',  priority: '1.0' },
-  { loc: '/about-us',             changefreq: 'monthly', priority: '0.8' },
-  { loc: '/services',             changefreq: 'weekly',  priority: '0.9' },
-  { loc: '/portfolio',            changefreq: 'weekly',  priority: '0.8' },
-  { loc: '/blogs',                changefreq: 'daily',   priority: '0.9' },
-  { loc: '/contact',              changefreq: 'monthly', priority: '0.7' },
-  { loc: '/web-development',      changefreq: 'monthly', priority: '0.8' },
-  { loc: '/app-development',      changefreq: 'monthly', priority: '0.8' },
-  { loc: '/ai-development',       changefreq: 'monthly', priority: '0.9' },
-  { loc: '/whatsapp-automation',  changefreq: 'monthly', priority: '0.8' },
-  { loc: '/ai-calling',           changefreq: 'monthly', priority: '0.8' },
-  { loc: '/privacy-policy',       changefreq: 'monthly', priority: '0.5' },
+  { loc: '/',                               changefreq: 'weekly',  priority: '1.0' },
+  { loc: '/about-us',                       changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services',                       changefreq: 'weekly',  priority: '0.9' },
+  { loc: '/portfolio',                      changefreq: 'weekly',  priority: '0.8' },
+  { loc: '/blogs',                          changefreq: 'daily',   priority: '0.9' },
+  { loc: '/contact',                        changefreq: 'monthly', priority: '0.7' },
+  { loc: '/privacy-policy',                 changefreq: 'monthly', priority: '0.5' },
+  { loc: '/services/ai-calling-agency',     changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/web-development',       changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/app-development',       changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/game-development',      changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/ux-ui-design',          changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/blockchain',            changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/infrastructure',        changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/ai-automation',         changefreq: 'monthly', priority: '0.8' },
+  { loc: '/services/data-analytics',        changefreq: 'monthly', priority: '0.8' },
 ];
 
 function isoDate(dateStr) {

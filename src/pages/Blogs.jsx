@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, User, Loader2, Filter } from "lucide-react";
-import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
+import { ArrowRight, Calendar, User, Loader2, Filter, Search } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchPublishedBlogsPaginated } from "../api/blogApi";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import SEO from "../components/SEO";
@@ -26,6 +26,8 @@ const Blogs = () => {
   const [page, setPage] = useState(1);
   const [allBlogs, setAllBlogs] = useState([]);
   const [loadedPages, setLoadedPages] = useState(new Set());
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -41,19 +43,31 @@ const Blogs = () => {
 
   const categoryFilter = activeCategory === "All" ? "" : activeCategory;
 
+  // Debounce search query changes to prevent API spamming
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchQuery);
+      setPage(1);
+      setAllBlogs([]);
+      setLoadedPages(new Set());
+    }, 450);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const { data, isLoading, isFetching } = useQuery({
-    queryKey: ["publishedBlogs", page, categoryFilter],
-    queryFn: () => fetchPublishedBlogsPaginated(page, BLOGS_PER_PAGE, categoryFilter),
+    queryKey: ["publishedBlogs", page, categoryFilter, debouncedSearch],
+    queryFn: () => fetchPublishedBlogsPaginated(page, BLOGS_PER_PAGE, categoryFilter, debouncedSearch),
     keepPreviousData: true,
-    onSuccess: (newData) => {
-      if (!loadedPages.has(page)) {
-        setAllBlogs((prev) =>
-          page === 1 ? newData.blogs : [...prev, ...(newData.blogs || [])]
-        );
-        setLoadedPages((prev) => new Set([...prev, page]));
-      }
-    },
   });
+
+  useEffect(() => {
+    if (data?.blogs && !loadedPages.has(page)) {
+      setAllBlogs((prev) =>
+        page === 1 ? data.blogs : [...prev, ...(data.blogs || [])]
+      );
+      setLoadedPages((prev) => new Set([...prev, page]));
+    }
+  }, [data, page, loadedPages]);
 
   const handleCategoryChange = (cat) => {
     setActiveCategory(cat);
@@ -105,6 +119,18 @@ const Blogs = () => {
             Insights, trends, and strategies from the forefront of digital
             innovation.
           </p>
+        </div>
+
+        {/* Search Bar */}
+        <div data-aos="fade-up" className="max-w-md mx-auto mb-10 relative">
+          <input
+            type="text"
+            placeholder="Search articles by title, keywords or tags..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-12 pr-4 py-3.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-sm"
+          />
+          <Search size={18} className="absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400" />
         </div>
 
         {/* Category Filter Pills */}

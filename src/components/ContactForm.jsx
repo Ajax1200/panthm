@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import img from "../assets/images/contact-form.webp";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { SpinnerContext } from "./SpinnerContext";
@@ -121,7 +121,7 @@ const ContactForm = ({ headline, id }) => {
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
-                      value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                      value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                       message: "Entered email is invalid",
                     },
                   })}

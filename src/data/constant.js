@@ -136,27 +136,27 @@ export const aiCallingServices = [
 // testimonials
 export const testimonials = [
   {
-    name: "Elena R.",
-    position: "CTO, Nexus Innovations",
-    desc: `PANTHM AI Labs didn't just build a website; they engineered a digital masterpiece. Their approach to UI/UX is visionary. The new platform has elevated our brand perception and streamlined our client acquisition process significantly.`,
+    name: "Shane Caldwell",
+    position: "Managing Partner, B2B Advisory Group",
+    desc: `PANTHM AI Labs rebuilt our corporate web infrastructure with outstanding efficiency. Their engineering capability and attention to detail on security and performance helped us establish a highly professional B2B presence.`,
     img: require("../assets/images/testimonials/1.jpg"),
   },
   {
-    name: "Marcus T.",
-    position: "Founder, Quantum FinTech",
-    desc: `The technical prowess of the PANTHM team is unmatched. They delivered a complex financial dashboard with zero latency and bank-grade security. Their ability to translate complex data into beautiful visualizations is impressive.`,
+    name: "Khaled Al-Fayed",
+    position: "Product Director, Immersive CX Ltd.",
+    desc: `The team at PANTHM delivered exceptional custom development support. They integrated seamlessly with our designers to execute complex, high-performance web animations and responsive interfaces. Highly recommended.`,
     img: require("../assets/images/testimonials/2.jpg"),
   },
   {
-    name: "Sophia L.",
-    position: "Director, Creative Pulse",
-    desc: `Working with PANTHM was a glimpse into the future of collaboration. Their agile workflow and transparent communication made the project seamless. The final product exceeded our wildest expectations in terms of design and functionality.`,
+    name: "Akash Sharma",
+    position: "Founder & CEO, RetailScale Enterprise",
+    desc: `PANTHM built both our high-traffic e-commerce web platform and our mobile applications. Our online sales increased by 40% within three months of launch due to their lightning-fast performance and seamless checkout flows.`,
     img: require("../assets/images/testimonials/3.jpg"),
   },
   {
-    name: "James D.",
-    position: "VP of Operations, LogiChain",
-    desc: `We needed a robust solution for our logistics network, and PANTHM delivered. Their blockchain integration expertise helped us achieve transparency we didn't think was possible. A truly top-tier technology partner.`,
+    name: "Ali Mahmoud",
+    position: "Technical Director, PropTech MENA",
+    desc: `An elite engineering firm. They delivered our real-estate portal on time and with zero latency. Their ability to handle complex map integrations and automated property updates has been a game changer for our business in Dubai.`,
     img: require("../assets/images/testimonials/4.jpg"),
   },
 ];

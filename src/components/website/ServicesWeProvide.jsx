@@ -1,7 +1,7 @@
 import React from "react";
 import { services } from "../../data/services";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ArrowLinkButton } from "../ArrowButtons";
 
 const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');

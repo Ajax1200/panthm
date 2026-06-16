@@ -184,7 +184,7 @@ async function generateContentWithRetry(model, prompt, maxRetries = 10) {
           const response = await axios.post(
             'https://openrouter.ai/api/v1/chat/completions',
             {
-              model: 'google/gemini-2.5-flash:free',
+              model: 'meta-llama/llama-3.3-70b-instruct:free',
               messages: [{ role: 'user', content: prompt }],
               response_format: { type: 'json_object' }
             },
@@ -268,10 +268,10 @@ async function runAutopilot() {
 
   logMsg("Starting autonomous blogging run...");
 
-  // Verify Gemini API Key
   const geminiKey = process.env.GEMINI_API_KEY;
-  if (!geminiKey) {
-    logMsg("ERROR: GEMINI_API_KEY is not defined in the environment or .env file.");
+  const openRouterKey = process.env.OPENROUTER_API_KEY;
+  if (!geminiKey && !openRouterKey) {
+    logMsg("ERROR: Neither GEMINI_API_KEY nor OPENROUTER_API_KEY is defined in the environment or .env file.");
     process.exit(1);
   }
 
@@ -421,7 +421,7 @@ Requirements for the topic selection:
 2. It MUST be unique and DIFFERENT from the following recently written topics:
 [${existingTitles.slice(0, 30).join(', ')}]
 3. The category must be one of: 'SEO', 'AI & Automation', 'GEO', 'Web Development', or 'SaaS'.
-4. Provide the topic title, focus keywords, target category, and recommended tone. Ensure the keywords include phrases like "best IT services", "custom software development", "AI calling automation", or "WhatsApp API marketing", depending on which is most relevant to the niche.`;
+4. Provide the topic title, focus keywords, target category, and recommended tone. Ensure the keywords include local commercial terms specific to PANTHM AI LABS's target markets, such as "AI calling agency India", "AI automation agency Pune", "best IT services Pune", "custom software development India", or "WhatsApp API marketing agency India", depending on which is most relevant to the niche.`;
 
     let selection;
     try {
