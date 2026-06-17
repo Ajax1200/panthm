@@ -219,7 +219,7 @@ const BlogDetails = () => {
     mainEntityOfPage: {
       "@id": `${articleUrl}#webpage`,
     },
-    keywords: blog.metaKeywords?.join(", ") || blog.tags?.join(", ") || "",
+    keywords: (Array.isArray(blog.metaKeywords) ? blog.metaKeywords.join(", ") : blog.metaKeywords) || blog.tags?.join(", ") || "",
   };
 
   const { html: processedHtml, toc } = blog.content ? generateTocAndAddIds(optimizeHtmlImages(addSemanticLinks(blog.content), blog.title)) : { html: null, toc: [] };
@@ -234,7 +234,7 @@ const BlogDetails = () => {
           `Read ${blog.title} on PANTHM AI Labs blog.`
         }
         keywords={
-          blog.metaKeywords?.join(", ") ||
+          (Array.isArray(blog.metaKeywords) ? blog.metaKeywords.join(", ") : blog.metaKeywords) ||
           blog.tags?.join(", ") ||
           "technology, web development, software development"
         }
