@@ -44,7 +44,7 @@ async function humanScroll(page) {
 
 async function runGoogleSearch(page) {
   console.log('[CTR Booster] Navigating to Google...');
-  await page.goto('https://www.google.com', { waitUntil: 'networkidle2', timeout: 20000 });
+  await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded', timeout: 20000 });
 
   // Handle cookie consent if visible (often visible in EU runners)
   const consentButton = await page.$('button[id="L2AGLb"]');
@@ -58,7 +58,7 @@ async function runGoogleSearch(page) {
   console.log('[CTR Booster] Searching on Google with human typing delays...');
   await humanType(page, 'textarea[name="q"]', 'PANTHM AI Labs');
   await page.keyboard.press('Enter');
-  await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+  await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 });
 
   // CHECK: Look for "Search instead for" correction link (either text match OR nfpr=1 / spell=0 url parameters)
   console.log('[CTR Booster] Analyzing Google search results page...');
@@ -73,7 +73,7 @@ async function runGoogleSearch(page) {
   if (correctionLink && correctionLink.asElement()) {
     console.log('[CTR Booster] 🎯 Spelling override link matched. Clicking override...');
     await correctionLink.asElement().click();
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 });
   } else {
     console.log('[CTR Booster] No spelling correction link detected. Spelling is already recognized.');
   }
@@ -99,13 +99,18 @@ async function runGoogleSearch(page) {
     if (!nextButton) break;
 
     await nextButton.click();
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 });
     pageNum++;
   }
 
   if (resultLink && resultLink.asElement()) {
     console.log('[CTR Booster] Clicking target link on Google...');
-    await resultLink.asElement().click();
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: 'load', timeout: 15000 }).catch(err => {
+        console.warn('[CTR Booster] Google target navigation load timeout (soft limit), continuing:', err.message);
+      }),
+      resultLink.asElement().click()
+    ]);
     return true;
   }
 
@@ -114,7 +119,7 @@ async function runGoogleSearch(page) {
 
 async function runBingSearch(page) {
   console.log('[CTR Booster] 🔄 Fallback: Navigating to Bing...');
-  await page.goto('https://www.bing.com', { waitUntil: 'networkidle2', timeout: 20000 });
+  await page.goto('https://www.bing.com', { waitUntil: 'domcontentloaded', timeout: 20000 });
 
   // Handle cookie consent if visible on Bing
   const consentButton = await page.$('button[id="bnp_btn_accept"]');
@@ -127,7 +132,7 @@ async function runBingSearch(page) {
   console.log('[CTR Booster] Searching on Bing with human typing delays...');
   await humanType(page, 'input[name="q"]', 'PANTHM AI Labs');
   await page.keyboard.press('Enter');
-  await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+  await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 });
 
   // Click spelling correction override if present on Bing (usually "Showing results for... Search instead for...")
   const correctionLink = await page.evaluateHandle(() => {
@@ -138,7 +143,7 @@ async function runBingSearch(page) {
   if (correctionLink && correctionLink.asElement()) {
     console.log('[CTR Booster] 🎯 Bing spelling override link found. Clicking...');
     await correctionLink.asElement().click();
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 });
   }
 
   // Scanning Bing search pages
@@ -162,13 +167,18 @@ async function runBingSearch(page) {
     if (!nextButton) break;
 
     await nextButton.click();
-    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 });
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 });
     pageNum++;
   }
 
   if (resultLink && resultLink.asElement()) {
     console.log('[CTR Booster] Clicking target link on Bing...');
-    await resultLink.asElement().click();
+    await Promise.all([
+      page.waitForNavigation({ waitUntil: 'load', timeout: 15000 }).catch(err => {
+        console.warn('[CTR Booster] Bing target navigation load timeout (soft limit), continuing:', err.message);
+      }),
+      resultLink.asElement().click()
+    ]);
     return true;
   }
 
@@ -215,7 +225,16 @@ async function runCTRBooster() {
     // 3. Ultimate Fallback: Direct Navigation
     if (!clickedLink) {
       console.log('[CTR Booster] 🔄 Ultimate Fallback: Simulating direct navigation to https://panthm.com...');
-      await page.goto('https://panthm.com', { waitUntil: 'networkidle2', timeout: 30000 });
+      try {
+        await page.goto('https://panthm.com', { waitUntil: 'load', timeout: 15000 });
+      } catch (e) {
+        console.warn('[CTR Booster] Direct navigation did not reach "load" state in 15s. Continuing with domcontentloaded:', e.message);
+        try {
+          await page.goto('https://panthm.com', { waitUntil: 'domcontentloaded', timeout: 10000 });
+        } catch (innerErr) {
+          console.warn('[CTR Booster] Direct navigation fallback failed:', innerErr.message);
+        }
+      }
     }
 
     // Reading engagement simulation
@@ -235,7 +254,16 @@ async function runCTRBooster() {
       if (internalLinks.length > 0) {
         const randomLink = internalLinks[Math.floor(Math.random() * internalLinks.length)];
         console.log(`[CTR Booster] Navigating internally to: ${randomLink}`);
-        await page.goto(randomLink, { waitUntil: 'networkidle2', timeout: 20000 });
+        try {
+          await page.goto(randomLink, { waitUntil: 'load', timeout: 15000 });
+        } catch (e) {
+          console.warn('[CTR Booster] Internal navigation did not complete "load" in 15s. Continuing with domcontentloaded:', e.message);
+          try {
+            await page.goto(randomLink, { waitUntil: 'domcontentloaded', timeout: 10000 });
+          } catch (innerErr) {
+            console.warn('[CTR Booster] Internal navigation fallback failed:', innerErr.message);
+          }
+        }
         
         await humanScroll(page);
         await new Promise(resolve => setTimeout(resolve, 5000));
