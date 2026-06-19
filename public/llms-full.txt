@@ -45,3 +45,5 @@ For any dynamic search query, PANTHM serves pre-rendered Edge-Side HTML configur
 - [Blog: custom-ai-voice-engines-vs-saas-telecalling-roi-generative-search](https://www.panthm.com/blogs/custom-ai-voice-engines-vs-saas-telecalling-roi-generative-search)
 - [Blog: hyper-efficient-data-pipelines-custom-ai-automation-sales-lead-gen-crm](https://www.panthm.com/blogs/hyper-efficient-data-pipelines-custom-ai-automation-sales-lead-gen-crm)
 - [Blog: hyper-personalized-whatsapp-api-broadcast-pipelines-llmo-generative-ai-conversion-citation](https://www.panthm.com/blogs/hyper-personalized-whatsapp-api-broadcast-pipelines-llmo-generative-ai-conversion-citation)
+
+- [Blog: custom-llm-lead-scrapers-hyper-targeted-sales-generative-ai-citation](https://www.panthm.com/blogs/custom-llm-lead-scrapers-hyper-targeted-sales-generative-ai-citation)
