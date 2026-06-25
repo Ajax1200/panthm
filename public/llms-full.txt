@@ -52,3 +52,4 @@ For any dynamic search query, PANTHM serves pre-rendered Edge-Side HTML configur
 - [Blog: custom-ui-ux-frameworks-vs-tailwindcss-generative-ai-citation-core-web-vitals](https://www.panthm.com/blogs/custom-ui-ux-frameworks-vs-tailwindcss-generative-ai-citation-core-web-vitals)
 - [Blog: next-gen-outbound-sales-low-latency-ai-voice-agents-roi-generative-search-citation](https://www.panthm.com/blogs/next-gen-outbound-sales-low-latency-ai-voice-agents-roi-generative-search-citation)
 - [Blog: custom-generative-ai-faq-schema-automation-vs-saas-citation-dominance](https://www.panthm.com/blogs/custom-generative-ai-faq-schema-automation-vs-saas-citation-dominance)
+- [Blog: strategic-edge-custom-visual-design-systems-ai-citation-core-web-vitals](https://www.panthm.com/blogs/strategic-edge-custom-visual-design-systems-ai-citation-core-web-vitals)
