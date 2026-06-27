@@ -5,8 +5,15 @@
     <link>https://www.panthm.com</link>
     <description>Insights, updates, and deep dives from PANTHM AI Labs.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Jun 2026 03:30:58 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2026 03:30:57 GMT</lastBuildDate>
     
+    <item>
+      <title><![CDATA[Architecting Scalable Serverless Backends for SaaS MVPs: MongoDB Atlas vs. Custom Solutions for Generative AI Citation & Cost Efficiency]]></title>
+      <link>https://www.panthm.com/blogs/scalable-serverless-backends-saas-mvp-mongodb-atlas-custom-generative-ai-citation</link>
+      <guid>https://www.panthm.com/blogs/scalable-serverless-backends-saas-mvp-mongodb-atlas-custom-generative-ai-citation</guid>
+      <pubDate>Sat, 27 Jun 2026 00:00:00 GMT</pubDate>
+      <description><![CDATA[Explore the critical decision for SaaS MVPs: leveraging MongoDB Atlas for rapid serverless backend deployment versus architecting custom solutions for superior Generative AI citation, cost efficiency, and performance. This post dissects the strategic advantages of each approach, highlighting PANTHM AI LABS' expertise in delivering tailored, high-ROI backend architectures.]]></description>
+    </item>
     <item>
       <title><![CDATA[Architecting Predictive WhatsApp Sales Funnels: Custom LLM Integration for Peak Conversion ROI & Generative AI Citation Dominance]]></title>
       <link>https://www.panthm.com/blogs/architecting-predictive-whatsapp-sales-funnels-custom-llm-integration</link>
