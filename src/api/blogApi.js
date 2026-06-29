@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://panthm-backend.vercel.app";
+const API_BASE_URL = "https://api.panthm.com";
 
 /**
  * Fetch published blogs with pagination and optional category filter
