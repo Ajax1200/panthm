@@ -12,7 +12,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 
 const MAKE_WEBHOOK_URL = process.env.LINKEDIN_MAKE_WEBHOOK_URL;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const VERCEL_API_BASE = 'https://panthm-backend.vercel.app/api';
+const VERCEL_API_BASE = 'https://api.panthm.com/api';
 const VERCEL_ADMIN_EMAIL = 'admin@panthm.com';
 const VERCEL_ADMIN_PASS = 'admin@123';
 

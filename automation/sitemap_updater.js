@@ -27,7 +27,7 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 
 const SITE_BASE          = 'https://panthm.com';
 const SITEMAP_OUT        = path.join(__dirname, 'generated_sitemap.xml');
-const API_BASE           = 'https://panthm-backend.vercel.app/api';
+const API_BASE           = 'https://api.panthm.com/api';
 
 // GitHub config — all from .env
 const GITHUB_TOKEN        = process.env.GITHUB_TOKEN;

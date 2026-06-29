@@ -1,6 +1,6 @@
 async function checkBlogs() {
   try {
-    const res = await fetch("https://panthm-backend.vercel.app/api/blogs/published?page=1&limit=9");
+    const res = await fetch("https://api.panthm.com/api/blogs/published?page=1&limit=9");
     const data = await res.json();
     console.log("Success:", data.success);
     console.log("Total Count:", data.totalCount);
