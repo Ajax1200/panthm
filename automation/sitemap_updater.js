@@ -18,6 +18,7 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import { submitToGoogleIndexing } from './google_indexer.mjs';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 
@@ -207,6 +208,11 @@ export async function updateSitemap(newBlogSlug = null) {
 
   // 6. Ping IndexNow for instant indexing by Bing, Yandex, etc.
   await submitToIndexNow(newBlogSlug);
+
+  // 7. Ping Google Indexing API for instant indexing by Google
+  if (newBlogSlug) {
+    await submitToGoogleIndexing(`https://panthm.com/blogs/${newBlogSlug}`);
+  }
 
   console.log('[Sitemap] Done.');
   return xml;
