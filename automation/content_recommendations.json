@@ -1,0 +1,19 @@
+[
+  {
+    "keyword": "panthm ai labs",
+    "impressions": 2,
+    "avgPosition": 4,
+    "recommendedAction": "Optimize meta title & description of existing post to improve snippet attractiveness and CTR.",
+    "existingPostTitle": "Architecting Bespoke Text-to-Speech Pipelines for Outbound Sales: Achieving Brand Voice Uniqueness, Low Latency, and Generative AI Citation Dominance",
+    "existingPostSlug": "architecting-bespoke-text-to-speech-pipelines-outbound-sales",
+    "priority": "Low"
+  },
+  {
+    "keyword": "phantom ai",
+    "impressions": 1,
+    "avgPosition": 68,
+    "recommendedAction": "Write blog post explicitly targeting this query to capture existing organic impressions.",
+    "suggestedTitle": "Maximizing Outreach with Phantom Ai: A Modern Enterprise Playbook",
+    "priority": "Medium"
+  }
+]
