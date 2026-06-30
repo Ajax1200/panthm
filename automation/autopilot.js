@@ -257,13 +257,16 @@ async function runAutopilot() {
 
   // If running in production (e.g. GitHub Actions), introduce a random delay between 0 and 4 hours
   // to scatter blog posting times dynamically so it never posts at the exact same hour every day.
-  // NOTE: Capped at 4 hours (was 12) to stay safely within GitHub Actions' 6-hour job timeout.
+  // Bypass delay if triggered manually via workflow_dispatch.
   const isCI = process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true';
-  if (isCI) {
+  const isManual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
+  if (isCI && !isManual) {
     const maxDelayMs = 4 * 60 * 60 * 1000; // 4 hours max (safe within 6-hr GH Actions limit)
     const randomDelayMs = Math.floor(Math.random() * maxDelayMs);
-    logMsg(`[Autopilot Scheduler] Running in CI environment. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes (max 240 min)...`);
+    logMsg(`[Autopilot Scheduler] Running in CI environment on schedule. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes (max 240 min)...`);
     await new Promise(resolve => setTimeout(resolve, randomDelayMs));
+  } else if (isManual) {
+    logMsg(`[Autopilot Scheduler] Manual execution (workflow_dispatch) detected. Bypassing scheduler delay.`);
   }
 
   logMsg("Starting autonomous blogging run...");
