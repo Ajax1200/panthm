@@ -1,6 +1,6 @@
 # ── HTTP Headers & Security Policies ──────────────────────────────────────────
 <IfModule mod_headers.c>
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.me https://wa.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://panthm-backend.vercel.app https://api.indexnow.org; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; upgrade-insecure-requests;"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.me https://wa.me; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self' https://api.panthm.com https://api.indexnow.org; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; upgrade-insecure-requests;"
   Header set X-Frame-Options "DENY"
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
@@ -30,46 +30,46 @@
 
   # ── LLM & AI Bot Dynamic RAG Cloaking ────────────────────────────────────────
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^$ https://panthm-backend.vercel.app/api/bot-handler?path=home [R=307,L]
+  RewriteRule ^$ https://api.panthm.com/api/bot-handler?path=home [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^about-us/?$ https://panthm-backend.vercel.app/api/bot-handler?path=about-us [R=307,L]
+  RewriteRule ^about-us/?$ https://api.panthm.com/api/bot-handler?path=about-us [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^services/?$ https://panthm-backend.vercel.app/api/bot-handler?path=services [R=307,L]
+  RewriteRule ^services/?$ https://api.panthm.com/api/bot-handler?path=services [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^services/([^/]+)/?$ https://panthm-backend.vercel.app/api/bot-handler?path=services&name=$1 [R=307,L]
+  RewriteRule ^services/([^/]+)/?$ https://api.panthm.com/api/bot-handler?path=services&name=$1 [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^contact/?$ https://panthm-backend.vercel.app/api/bot-handler?path=contact [R=307,L]
+  RewriteRule ^contact/?$ https://api.panthm.com/api/bot-handler?path=contact [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^portfolio/?$ https://panthm-backend.vercel.app/api/bot-handler?path=portfolio [R=307,L]
+  RewriteRule ^portfolio/?$ https://api.panthm.com/api/bot-handler?path=portfolio [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^blogs/?$ https://panthm-backend.vercel.app/api/bot-handler?path=blogs [R=307,L]
+  RewriteRule ^blogs/?$ https://api.panthm.com/api/bot-handler?path=blogs [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^blogs/([^/]+)/?$ https://panthm-backend.vercel.app/api/bot-handler?path=blogs&slug=$1 [R=307,L]
+  RewriteRule ^blogs/([^/]+)/?$ https://api.panthm.com/api/bot-handler?path=blogs&slug=$1 [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^solutions/?$ https://panthm-backend.vercel.app/api/bot-handler?path=solutions [R=307,L]
+  RewriteRule ^solutions/?$ https://api.panthm.com/api/bot-handler?path=solutions [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^solutions/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ https://panthm-backend.vercel.app/api/bot-handler?path=solutions&locale=$1&service=$2&industry=$3&location=$4 [R=307,L]
+  RewriteRule ^solutions/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$ https://api.panthm.com/api/bot-handler?path=solutions&locale=$1&service=$2&industry=$3&location=$4 [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^solutions/([^/]+)/([^/]+)/([^/]+)/?$ https://panthm-backend.vercel.app/api/bot-handler?path=solutions&service=$1&industry=$2&location=$3 [R=307,L]
+  RewriteRule ^solutions/([^/]+)/([^/]+)/([^/]+)/?$ https://api.panthm.com/api/bot-handler?path=solutions&service=$1&industry=$2&location=$3 [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^web-development/?$ https://panthm-backend.vercel.app/api/bot-handler?path=solutions&service=web-development&industry=enterprise&location=global [R=307,L]
+  RewriteRule ^web-development/?$ https://api.panthm.com/api/bot-handler?path=solutions&service=web-development&industry=enterprise&location=global [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^app-development/?$ https://panthm-backend.vercel.app/api/bot-handler?path=solutions&service=app-development&industry=enterprise&location=global [R=307,L]
+  RewriteRule ^app-development/?$ https://api.panthm.com/api/bot-handler?path=solutions&service=app-development&industry=enterprise&location=global [R=307,L]
 
   RewriteCond %{HTTP_USER_AGENT} (gptbot|chatgpt|openai|anthropic|claude|perplexity|cohere|google-extended|vertex|ai-overviews|searchgpt|search-partner) [NC]
-  RewriteRule ^ai-calling-agency/?$ https://panthm-backend.vercel.app/api/bot-handler?path=solutions&service=ai-calling-agency&industry=enterprise&location=global [R=307,L]
+  RewriteRule ^ai-calling-agency/?$ https://api.panthm.com/api/bot-handler?path=solutions&service=ai-calling-agency&industry=enterprise&location=global [R=307,L]
 
   # ── Google Search Verification Route ─────────────────────────────────────────
   RewriteRule ^google21a602606c3c9141$ google21a602606c3c9141.html [L]
