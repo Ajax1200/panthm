@@ -39,6 +39,22 @@ async function getSearchQueries() {
   return [...new Set(queries)].filter(Boolean);
 }
 
+// Fetch list of working proxy servers for unique IP distribution
+async function fetchProxyList() {
+  logMsg('Fetching proxy list for connection uniqueness...');
+  try {
+    const res = await axios.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=4000&country=all&ssl=yes&anonymity=elite', { timeout: 6000 });
+    if (res.data) {
+      const proxies = res.data.split('\r\n').map(p => p.trim()).filter(Boolean);
+      logMsg(`Retrieved ${proxies.length} potential proxies from pool.`);
+      return proxies;
+    }
+  } catch (err) {
+    logMsg(`Proxy list API unavailable: ${err.message}`);
+  }
+  return [];
+}
+
 async function humanType(page, selector, text) {
   const element = await page.$(selector);
   if (!element) return;
@@ -173,9 +189,9 @@ async function runBingSearch(page, query) {
   return clicked;
 }
 
-// DuckDuckGo Failsafe (Rarely triggers captchas)
+// DuckDuckGo Failsafe (No Captcha walls)
 async function runDuckDuckGoSearch(page, query) {
-  logMsg('🔄 Secondary Fallback: Navigating to DuckDuckGo...');
+  logMsg('Navigating to DuckDuckGo...');
   await page.goto('https://html.duckduckgo.com/html/', { waitUntil: 'domcontentloaded', timeout: 20000 });
 
   await humanType(page, 'input[name="q"]', query);
@@ -198,33 +214,88 @@ async function runDuckDuckGoSearch(page, query) {
   return clicked;
 }
 
+async function launchBrowserWithProxy(proxy) {
+  const args = [
+    '--no-sandbox', 
+    '--disable-setuid-sandbox', 
+    '--disable-dev-shm-usage', 
+    '--disable-gpu',
+    '--window-size=1280,800'
+  ];
+  if (proxy) {
+    args.push(`--proxy-server=http://${proxy}`);
+  }
+  
+  const browser = await puppeteer.launch({
+    headless: true,
+    args
+  });
+  return browser;
+}
+
 async function runCTRBooster() {
-  logMsg('Initializing Bulletproof Adaptive CTR Ranker...');
+  logMsg('Initializing Distributed Residential Proxy CTR Engine...');
   const queryPool = await getSearchQueries();
   const selectedQuery = queryPool[Math.floor(Math.random() * queryPool.length)];
   logMsg(`🎯 Target Query: "${selectedQuery}"`);
 
-  let browser;
+  const proxyList = await fetchProxyList();
+  let browser = null;
+  let proxyUsed = null;
+
+  // Shuffle and try top 10 proxies for active connection check
+  const shuffledProxies = proxyList.sort(() => 0.5 - Math.random()).slice(0, 10);
+  for (const testProxy of shuffledProxies) {
+    try {
+      browser = await launchBrowserWithProxy(testProxy);
+      const page = await browser.newPage();
+      
+      // Strict 6s timeout for proxy connection verify
+      await page.setDefaultNavigationTimeout(6000);
+      await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded' });
+      
+      logMsg(`✅ Connection verified using proxy: http://${testProxy}`);
+      proxyUsed = testProxy;
+      break;
+    } catch (err) {
+      logMsg(`❌ Proxy http://${testProxy} failed health check: ${err.message}`);
+      if (browser) {
+        await browser.close();
+        browser = null;
+      }
+    }
+  }
+
+  // Cloud runner VM direct fallback
+  if (!browser) {
+    logMsg('⚠️ All proxies failed. Proceeding with rotated Cloud VM connection...');
+    browser = await launchBrowserWithProxy(null);
+  }
+
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        '--no-sandbox', 
-        '--disable-setuid-sandbox', 
-        '--disable-dev-shm-usage', 
-        '--disable-gpu',
-        '--window-size=1280,800'
-      ]
-    });
-
     const page = await browser.newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    
+    // Viewport & screen size randomization
+    const viewports = [
+      { width: 1920, height: 1080 },
+      { width: 1440, height: 900 },
+      { width: 1280, height: 800 }
+    ];
+    await page.setViewport(viewports[Math.floor(Math.random() * viewports.length)]);
 
+    // User agent rotation
     const userAgents = [
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     ];
     await page.setUserAgent(userAgents[Math.floor(Math.random() * userAgents.length)]);
+
+    // HTTP Headers accept-language rotation
+    const languages = ['en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU'];
+    await page.setExtraHTTPHeaders({
+      'Accept-Language': `${languages[Math.floor(Math.random() * languages.length)]},en;q=0.9`
+    });
 
     let clickedLink = false;
 
@@ -232,24 +303,24 @@ async function runCTRBooster() {
     try {
       clickedLink = await runGoogleSearch(page, selectedQuery);
     } catch (err) {
-      logMsg(`Google search error: ${err.message}`);
+      logMsg(`Google pathway bypassed: ${err.message}`);
       
       // 2. Bing
       try {
         clickedLink = await runBingSearch(page, selectedQuery);
       } catch (bingErr) {
-        logMsg(`Bing search error: ${bingErr.message}`);
+        logMsg(`Bing pathway bypassed: ${bingErr.message}`);
         
-        // 3. DuckDuckGo (Failsafe)
+        // 3. DuckDuckGo
         try {
           clickedLink = await runDuckDuckGoSearch(page, selectedQuery);
         } catch (ddgErr) {
-          logMsg(`DuckDuckGo error: ${ddgErr.message}`);
+          logMsg(`DuckDuckGo pathway bypassed: ${ddgErr.message}`);
         }
       }
     }
 
-    // 4. Referrer Spoofed Direct Navigation
+    // 4. Referrer Spoofed Direct Landing
     if (!clickedLink) {
       logMsg('🔄 Search pathways blocked. Executing referer-spoofed organic traffic landing...');
       try {
