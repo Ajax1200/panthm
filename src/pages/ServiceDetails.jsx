@@ -105,6 +105,7 @@ const ServiceDetails = () => {
         image={data.image}
         url={`https://panthm.com/services/${slugify(data.title)}`}
         structuredData={structuredData}
+        faqs={faqs.map(faq => ({ question: faq.q, answer: faq.a }))}
       />
       <div className="bg-slate-900 dark:bg-[#050505] py-24 text-white border-b border-white/5 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 pointer-events-none"></div>
