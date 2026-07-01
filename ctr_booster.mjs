@@ -233,6 +233,96 @@ async function launchBrowserWithProxy(proxy) {
   return browser;
 }
 
+async function executeSession(browser, selectedQuery) {
+  const page = await browser.newPage();
+  
+  // Viewport & screen size randomization
+  const viewports = [
+    { width: 1920, height: 1080 },
+    { width: 1440, height: 900 },
+    { width: 1280, height: 800 }
+  ];
+  await page.setViewport(viewports[Math.floor(Math.random() * viewports.length)]);
+
+  // User agent rotation
+  const userAgents = [
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  ];
+  await page.setUserAgent(userAgents[Math.floor(Math.random() * userAgents.length)]);
+
+  // HTTP Headers accept-language rotation
+  const languages = ['en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU'];
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': `${languages[Math.floor(Math.random() * languages.length)]},en;q=0.9`
+  });
+
+  let clickedLink = false;
+
+  // 1. Google
+  try {
+    clickedLink = await runGoogleSearch(page, selectedQuery);
+  } catch (err) {
+    logMsg(`Google pathway bypassed: ${err.message}`);
+    
+    // 2. Bing
+    try {
+      clickedLink = await runBingSearch(page, selectedQuery);
+    } catch (bingErr) {
+      logMsg(`Bing pathway bypassed: ${bingErr.message}`);
+      
+      // 3. DuckDuckGo
+      try {
+        clickedLink = await runDuckDuckGoSearch(page, selectedQuery);
+      } catch (ddgErr) {
+        logMsg(`DuckDuckGo pathway bypassed: ${ddgErr.message}`);
+      }
+    }
+  }
+
+  // 4. Referrer Spoofed Direct Landing
+  if (!clickedLink) {
+    logMsg('🔄 Search pathways blocked. Executing referer-spoofed organic traffic landing...');
+    try {
+      await page.setExtraHTTPHeaders({ 'Referer': 'https://www.google.com/' });
+      await page.goto('https://panthm.com', { waitUntil: 'load', timeout: 15000 });
+      clickedLink = true;
+    } catch (e) {
+      await page.goto('https://panthm.com', { waitUntil: 'domcontentloaded', timeout: 10000 });
+      clickedLink = true;
+    }
+  }
+
+  // Dwell Time & Scroll
+  logMsg('Entering Dwell time loop...');
+  await humanScroll(page);
+  await new Promise(resolve => setTimeout(resolve, 8000 + Math.random() * 4000));
+
+  // Traversing inner links (eliminate bounce)
+  try {
+    const internalLinks = await page.$$eval('a', anchors => 
+      anchors
+        .map(a => a.href)
+        .filter(href => href.startsWith('https://panthm.com/') && !href.includes('#') && href !== 'https://panthm.com/')
+    );
+
+    if (internalLinks.length > 0) {
+      const randomLink = internalLinks[Math.floor(Math.random() * internalLinks.length)];
+      logMsg(`Navigating internally to: ${randomLink}`);
+      try {
+        await page.goto(randomLink, { waitUntil: 'load', timeout: 15000 });
+      } catch (e) {
+        await page.goto(randomLink, { waitUntil: 'domcontentloaded', timeout: 10000 });
+      }
+      await humanScroll(page);
+      await new Promise(resolve => setTimeout(resolve, 5000));
+    }
+  } catch (e) {}
+
+  logMsg(`SUCCESS! Dwell time satisfied on ending URL: ${page.url()}`);
+}
+
 async function runCTRBooster() {
   logMsg('Initializing Distributed Residential Proxy CTR Engine...');
   const queryPool = await getSearchQueries();
@@ -273,101 +363,33 @@ async function runCTRBooster() {
   }
 
   try {
-    const page = await browser.newPage();
-    
-    // Viewport & screen size randomization
-    const viewports = [
-      { width: 1920, height: 1080 },
-      { width: 1440, height: 900 },
-      { width: 1280, height: 800 }
-    ];
-    await page.setViewport(viewports[Math.floor(Math.random() * viewports.length)]);
-
-    // User agent rotation
-    const userAgents = [
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    ];
-    await page.setUserAgent(userAgents[Math.floor(Math.random() * userAgents.length)]);
-
-    // HTTP Headers accept-language rotation
-    const languages = ['en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU'];
-    await page.setExtraHTTPHeaders({
-      'Accept-Language': `${languages[Math.floor(Math.random() * languages.length)]},en;q=0.9`
-    });
-
-    let clickedLink = false;
-
-    // 1. Google
-    try {
-      clickedLink = await runGoogleSearch(page, selectedQuery);
-    } catch (err) {
-      logMsg(`Google pathway bypassed: ${err.message}`);
-      
-      // 2. Bing
-      try {
-        clickedLink = await runBingSearch(page, selectedQuery);
-      } catch (bingErr) {
-        logMsg(`Bing pathway bypassed: ${bingErr.message}`);
-        
-        // 3. DuckDuckGo
-        try {
-          clickedLink = await runDuckDuckGoSearch(page, selectedQuery);
-        } catch (ddgErr) {
-          logMsg(`DuckDuckGo pathway bypassed: ${ddgErr.message}`);
-        }
-      }
-    }
-
-    // 4. Referrer Spoofed Direct Landing
-    if (!clickedLink) {
-      logMsg('🔄 Search pathways blocked. Executing referer-spoofed organic traffic landing...');
-      try {
-        await page.setExtraHTTPHeaders({ 'Referer': 'https://www.google.com/' });
-        await page.goto('https://panthm.com', { waitUntil: 'load', timeout: 15000 });
-        clickedLink = true;
-      } catch (e) {
-        await page.goto('https://panthm.com', { waitUntil: 'domcontentloaded', timeout: 10000 });
-        clickedLink = true;
-      }
-    }
-
-    // Dwell Time & Scroll
-    logMsg('Entering Dwell time loop...');
-    await humanScroll(page);
-    await new Promise(resolve => setTimeout(resolve, 8000 + Math.random() * 4000));
-
-    // Traversing inner links (eliminate bounce)
-    try {
-      const internalLinks = await page.$$eval('a', anchors => 
-        anchors
-          .map(a => a.href)
-          .filter(href => href.startsWith('https://panthm.com/') && !href.includes('#') && href !== 'https://panthm.com/')
-      );
-
-      if (internalLinks.length > 0) {
-        const randomLink = internalLinks[Math.floor(Math.random() * internalLinks.length)];
-        logMsg(`Navigating internally to: ${randomLink}`);
-        try {
-          await page.goto(randomLink, { waitUntil: 'load', timeout: 15000 });
-        } catch (e) {
-          await page.goto(randomLink, { waitUntil: 'domcontentloaded', timeout: 10000 });
-        }
-        await humanScroll(page);
-        await new Promise(resolve => setTimeout(resolve, 5000));
-      }
-    } catch (e) {}
-
-    logMsg(`SUCCESS! Dwell time satisfied on ending URL: ${page.url()}`);
-
+    logMsg('Starting search simulation...');
+    await executeSession(browser, selectedQuery);
   } catch (err) {
-    logMsg(`❌ Critical Exception: ${err.message}`);
-    process.exit(1);
+    logMsg(`⚠️ Error during proxy simulation: ${err.message}`);
+    if (proxyUsed) {
+      logMsg('🔄 Re-attempting connection with direct Cloud VM fallback...');
+      try {
+        if (browser) {
+          await browser.close();
+        }
+      } catch (closeErr) {}
+      browser = await launchBrowserWithProxy(null);
+      await executeSession(browser, selectedQuery);
+    } else {
+      throw err;
+    }
   } finally {
-    if (browser) await browser.close();
+    if (browser) {
+      try {
+        await browser.close();
+      } catch (closeErr) {}
+    }
     logMsg('Browser closed.');
   }
 }
 
-runCTRBooster().catch(() => process.exit(1));
+runCTRBooster().catch((err) => {
+  logMsg(`❌ Critical Exception: ${err.message}`);
+  process.exit(1);
+});

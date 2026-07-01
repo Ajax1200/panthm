@@ -32,4 +32,4 @@ jobs:
 
       - name: Run organic search simulation
         run: |
-          node ctr_booster.js
+          node ctr_booster.mjs
