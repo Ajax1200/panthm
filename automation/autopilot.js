@@ -788,15 +788,7 @@ ${linksContext || 'No existing articles.'}
             logMsg(`[Sitemap] Warning: Sitemap update failed (non-critical): ${sitemapErr.message}`);
           }
 
-          // Share the newly published blog post to LinkedIn
-          logMsg("[LinkedIn] Sharing new blog post to LinkedIn...");
-          try {
-            await postToLinkedIn(blogData.title, blogData.excerpt, currentSlug, blogData.tags || []);
-            logMsg("[LinkedIn] Share request processed successfully.");
-          } catch (linkedInErr) {
-            logMsg(`[LinkedIn] Warning: Sharing failed (non-critical): ${linkedInErr.message}`);
-          }
-
+          // Share to LinkedIn is now handled by the weekly poster cron schedule to match the new strategy.
           break;
         } else {
           throw new Error(`Upload returned status ${uploadRes.status}`);
