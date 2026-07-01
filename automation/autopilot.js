@@ -816,6 +816,7 @@ ${linksContext || 'No existing articles.'}
         const isTransient = error.response?.status === 503 ||
                             error.response?.status === 502 ||
                             error.response?.status === 504 ||
+                            error.response?.status === 500 ||
                             error.response?.status === 429 ||
                             error.code === 'ECONNRESET' ||
                             error.code === 'ETIMEDOUT' ||
