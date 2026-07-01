@@ -3,6 +3,9 @@ import { updateSitemap } from './sitemap_updater.js';
 import { postToLinkedIn } from './linkedin_poster.js';
 import { deployAuthorityNode } from './deploy_authority_node.js';
 import axios from 'axios';
+import dns from 'dns';
+
+dns.setDefaultResultOrder('ipv4first');
 import FormData from 'form-data';
 import fs from 'fs';
 import path from 'path';
