@@ -289,7 +289,7 @@ async function runAutopilot() {
     const authRes = await axiosWithRetry(() => axios.post('https://api.panthm.com/api/auth/login', {
       email: 'admin@panthm.com',
       password: 'admin@123'
-    }), 'Authentication');
+    }, { timeout: 30000 }), 'Authentication');
 
     if (!authRes.data?.success || !authRes.data?.token) {
       throw new Error("CMS API login failed");
@@ -303,7 +303,8 @@ async function runAutopilot() {
     try {
       logMsg("Fetching list of existing blogs from database...");
       const blogsRes = await axiosWithRetry(() => axios.get('https://api.panthm.com/api/blogs?page=1&limit=50', {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
+        timeout: 30000
       }), 'Fetch blogs');
       
       if (blogsRes.data?.blogs && Array.isArray(blogsRes.data.blogs)) {
@@ -480,14 +481,16 @@ Requirements for the topic selection:
 
     // Fetch live categories to resolve category ID
     const catRes = await axiosWithRetry(() => axios.get('https://api.panthm.com/api/categories', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
+      timeout: 30000
     }), 'Fetch categories');
     const matchCat = catRes.data?.categories?.find(c => c.name.toLowerCase().includes(selection.category.toLowerCase())) || catRes.data?.categories?.[0];
     const categoryId = matchCat?._id;
 
     // Fetch live authors list to resolve or register target expert author
     const authListRes = await axiosWithRetry(() => axios.get('https://api.panthm.com/api/authors', {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
+      timeout: 30000
     }), 'Fetch authors');
     
     let authorId;
@@ -502,7 +505,8 @@ Requirements for the topic selection:
         const createRes = await axiosWithRetry(() => axios.post('https://api.panthm.com/api/authors', {
           name: targetExpert.name
         }, {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` },
+          timeout: 30000
         }), 'Create author');
         if (createRes.data?.success && createRes.data?.author?._id) {
           authorId = createRes.data.author._id;
@@ -777,7 +781,8 @@ ${linksContext || 'No existing articles.'}
           headers: {
             ...form.getHeaders(),
             Authorization: `Bearer ${token}`
-          }
+          },
+          timeout: 60000
         });
         
         if (uploadRes.status === 201 || uploadRes.data?.success) {
