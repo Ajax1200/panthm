@@ -42,6 +42,7 @@ const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const SolutionsDirectory = lazy(() => import("./pages/SolutionsDirectory"));
+const ComparisonPage = lazy(() => import("./pages/ComparisonPage"));
 
 AOS.init({
   once: true,
@@ -204,6 +205,26 @@ function AppContent() {
 <LandingHeader />
                   <LandingPage page="ai-calling" />
                   <LandingFooter />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/vs/phantom-ai"
+              element={
+                <PageTransition>
+                  <Header />
+                  <ComparisonPage />
+                  <Footer />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/vs/phantom"
+              element={
+                <PageTransition>
+                  <Header />
+                  <ComparisonPage />
+                  <Footer />
                 </PageTransition>
               }
             />

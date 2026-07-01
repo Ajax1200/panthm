@@ -28,7 +28,12 @@ async function getSearchQueries() {
     'custom text-to-speech pipelines',
     'programmatic SEO agency Pune',
     'WhatsApp Business API automation',
-    'low latency voice agents'
+    'low latency voice agents',
+    'phantom ai',
+    'phantom ai alternative',
+    'phantom vs panthm',
+    'ai labs Pune',
+    'phantom voice automation'
   ];
 
   // 1. Try reading Google Search Console queries (Threshold queries ranking 3 to 20)
@@ -180,6 +185,9 @@ async function findAndClickTarget(page, domain, maxPages = 5) {
 
 function getBroadQueryFor(query) {
   const q = query.toLowerCase();
+  if (q.includes('phantom')) {
+    return 'ai labs';
+  }
   if (q.includes('voice') || q.includes('calling') || q.includes('agent')) {
     return 'outbound sales voice automation';
   }

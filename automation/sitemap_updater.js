@@ -54,6 +54,8 @@ const STATIC_PAGES = [
   { loc: '/services/infrastructure',        changefreq: 'monthly', priority: '0.8' },
   { loc: '/services/ai-automation',         changefreq: 'monthly', priority: '0.8' },
   { loc: '/services/data-analytics',        changefreq: 'monthly', priority: '0.8' },
+  { loc: '/vs/phantom-ai',                  changefreq: 'weekly',  priority: '0.9' },
+  { loc: '/vs/phantom',                     changefreq: 'weekly',  priority: '0.9' },
 ];
 
 function isoDate(dateStr) {
