@@ -19,7 +19,43 @@ function logMsg(msg) {
 }
 
 async function getSearchQueries() {
-  const queries = ['PANTHM AI Labs', 'PANTHM AI'];
+  const queries = [];
+  const defaultNicheQueries = [
+    'PANTHM AI Labs',
+    'PANTHM AI',
+    'outbound sales voice automation',
+    'AI calling agency India',
+    'custom text-to-speech pipelines',
+    'programmatic SEO agency Pune',
+    'WhatsApp Business API automation',
+    'low latency voice agents'
+  ];
+
+  // 1. Try reading Google Search Console queries (Threshold queries ranking 3 to 20)
+  const gscReportPath = path.join(__dirname, 'automation', 'gsc_report.json');
+  try {
+    if (fs.existsSync(gscReportPath)) {
+      const gscData = JSON.parse(fs.readFileSync(gscReportPath, 'utf-8'));
+      const topQueries = gscData.topQueries || [];
+      
+      // Filter for queries ranking in threshold position (3 to 20)
+      const thresholdQueries = topQueries.filter(q => q.position >= 3 && q.position <= 20);
+      if (thresholdQueries.length > 0) {
+        thresholdQueries.forEach(q => queries.push(q.query));
+        logMsg(`Loaded ${thresholdQueries.length} threshold queries (pos 3-20) from GSC report.`);
+      }
+      
+      // Fallback to general top queries if none matched position threshold
+      if (queries.length === 0 && topQueries.length > 0) {
+        topQueries.slice(0, 5).forEach(q => queries.push(q.query));
+        logMsg(`Loaded ${queries.length} top queries from GSC report.`);
+      }
+    }
+  } catch (err) {
+    logMsg(`GSC report audit skipped: ${err.message}`);
+  }
+
+  // 2. Fetch live published blogs keywords fallback
   try {
     const res = await axios.get('https://api.panthm.com/api/blogs/published?limit=6', { timeout: 8000 });
     if (res.data && res.data.blogs) {
@@ -36,23 +72,14 @@ async function getSearchQueries() {
   } catch (err) {
     logMsg(`Skipping API keywords fallback: ${err.message}`);
   }
-  return [...new Set(queries)].filter(Boolean);
-}
 
-// Fetch list of working proxy servers for unique IP distribution
-async function fetchProxyList() {
-  logMsg('Fetching proxy list for connection uniqueness...');
-  try {
-    const res = await axios.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=4000&country=all&ssl=yes&anonymity=elite', { timeout: 6000 });
-    if (res.data) {
-      const proxies = res.data.split('\r\n').map(p => p.trim()).filter(Boolean);
-      logMsg(`Retrieved ${proxies.length} potential proxies from pool.`);
-      return proxies;
-    }
-  } catch (err) {
-    logMsg(`Proxy list API unavailable: ${err.message}`);
-  }
-  return [];
+  // 3. Merge with default high-value target keywords to ensure query list is never empty
+  defaultNicheQueries.forEach(q => queries.push(q));
+
+  // Deduplicate and filter out empty strings
+  const finalQueries = [...new Set(queries)].filter(Boolean);
+  logMsg(`Total query pool: [${finalQueries.join(', ')}]`);
+  return finalQueries;
 }
 
 async function humanType(page, selector, text) {
@@ -214,7 +241,7 @@ async function runDuckDuckGoSearch(page, query) {
   return clicked;
 }
 
-async function launchBrowserWithProxy(proxy) {
+async function launchBrowser() {
   const args = [
     '--no-sandbox', 
     '--disable-setuid-sandbox', 
@@ -222,9 +249,6 @@ async function launchBrowserWithProxy(proxy) {
     '--disable-gpu',
     '--window-size=1280,800'
   ];
-  if (proxy) {
-    args.push(`--proxy-server=http://${proxy}`);
-  }
   
   const browser = await puppeteer.launch({
     headless: true,
@@ -260,28 +284,32 @@ async function executeSession(browser, selectedQuery) {
 
   let clickedLink = false;
 
-  // 1. Google
+  // 1. Google Search Pathway
   try {
     clickedLink = await runGoogleSearch(page, selectedQuery);
   } catch (err) {
     logMsg(`Google pathway bypassed: ${err.message}`);
-    
-    // 2. Bing
+  }
+
+  // 2. Bing Search Pathway (Failsafe for Google Captchas)
+  if (!clickedLink) {
     try {
       clickedLink = await runBingSearch(page, selectedQuery);
     } catch (bingErr) {
       logMsg(`Bing pathway bypassed: ${bingErr.message}`);
-      
-      // 3. DuckDuckGo
-      try {
-        clickedLink = await runDuckDuckGoSearch(page, selectedQuery);
-      } catch (ddgErr) {
-        logMsg(`DuckDuckGo pathway bypassed: ${ddgErr.message}`);
-      }
     }
   }
 
-  // 4. Referrer Spoofed Direct Landing
+  // 3. DuckDuckGo Search Pathway
+  if (!clickedLink) {
+    try {
+      clickedLink = await runDuckDuckGoSearch(page, selectedQuery);
+    } catch (ddgErr) {
+      logMsg(`DuckDuckGo pathway bypassed: ${ddgErr.message}`);
+    }
+  }
+
+  // 4. Referrer Spoofed Direct Landing (Ultimate failsafe to keep traffic incoming)
   if (!clickedLink) {
     logMsg('🔄 Search pathways blocked. Executing referer-spoofed organic traffic landing...');
     try {
@@ -324,61 +352,19 @@ async function executeSession(browser, selectedQuery) {
 }
 
 async function runCTRBooster() {
-  logMsg('Initializing Distributed Residential Proxy CTR Engine...');
+  logMsg('Initializing Cloud VM-Direct CTR Engine (Rotated Azure IP Pool)...');
   const queryPool = await getSearchQueries();
   const selectedQuery = queryPool[Math.floor(Math.random() * queryPool.length)];
   logMsg(`🎯 Target Query: "${selectedQuery}"`);
 
-  const proxyList = await fetchProxyList();
   let browser = null;
-  let proxyUsed = null;
-
-  // Shuffle and try top 10 proxies for active connection check
-  const shuffledProxies = proxyList.sort(() => 0.5 - Math.random()).slice(0, 10);
-  for (const testProxy of shuffledProxies) {
-    try {
-      browser = await launchBrowserWithProxy(testProxy);
-      const page = await browser.newPage();
-      
-      // Strict 6s timeout for proxy connection verify
-      await page.setDefaultNavigationTimeout(6000);
-      await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded' });
-      
-      logMsg(`✅ Connection verified using proxy: http://${testProxy}`);
-      proxyUsed = testProxy;
-      break;
-    } catch (err) {
-      logMsg(`❌ Proxy http://${testProxy} failed health check: ${err.message}`);
-      if (browser) {
-        await browser.close();
-        browser = null;
-      }
-    }
-  }
-
-  // Cloud runner VM direct fallback
-  if (!browser) {
-    logMsg('⚠️ All proxies failed. Proceeding with rotated Cloud VM connection...');
-    browser = await launchBrowserWithProxy(null);
-  }
-
   try {
-    logMsg('Starting search simulation...');
+    browser = await launchBrowser();
+    logMsg('Starting search simulation session...');
     await executeSession(browser, selectedQuery);
   } catch (err) {
-    logMsg(`⚠️ Error during proxy simulation: ${err.message}`);
-    if (proxyUsed) {
-      logMsg('🔄 Re-attempting connection with direct Cloud VM fallback...');
-      try {
-        if (browser) {
-          await browser.close();
-        }
-      } catch (closeErr) {}
-      browser = await launchBrowserWithProxy(null);
-      await executeSession(browser, selectedQuery);
-    } else {
-      throw err;
-    }
+    logMsg(`❌ Critical Exception: ${err.message}`);
+    process.exit(1);
   } finally {
     if (browser) {
       try {
