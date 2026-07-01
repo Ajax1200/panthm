@@ -150,7 +150,7 @@ async function findAndClickTarget(page, domain, maxPages = 5) {
     resultLink = await page.evaluateHandle((dom) => {
       const anchors = Array.from(document.querySelectorAll('a'));
       return anchors.find(a => a.href && (a.href.includes(dom) || a.href.includes(`${dom}/`)));
-    }, dom);
+    }, domain);
 
     if (resultLink && resultLink.asElement()) {
       break;
