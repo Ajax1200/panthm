@@ -851,7 +851,9 @@ ${linksContext || 'No existing articles.'}
           break;
         } else {
           logMsg(`Upload failed check. Status: ${uploadRes.status}, Data: ${JSON.stringify(uploadRes.data)}`);
-          throw new Error(`Upload returned status ${uploadRes.status}. Data: ${JSON.stringify(uploadRes.data)}`);
+          const customError = new Error(`Upload returned status ${uploadRes.status}. Data: ${JSON.stringify(uploadRes.data)}`);
+          customError.response = { status: uploadRes.status, data: uploadRes.data };
+          throw customError;
         }
       } catch (error) {
         const errMsg = error.response?.data?.message || error.message;
@@ -868,6 +870,7 @@ ${linksContext || 'No existing articles.'}
                             error.response?.status === 504 ||
                             error.response?.status === 500 ||
                             error.response?.status === 429 ||
+                            (error.response?.status === 200 && (!error.response.data || JSON.stringify(error.response.data) === '""' || error.response.data.success === false)) ||
                             error.code === 'ECONNRESET' ||
                             error.code === 'ETIMEDOUT' ||
                             error.message.toLowerCase().includes('timeout');
