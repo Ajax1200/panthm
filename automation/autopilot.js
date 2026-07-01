@@ -229,7 +229,13 @@ async function axiosWithRetry(fn, label = 'API call', maxRetries = 3) {
   let attempt = 0;
   while (attempt < maxRetries) {
     try {
-      return await fn();
+      const res = await fn();
+      if (res && res.status === 200 && (!res.data || JSON.stringify(res.data) === '""' || res.data.success === false)) {
+        const error = new Error(`Proxy startup delay or empty response: status 200, data: ${JSON.stringify(res.data)}`);
+        error.response = res;
+        throw error;
+      }
+      return res;
     } catch (err) {
       attempt++;
       const errMsg = err.message || '';
@@ -239,7 +245,9 @@ async function axiosWithRetry(fn, label = 'API call', maxRetries = 3) {
         errMsg.toLowerCase().includes('econnreset') ||
         errMsg.toLowerCase().includes('econnrefused') ||
         errMsg.toLowerCase().includes('network') ||
-        (err.response?.status >= 500 && err.response?.status < 600)
+        errMsg.toLowerCase().includes('proxy startup delay') ||
+        (err.response?.status >= 500 && err.response?.status < 600) ||
+        (err.response?.status === 200 && (!err.response.data || JSON.stringify(err.response.data) === '""' || err.response.data.success === false))
       );
       if (isTransient && attempt < maxRetries) {
         const delayMs = attempt * 8000; // 8s, 16s backoff
