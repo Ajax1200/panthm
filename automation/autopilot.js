@@ -809,7 +809,8 @@ ${linksContext || 'No existing articles.'}
           // Share to LinkedIn is now handled by the weekly poster cron schedule to match the new strategy.
           break;
         } else {
-          throw new Error(`Upload returned status ${uploadRes.status}`);
+          logMsg(`Upload failed check. Status: ${uploadRes.status}, Data: ${JSON.stringify(uploadRes.data)}`);
+          throw new Error(`Upload returned status ${uploadRes.status}. Data: ${JSON.stringify(uploadRes.data)}`);
         }
       } catch (error) {
         const errMsg = error.response?.data?.message || error.message;
