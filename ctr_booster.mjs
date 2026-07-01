@@ -101,19 +101,42 @@ async function humanType(page, selector, text) {
 
 async function humanScroll(page) {
   try {
+    // Advanced scroll loop representing human reading/skimming habits
     await page.evaluate(async () => {
       await new Promise((resolve) => {
         let totalHeight = 0;
-        const distance = Math.floor(Math.random() * 60) + 30;
-        const timer = setInterval(() => {
-          const scrollHeight = document.body.scrollHeight;
+        const maxScroll = Math.min(document.body.scrollHeight - window.innerHeight, 3000);
+        
+        const scrollStep = async () => {
+          if (totalHeight >= maxScroll) {
+            resolve();
+            return;
+          }
+          
+          // Randomize scroll distance (skimming vs reading)
+          const distance = Math.random() < 0.2 
+            ? Math.floor(Math.random() * 400) + 200 // fast skim
+            : Math.floor(Math.random() * 80) + 40;   // slow read
+            
           window.scrollBy(0, distance);
           totalHeight += distance;
-          if (totalHeight >= scrollHeight - window.innerHeight || totalHeight > 2500) {
-            clearInterval(timer);
-            resolve();
+          
+          // 15% chance to scroll back up slightly (re-reading)
+          if (Math.random() < 0.15 && totalHeight > 300) {
+            const backDistance = Math.floor(Math.random() * 60) + 20;
+            window.scrollBy(0, -backDistance);
+            totalHeight -= backDistance;
           }
-        }, 150 + Math.random() * 100);
+          
+          // Variable delay simulating reading speed
+          const delay = Math.random() < 0.3 
+            ? Math.random() * 1500 + 800 // deep reading pause
+            : Math.random() * 250 + 100; // standard scroll delay
+            
+          setTimeout(scrollStep, delay);
+        };
+        
+        scrollStep();
       });
     });
   } catch (err) {}
@@ -127,7 +150,7 @@ async function findAndClickTarget(page, domain, maxPages = 5) {
     resultLink = await page.evaluateHandle((dom) => {
       const anchors = Array.from(document.querySelectorAll('a'));
       return anchors.find(a => a.href && (a.href.includes(dom) || a.href.includes(`${dom}/`)));
-    }, domain);
+    }, dom);
 
     if (resultLink && resultLink.asElement()) {
       break;
@@ -155,7 +178,24 @@ async function findAndClickTarget(page, domain, maxPages = 5) {
   return false;
 }
 
-// Google Search Handler with Captcha Detection
+function getBroadQueryFor(query) {
+  const q = query.toLowerCase();
+  if (q.includes('voice') || q.includes('calling') || q.includes('agent')) {
+    return 'outbound sales voice automation';
+  }
+  if (q.includes('speech') || q.includes('tts') || q.includes('text')) {
+    return 'custom text to speech pipeline';
+  }
+  if (q.includes('whatsapp') || q.includes('api')) {
+    return 'whatsapp business automation tools';
+  }
+  if (q.includes('seo') || q.includes('programmatic') || q.includes('sitemap')) {
+    return 'programmatic SEO ranking strategy';
+  }
+  return 'b2b sales engagement platforms';
+}
+
+// Google Search Handler with Captcha Detection and Journey Log simulation
 async function runGoogleSearch(page, query) {
   logMsg('Navigating to Google...');
   await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded', timeout: 20000 });
@@ -164,6 +204,24 @@ async function runGoogleSearch(page, query) {
   if (consentButton) {
     await consentButton.click();
     await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  // Journey Log Simulation (50% probability)
+  const isJourney = Math.random() < 0.5;
+  if (isJourney) {
+    const broadQuery = getBroadQueryFor(query);
+    logMsg(`[Google Journey] Initiating broad query: "${broadQuery}"`);
+    await humanType(page, 'textarea[name="q"]', broadQuery);
+    await page.keyboard.press('Enter');
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
+    if (page.url().includes('google.com/sorry/')) {
+      throw new Error('Google Captcha (sorry/index) triggered.');
+    }
+    await humanScroll(page);
+    await new Promise(resolve => setTimeout(resolve, 6000 + Math.random() * 4000));
+
+    logMsg(`[Google Journey] Refining search to target query: "${query}"`);
+    await page.goto('https://www.google.com', { waitUntil: 'domcontentloaded', timeout: 20000 });
   }
 
   await humanType(page, 'textarea[name="q"]', query);
@@ -189,7 +247,7 @@ async function runGoogleSearch(page, query) {
   return clicked;
 }
 
-// Bing Search Handler with Captcha Detection
+// Bing Search Handler with Captcha Detection and Journey Log simulation
 async function runBingSearch(page, query) {
   logMsg('Navigating to Bing...');
   await page.goto('https://www.bing.com', { waitUntil: 'domcontentloaded', timeout: 20000 });
@@ -198,6 +256,21 @@ async function runBingSearch(page, query) {
   if (consentButton) {
     await consentButton.click();
     await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+
+  // Journey Log Simulation (50% probability)
+  const isJourney = Math.random() < 0.5;
+  if (isJourney) {
+    const broadQuery = getBroadQueryFor(query);
+    logMsg(`[Bing Journey] Initiating broad query: "${broadQuery}"`);
+    await humanType(page, 'input[name="q"]', broadQuery);
+    await page.keyboard.press('Enter');
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
+    await humanScroll(page);
+    await new Promise(resolve => setTimeout(resolve, 6000 + Math.random() * 4000));
+
+    logMsg(`[Bing Journey] Refining search to target query: "${query}"`);
+    await page.goto('https://www.bing.com', { waitUntil: 'domcontentloaded', timeout: 20000 });
   }
 
   await humanType(page, 'input[name="q"]', query);
@@ -220,6 +293,24 @@ async function runBingSearch(page, query) {
 async function runDuckDuckGoSearch(page, query) {
   logMsg('Navigating to DuckDuckGo...');
   await page.goto('https://html.duckduckgo.com/html/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+
+  // Journey Log Simulation (50% probability)
+  const isJourney = Math.random() < 0.5;
+  if (isJourney) {
+    const broadQuery = getBroadQueryFor(query);
+    logMsg(`[DuckDuckGo Journey] Initiating broad query: "${broadQuery}"`);
+    await humanType(page, 'input[name="q"]', broadQuery);
+    const searchButton = await page.$('input[type="submit"]');
+    if (searchButton) {
+      await searchButton.click();
+      await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 20000 }).catch(() => {});
+    }
+    await humanScroll(page);
+    await new Promise(resolve => setTimeout(resolve, 6000 + Math.random() * 4000));
+
+    logMsg(`[DuckDuckGo Journey] Refining search to target query: "${query}"`);
+    await page.goto('https://html.duckduckgo.com/html/', { waitUntil: 'domcontentloaded', timeout: 20000 });
+  }
 
   await humanType(page, 'input[name="q"]', query);
   const searchButton = await page.$('input[type="submit"]');
@@ -260,21 +351,51 @@ async function launchBrowser() {
 async function executeSession(browser, selectedQuery) {
   const page = await browser.newPage();
   
-  // Viewport & screen size randomization
-  const viewports = [
-    { width: 1920, height: 1080 },
-    { width: 1440, height: 900 },
-    { width: 1280, height: 800 }
-  ];
-  await page.setViewport(viewports[Math.floor(Math.random() * viewports.length)]);
+  // 1. Device-sliced footprint split (60% Mobile / 40% Desktop)
+  const isMobile = Math.random() < 0.6;
+  let userAgent, viewportWidth, viewportHeight;
 
-  // User agent rotation
-  const userAgents = [
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-  ];
-  await page.setUserAgent(userAgents[Math.floor(Math.random() * userAgents.length)]);
+  if (isMobile) {
+    // Mobile Viewports and User Agents
+    const mobileViewports = [
+      { width: 390, height: 844 }, // iPhone 12/13/14 Pro
+      { width: 412, height: 915 }, // Galaxy S20
+      { width: 375, height: 667 }  // iPhone SE
+    ];
+    const mobileUserAgents = [
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1',
+      'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'
+    ];
+
+    const vp = mobileViewports[Math.floor(Math.random() * mobileViewports.length)];
+    viewportWidth = vp.width;
+    viewportHeight = vp.height;
+    userAgent = mobileUserAgents[Math.floor(Math.random() * mobileUserAgents.length)];
+
+    await page.setViewport({ width: viewportWidth, height: viewportHeight, hasTouch: true, isMobile: true });
+    logMsg(`[Device Slice] Simulating Mobile footprint (Viewport: ${viewportWidth}x${viewportHeight}).`);
+  } else {
+    // Desktop Viewports and User Agents
+    const desktopViewports = [
+      { width: 1920, height: 1080 },
+      { width: 1440, height: 900 },
+      { width: 1280, height: 800 }
+    ];
+    const desktopUserAgents = [
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+    ];
+
+    const vp = desktopViewports[Math.floor(Math.random() * desktopViewports.length)];
+    viewportWidth = vp.width;
+    viewportHeight = vp.height;
+    userAgent = desktopUserAgents[Math.floor(Math.random() * desktopUserAgents.length)];
+
+    await page.setViewport({ width: viewportWidth, height: viewportHeight, hasTouch: false, isMobile: false });
+    logMsg(`[Device Slice] Simulating Desktop footprint (Viewport: ${viewportWidth}x${viewportHeight}).`);
+  }
+
+  await page.setUserAgent(userAgent);
 
   // HTTP Headers accept-language rotation
   const languages = ['en-US', 'en-GB', 'en-IN', 'en-CA', 'en-AU'];
@@ -322,12 +443,16 @@ async function executeSession(browser, selectedQuery) {
     }
   }
 
-  // Dwell Time & Scroll
-  logMsg('Entering Dwell time loop...');
-  await humanScroll(page);
-  await new Promise(resolve => setTimeout(resolve, 8000 + Math.random() * 4000));
+  // Dwell Time & Scroll (Navboost Long Click Emulation)
+  const dwellDuration = Math.floor(Math.random() * 25000) + 35000; // 35s to 60s
+  logMsg(`Entering Dwell time loop for ${dwellDuration / 1000}s...`);
+  
+  const scrollPromise = humanScroll(page);
+  const timeoutPromise = new Promise(resolve => setTimeout(resolve, dwellDuration));
+  await Promise.race([scrollPromise, timeoutPromise]);
+  await timeoutPromise; // Ensure full dwell time is satisfied
 
-  // Traversing inner links (eliminate bounce)
+  // Traversing inner links (eliminate bounce rate)
   try {
     const internalLinks = await page.$$eval('a', anchors => 
       anchors
@@ -343,8 +468,13 @@ async function executeSession(browser, selectedQuery) {
       } catch (e) {
         await page.goto(randomLink, { waitUntil: 'domcontentloaded', timeout: 10000 });
       }
-      await humanScroll(page);
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      
+      const innerDwell = Math.floor(Math.random() * 10000) + 10000; // 10s to 20s
+      logMsg(`Entering inner page Dwell loop for ${innerDwell / 1000}s...`);
+      const innerScroll = humanScroll(page);
+      const innerTimeout = new Promise(resolve => setTimeout(resolve, innerDwell));
+      await Promise.race([innerScroll, innerTimeout]);
+      await innerTimeout;
     }
   } catch (e) {}
 
