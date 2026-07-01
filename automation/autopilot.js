@@ -782,7 +782,7 @@ ${linksContext || 'No existing articles.'}
             ...form.getHeaders(),
             Authorization: `Bearer ${token}`
           },
-          timeout: 60000
+          timeout: 180000
         });
         
         if (uploadRes.status === 201 || uploadRes.data?.success) {
