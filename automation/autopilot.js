@@ -812,6 +812,22 @@ ${linksContext || 'No existing articles.'}
           logMsg(`Slug conflict detected: "${errMsg}". Retrying with modified slug...`);
           continue;
         }
+
+        const isTransient = error.response?.status === 503 ||
+                            error.response?.status === 502 ||
+                            error.response?.status === 504 ||
+                            error.response?.status === 429 ||
+                            error.code === 'ECONNRESET' ||
+                            error.code === 'ETIMEDOUT' ||
+                            error.message.toLowerCase().includes('timeout');
+
+        if (isTransient && attempts < maxAttempts - 1) {
+          attempts++;
+          const waitTime = attempts * 15000; // 15s, 30s backoff
+          logMsg(`Transient upload error (${error.response?.status || error.code || 'timeout'}). Retrying upload in ${waitTime / 1000}s (Attempt ${attempts + 1}/${maxAttempts})...`);
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+          continue;
+        }
         throw error;
       }
     }
