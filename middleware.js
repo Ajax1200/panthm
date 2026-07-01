@@ -20,6 +20,7 @@ const ENTITIES = {
   ai: "https://www.wikidata.org/wiki/Q11660",
   softwareDev: "https://www.wikidata.org/wiki/Q638608",
   pune: "https://www.wikidata.org/wiki/Q1513",
+  researchLab: "https://www.wikidata.org/wiki/Q11717",
 };
 
 const LOCALES = ['en', 'ar', 'de', 'es', 'fr', 'ja'];
@@ -196,13 +197,25 @@ export default async function middleware(request) {
         },
         "about": [
           { "@type": "Thing", "name": displayService, "sameAs": ENTITIES.softwareDev },
+          { "@type": "Thing", "name": "Artificial Intelligence", "sameAs": ENTITIES.ai },
+          { "@type": "Thing", "name": "Research Laboratory", "sameAs": ENTITIES.researchLab },
           { "@type": "Thing", "name": displayLocation, "sameAs": ENTITIES.pune }
         ],
         "provider": {
           "@type": "Organization",
           "@id": `${SITE_BASE}/#organization`,
           "name": "PANTHM AI Labs",
-          "url": SITE_BASE
+          "url": SITE_BASE,
+          "sameAs": [
+            ENTITIES.organization
+          ],
+          "knowsAbout": [
+            "Artificial Intelligence",
+            "Software Development",
+            "Outbound sales voice automation",
+            "Custom text to speech pipelines",
+            "WhatsApp Business API automation"
+          ]
         }
       };
 
