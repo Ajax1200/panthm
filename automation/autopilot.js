@@ -4,6 +4,7 @@ import { postToLinkedIn } from './linkedin_poster.js';
 import { deployAuthorityNode } from './deploy_authority_node.js';
 import axios from 'axios';
 import dns from 'dns';
+import crypto from 'crypto';
 
 dns.setDefaultResultOrder('ipv4first');
 import FormData from 'form-data';
@@ -718,6 +719,41 @@ ${linksContext || 'No existing articles.'}
       logMsg("Used absolute base64 1x1 transparent PNG fallback.");
     }
 
+    // 4.5. Upload image directly to Cloudinary from GitHub Actions runner (bypassing Hostinger resource limits)
+    logMsg("[Cloudinary] Uploading banner image directly to Cloudinary...");
+    let cloudinaryUrl = '';
+    try {
+      const CLOUD_NAME = "duqdwe6ix";
+      const API_KEY = "449647423891931";
+      const API_SECRET = "JaLxsY7DO0si4_cnVbFs3Cv0Gxk";
+
+      const timestamp = Math.round(new Date().getTime() / 1000);
+      const signatureParams = { timestamp: timestamp };
+      const sortedKeys = Object.keys(signatureParams).sort();
+      const paramString = sortedKeys.map(key => `${key}=${signatureParams[key]}`).join("&");
+      const signature = crypto.createHash("sha1").update(paramString + API_SECRET).digest("hex");
+
+      const clForm = new FormData();
+      clForm.append('file', fs.createReadStream(tempImgPath));
+      clForm.append('timestamp', timestamp);
+      clForm.append('api_key', API_KEY);
+      clForm.append('signature', signature);
+
+      const clRes = await axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, clForm, {
+        headers: clForm.getHeaders(),
+        timeout: 60000
+      });
+
+      if (clRes.data?.secure_url) {
+        cloudinaryUrl = clRes.data.secure_url;
+        logMsg(`[Cloudinary] ✅ Upload successful! Direct URL: ${cloudinaryUrl}`);
+      } else {
+        throw new Error("No secure_url returned from Cloudinary");
+      }
+    } catch (clErr) {
+      logMsg(`[Cloudinary] ⚠️ Direct upload failed: ${clErr.message}. Falling back to standard attachment.`);
+    }
+
     // 5. Build Multipart Form Payload & Post to Vercel API
     logMsg("Posting blog post and visual assets to live Panthm database...");
     
@@ -774,8 +810,13 @@ ${linksContext || 'No existing articles.'}
         form.append('metaKeywords', blogData.metaKeywords);
         form.append('isFeatured', 'false');
         form.append('publishDate', new Date().toISOString().split('T')[0]);
-        // Need to recreate the stream for each attempt since streams are consumed on upload
-        form.append('image', fs.createReadStream(tempImgPath), { filename: 'banner.png' });
+        if (cloudinaryUrl) {
+          form.append('image', cloudinaryUrl);
+          form.append('imageUrl', cloudinaryUrl);
+        } else {
+          // Need to recreate the stream for each attempt since streams are consumed on upload
+          form.append('image', fs.createReadStream(tempImgPath), { filename: 'banner.png' });
+        }
 
         uploadRes = await axios.post('https://api.panthm.com/api/blogs', form, {
           headers: {
