@@ -9,6 +9,7 @@
 
 import axios from 'axios';
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
 
 let GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 if (!GITHUB_TOKEN) {
@@ -29,7 +30,7 @@ const headers = {
   'User-Agent': 'panthm-authority-deployer'
 };
 
-async function execute() {
+export async function deployAuthorityNode() {
   console.log('[Authority Node] Starting deployment of DR98+ PageRank node...');
 
   // 1. Create the repository if it doesn't exist
@@ -185,4 +186,6 @@ async function execute() {
   console.log(`[Authority Node] Deployment process completed. Link URL: https://${OWNER}.github.io/${REPO_NAME}/`);
 }
 
-execute().catch(console.error);
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  deployAuthorityNode().catch(console.error);
+}

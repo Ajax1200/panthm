@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { updateSitemap } from './sitemap_updater.js';
 import { postToLinkedIn } from './linkedin_poster.js';
+import { deployAuthorityNode } from './deploy_authority_node.js';
 import axios from 'axios';
 import FormData from 'form-data';
 import fs from 'fs';
@@ -786,6 +787,15 @@ ${linksContext || 'No existing articles.'}
             logMsg("[Sitemap] Sitemap updated and search engines pinged.");
           } catch (sitemapErr) {
             logMsg(`[Sitemap] Warning: Sitemap update failed (non-critical): ${sitemapErr.message}`);
+          }
+
+          // Trigger Authority Node content synchronization to github.io
+          logMsg("[Authority] Syncing authority node benchmark page...");
+          try {
+            await deployAuthorityNode();
+            logMsg("[Authority] Authority node sync complete.");
+          } catch (authErr) {
+            logMsg(`[Authority] Warning: Authority node update failed (non-critical): ${authErr.message}`);
           }
 
           // Share to LinkedIn is now handled by the weekly poster cron schedule to match the new strategy.
