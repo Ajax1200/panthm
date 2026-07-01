@@ -1,0 +1,35 @@
+name: PANTHM Daily Social Poster
+
+on:
+  schedule:
+    # Trigger runs once daily at 6:00 AM UTC (11:30 AM IST)
+    - cron: '0 6 * * *'
+  workflow_dispatch: # Enable manual execution
+
+jobs:
+  run-poster:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm ci || npm install
+
+      - name: Run Daily Social Poster
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_MEMBER_ID: ${{ secrets.LINKEDIN_MEMBER_ID }}
+          LINKEDIN_MAKE_WEBHOOK_URL: ${{ secrets.LINKEDIN_MAKE_WEBHOOK_URL }}
+        run: |
+          node automation/daily_seo_insights_poster.mjs
