@@ -799,40 +799,62 @@ ${linksContext || 'No existing articles.'}
 
         logMsg(`Attempting publish with slug: "${currentSlug}" (Attempt ${attempts + 1}/${maxAttempts})...`);
 
-        const form = new FormData();
-        form.append('title', blogData.title);
-        form.append('slug', currentSlug);
-        form.append('content', blogData.content);
-        form.append('authorId', authorId);
-        form.append('categoryId', categoryId);
-        
-        if (Array.isArray(blogData.tags)) {
-          blogData.tags.forEach(tag => form.append('tags[]', tag));
-        } else {
-          form.append('tags[]', 'Autopilot');
-        }
-
-        form.append('excerpt', blogData.excerpt);
-        form.append('imageAlt', blogData.title);
-        form.append('metaDescription', blogData.metaDescription || blogData.excerpt);
-        form.append('metaKeywords', blogData.metaKeywords);
-        form.append('isFeatured', 'false');
-        form.append('publishDate', new Date().toISOString().split('T')[0]);
         if (cloudinaryUrl) {
-          form.append('image', cloudinaryUrl);
-          form.append('imageUrl', cloudinaryUrl);
+          const payload = {
+            title: blogData.title,
+            slug: currentSlug,
+            content: blogData.content,
+            authorId: authorId,
+            categoryId: categoryId,
+            tags: Array.isArray(blogData.tags) ? blogData.tags : ['Autopilot'],
+            excerpt: blogData.excerpt,
+            image: cloudinaryUrl,
+            imageUrl: cloudinaryUrl,
+            imageAlt: blogData.title,
+            metaDescription: blogData.metaDescription || blogData.excerpt,
+            metaKeywords: blogData.metaKeywords,
+            isFeatured: false,
+            publishDate: new Date().toISOString().split('T')[0]
+          };
+
+          uploadRes = await axios.post('https://api.panthm.com/api/blogs', payload, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            timeout: 30000
+          });
         } else {
+          const form = new FormData();
+          form.append('title', blogData.title);
+          form.append('slug', currentSlug);
+          form.append('content', blogData.content);
+          form.append('authorId', authorId);
+          form.append('categoryId', categoryId);
+          
+          if (Array.isArray(blogData.tags)) {
+            blogData.tags.forEach(tag => form.append('tags[]', tag));
+          } else {
+            form.append('tags[]', 'Autopilot');
+          }
+
+          form.append('excerpt', blogData.excerpt);
+          form.append('imageAlt', blogData.title);
+          form.append('metaDescription', blogData.metaDescription || blogData.excerpt);
+          form.append('metaKeywords', blogData.metaKeywords);
+          form.append('isFeatured', 'false');
+          form.append('publishDate', new Date().toISOString().split('T')[0]);
           // Need to recreate the stream for each attempt since streams are consumed on upload
           form.append('image', fs.createReadStream(tempImgPath), { filename: 'banner.png' });
-        }
 
-        uploadRes = await axios.post('https://api.panthm.com/api/blogs', form, {
-          headers: {
-            ...form.getHeaders(),
-            Authorization: `Bearer ${token}`
-          },
-          timeout: 180000
-        });
+          uploadRes = await axios.post('https://api.panthm.com/api/blogs', form, {
+            headers: {
+              ...form.getHeaders(),
+              Authorization: `Bearer ${token}`
+            },
+            timeout: 180000
+          });
+        }
         
         if (uploadRes.status === 201 || uploadRes.data?.success) {
           logMsg(`SUCCESS! Blog post published live. MongoDB Document ID: ${uploadRes.data?.blog?._id || 'N/A'}`);
