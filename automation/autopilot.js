@@ -274,9 +274,9 @@ async function runAutopilot() {
   const isCI = process.env.GITHUB_ACTIONS === 'true' || process.env.CI === 'true';
   const isManual = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch';
   if (isCI && !isManual) {
-    const maxDelayMs = 4 * 60 * 60 * 1000; // 4 hours max (safe within 6-hr GH Actions limit)
+    const maxDelayMs = 15 * 60 * 1000; // 15 minutes max
     const randomDelayMs = Math.floor(Math.random() * maxDelayMs);
-    logMsg(`[Autopilot Scheduler] Running in CI environment on schedule. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes (max 240 min)...`);
+    logMsg(`[Autopilot Scheduler] Running in CI environment on schedule. Introducing random execution delay of ${(randomDelayMs / 1000 / 60).toFixed(1)} minutes (max 15 min)...`);
     await new Promise(resolve => setTimeout(resolve, randomDelayMs));
   } else if (isManual) {
     logMsg(`[Autopilot Scheduler] Manual execution (workflow_dispatch) detected. Bypassing scheduler delay.`);
