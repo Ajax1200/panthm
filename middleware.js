@@ -13,7 +13,7 @@ export const config = {
 };
 
 const SITE_BASE = 'https://www.panthm.com';
-const API_BASE = 'https://panthm-backend.vercel.app/api';
+const API_BASE = 'https://api.panthm.com/api';
 
 const ENTITIES = {
   organization: "https://www.wikidata.org/wiki/Q110292708",
