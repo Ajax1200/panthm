@@ -842,7 +842,8 @@ ${linksContext || 'No existing articles.'}
         throw new Error("No secure_url returned from Cloudinary");
       }
     } catch (clErr) {
-      logMsg(`[Cloudinary] ⚠️ Direct upload failed: ${clErr.message}. Falling back to standard attachment.`);
+      logMsg(`[Cloudinary] ⚠️ Direct upload failed: ${clErr.message}. Using a high-quality stock image fallback to bypass Hostinger resource limits.`);
+      cloudinaryUrl = `https://picsum.photos/800/450?random=${Math.round(Math.random() * 1000)}`;
     }
 
     // 5. Build Multipart Form Payload & Post to Vercel API
