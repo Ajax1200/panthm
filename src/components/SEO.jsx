@@ -70,6 +70,7 @@ const SEO = ({
         "@id": `${baseUrl}/#logo`
       },
       "sameAs": [
+        "https://www.wikidata.org/wiki/Q140184298", // PANTHM AI Labs Wikidata
         "https://www.wikidata.org/wiki/Q11660", // Artificial Intelligence
         "https://www.wikidata.org/wiki/Q280615", // Software development
         "https://www.wikidata.org/wiki/Q1538",    // Pune, India
