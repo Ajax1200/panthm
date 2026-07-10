@@ -918,6 +918,29 @@
     </div>
   </main>
 
+  <!-- Right Drawer for Node Details -->
+  <div id="detail-drawer" class="glass-panel" style="position: absolute; top: 96px; right: -400px; bottom: 16px; width: 360px; border-radius: 12px; z-index: 100; padding: 24px; display: flex; flex-direction: column; gap: 20px; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 40px rgba(0,0,0,0.6); overflow-y: auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span id="drawer-tag" class="badge" style="background: rgba(99, 102, 241, 0.2); color: #818cf8;">SYSTEM</span>
+      <div id="close-drawer" style="cursor: pointer; color: #94a3b8; display: flex; align-items: center;" title="Close Panel">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </div>
+    </div>
+    
+    <div>
+      <h3 id="drawer-title" class="font-title font-bold text-white" style="font-size: 18px;">Pipeline Details</h3>
+      <p id="drawer-desc" style="font-size: 12px; color: #94a3b8; margin-top: 8px; line-height: 1.5;">Click any node to view detailed architectural specifications.</p>
+    </div>
+
+    <div id="drawer-info" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+      <!-- Dynamic list -->
+    </div>
+    
+    <div id="drawer-actions" style="margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 10px;">
+      <!-- Action button -->
+    </div>
+  </div>
+
   <script>
     // Viewport Navigation (Zoom & Drag)
     const viewport = document.getElementById('viewport');
@@ -959,7 +982,7 @@
 
     // Dragging Logic
     viewport.addEventListener('mousedown', (e) => {
-      if (e.target.closest('.glass-card') || e.target.closest('header') || e.target.closest('aside')) return;
+      if (e.target.closest('.glass-card') || e.target.closest('header') || e.target.closest('aside') || e.target.closest('#detail-drawer')) return;
       isDragging = true;
       startX = e.clientX - posX;
       startY = e.clientY - posY;
@@ -1024,6 +1047,7 @@
         const d = `M ${cX} ${cY} C ${cpX1} ${cpY1}, ${cpX2} ${cpY2}, ${tX} ${tY}`;
         
         path.setAttribute('d', d);
+        path.setAttribute('id', `path-${target.id}`);
         path.setAttribute('fill', 'none');
         path.setAttribute('stroke', `url(#grad-${target.color})`);
         path.setAttribute('stroke-width', '2.5');
@@ -1048,11 +1072,11 @@
         const text = card.innerText.toLowerCase();
         if (q === '' || text.includes(q)) {
           card.style.opacity = '1';
-          card.style.transform = card.style.transform.replace(' scale(0.95)', '');
+          card.style.transform = 'scale(1)';
           card.style.borderColor = '';
         } else {
           card.style.opacity = '0.25';
-          card.style.transform += ' scale(0.95)';
+          card.style.transform = 'scale(0.95)';
           card.style.borderColor = 'transparent';
         }
       });
@@ -1062,6 +1086,315 @@
     document.getElementById('btn-export').addEventListener('click', () => {
       window.print();
     });
+
+    // ================= INTERACTIVE DRAWER LOGIC =================
+    const drawer = document.getElementById('detail-drawer');
+    const drawerTitle = document.getElementById('drawer-title');
+    const drawerDesc = document.getElementById('drawer-desc');
+    const drawerTag = document.getElementById('drawer-tag');
+    const drawerInfo = document.getElementById('drawer-info');
+    const drawerActions = document.getElementById('drawer-actions');
+    const closeDrawerBtn = document.getElementById('close-drawer');
+
+    const nodeData = {
+      'node-center': {
+        tag: 'CENTRAL HUB',
+        color: '#4f46e5',
+        bg: 'rgba(99, 102, 241, 0.2)',
+        title: 'PANTHM AI Labs',
+        desc: 'Central control hub managing multi-agent systems, automatic indexing workflows, search optimization models, and visual telemetry dashboards.',
+        info: [
+          { label: 'Agency Headquarter', val: 'Pune, MH, IN' },
+          { label: 'Primary Focus', val: 'Agentic Voice & Web Automation' },
+          { label: 'Connected Pipelines', val: '4 Channels Active' },
+          { label: 'Entity Identifier', val: 'Q140184298' }
+        ],
+        actions: ''
+      },
+      'node-b1': {
+        tag: 'INFRASTRUCTURE',
+        color: '#4f46e5',
+        bg: 'rgba(99, 102, 241, 0.2)',
+        title: 'System Architecture',
+        desc: 'Bridges continuous code deployments from Git hooks to server actions, managing databases, API queries, and CDN caches.',
+        info: [
+          { label: 'Source Provider', val: 'GitHub (Ajax1200/panthm)' },
+          { label: 'CI/CD Pipeline', val: 'GitHub Actions' },
+          { label: 'Database Host', val: 'Hostinger Cloud MySQL' },
+          { label: 'Static Host', val: 'LiteSpeed Cache Server' }
+        ],
+        actions: ''
+      },
+      'node-b2': {
+        tag: 'AUTOMATION',
+        color: '#10b981',
+        bg: 'rgba(16, 185, 129, 0.2)',
+        title: 'Daily Blogging Autopilot',
+        desc: 'Researches hot AI trends, formats detailed outlines, and drafts high-impact SEO blog articles with matching assets published directly to the database.',
+        info: [
+          { label: 'AI Model', val: 'Gemini / OpenRouter API' },
+          { label: 'Asset Storage', val: 'Cloudinary CDN' },
+          { label: 'Index Verification', val: 'IndexNow Ping API' },
+          { label: 'Schedule Frequency', val: 'Once Daily (00:00 UTC)' }
+        ],
+        actions: `<button onclick="runSimulation('node-b2')" class="btn-export" style="background: #10b981; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); width: 100%; justify-content: center; height: 40px;">🚀 Run Autopilot Cycle</button>`
+      },
+      'node-b3': {
+        tag: 'ANALYTICS',
+        color: '#f59e0b',
+        bg: 'rgba(245, 158, 11, 0.2)',
+        title: 'Search Console Tracker',
+        desc: 'Authenticates via validated Google Service Account keys to extract daily search position data, automatically pushing opportunities to the codebase.',
+        info: [
+          { label: 'Telemetry Source', val: 'Google Search Console API' },
+          { label: 'Brand Query Threshold', val: 'Avg Position 4.2' },
+          { label: 'Low-CTR Trigger', val: 'Impressions > 10 & CTR < 2%' },
+          { label: 'Output File', val: 'automation/gsc_report.json' }
+        ],
+        actions: `<button onclick="runSimulation('node-b3')" class="btn-export" style="background: #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); width: 100%; justify-content: center; height: 40px;">📈 Run Rank Scan</button>`
+      },
+      'node-b4': {
+        tag: 'OPTIMIZATION',
+        color: '#f43f5e',
+        bg: 'rgba(244, 63, 94, 0.2)',
+        title: 'Organic CTR Booster',
+        desc: 'Employs randomized user behavior loops across headless chromium instances, clicking brand links and increasing page dwell times to climb rankings.',
+        info: [
+          { label: 'Target Search Phrase', val: '"PANTHM"' },
+          { label: 'Script Executor', val: 'Puppeteer/Playwright headless' },
+          { label: 'Simulated Dwell Time', val: 'Randomized 60s - 180s' },
+          { label: 'Booster Engine', val: 'automation/ctr_booster.mjs' }
+        ],
+        actions: `<button onclick="runSimulation('node-b4')" class="btn-export" style="background: #f43f5e; box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3); width: 100%; justify-content: center; height: 40px;">⚡ Simulate Organic Search</button>`
+      },
+      'node-b5': {
+        tag: 'QUALITY ASSURANCE',
+        color: '#06b6d4',
+        bg: 'rgba(6, 182, 212, 0.2)',
+        title: 'SEO Validation Guardrails',
+        desc: 'Scans locally compiled HTML output and React components on every save/commit to prevent truncated titles, missing canonicals, or broken JSON-LD schemas.',
+        info: [
+          { label: 'Title Criteria', val: '30 - 60 Characters' },
+          { label: 'Meta Criteria', val: '110 - 160 Characters' },
+          { label: 'Core Web Vitals Check', val: 'INP < 200ms | LCP < 2.5s' },
+          { label: 'Execution Trigger', val: 'Local Git pre-commit hook' }
+        ],
+        actions: `<button onclick="runSimulation('node-b5')" class="btn-export" style="background: #06b6d4; box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3); width: 100%; justify-content: center; height: 40px;">🛡️ Run SEO Tag Audit</button>`
+      },
+      'node-b6': {
+        tag: 'FILES',
+        color: '#4f46e5',
+        bg: 'rgba(99, 102, 241, 0.2)',
+        title: 'Automation Scripts',
+        desc: 'List of local executable script modules that power cron schedulers, search engines, and Git hooks.',
+        info: [
+          { label: 'Blogging Core', val: 'automation/autopilot.js' },
+          { label: 'Search Ranker', val: 'automation/gsc_tracker.js' },
+          { label: 'Behavior Simulator', val: 'automation/ctr_booster.mjs' },
+          { label: 'Static Lint Utility', val: 'validate-seo.mjs' }
+        ],
+        actions: ''
+      },
+      'node-b7': {
+        tag: 'SCHEDULER',
+        color: '#4f46e5',
+        bg: 'rgba(99, 102, 241, 0.2)',
+        title: 'Trigger Schedules',
+        desc: 'Cron timelines mapping the intervals and system events that initiate automation workflows.',
+        info: [
+          { label: 'Blogging Autopilot', val: 'Daily at 00:00 UTC' },
+          { label: 'Rank Telemetry', val: 'Daily at Midnight' },
+          { label: 'CTR Loop Scheduler', val: 'Automated Random Intervals' },
+          { label: 'Commit Linter', val: 'On File Save' }
+        ],
+        actions: ''
+      },
+      'node-b8': {
+        tag: 'INTEGRATIONS',
+        color: '#4f46e5',
+        bg: 'rgba(99, 102, 241, 0.2)',
+        title: 'External Services',
+        desc: 'Third-party APIs and services bridged dynamically by the automation engine.',
+        info: [
+          { label: 'Cloudinary CDN', val: 'Image uploads and optimization' },
+          { label: 'IndexNow API', val: 'Bing & Yandex instant indexing' },
+          { label: 'Google Search Console', val: 'Search queries and position index' },
+          { label: 'Hostinger Cloud', val: 'Live production database host' }
+        ],
+        actions: ''
+      },
+      'node-b9': {
+        tag: 'OUTPUTS',
+        color: '#4f46e5',
+        bg: 'rgba(99, 102, 241, 0.2)',
+        title: 'Generated Outputs',
+        desc: 'Physical digital assets, records, and reports produced as the final results of the automation pipeline.',
+        info: [
+          { label: 'Blog Database Entries', val: 'Hostinger MySQL database' },
+          { label: 'Opportunity Files', val: 'gsc_report.json' },
+          { label: 'Indexing Pings', val: 'IndexNow search directory' },
+          { label: 'Git Revision Log', val: 'GitHub repository commits' }
+        ],
+        actions: ''
+      }
+    };
+
+    function openNodeDrawer(nodeId) {
+      const data = nodeData[nodeId];
+      if (!data) return;
+
+      drawerTag.innerText = data.tag;
+      drawerTag.style.color = data.color;
+      drawerTag.style.background = data.bg;
+      drawerTitle.innerText = data.title;
+      drawerDesc.innerText = data.desc;
+      
+      drawerInfo.innerHTML = '';
+      data.info.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'node-item';
+        row.innerHTML = `<span style="color: #94a3b8;">${item.label}</span><span style="color: #fff; font-weight: 600;">${item.val}</span>`;
+        drawerInfo.appendChild(row);
+      });
+
+      drawerActions.innerHTML = data.actions;
+      drawer.style.right = '16px';
+    }
+
+    closeDrawerBtn.addEventListener('click', () => {
+      drawer.style.right = '-400px';
+    });
+
+    // Connect node clicks
+    document.querySelectorAll('.glass-card, #node-center').forEach(node => {
+      node.style.cursor = 'pointer';
+      node.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openNodeDrawer(node.id);
+      });
+    });
+
+    // Make left sidebar logs clickable
+    const logMapping = {
+      '📝 Blogging Autopilot': 'node-b2',
+      '📈 GSC Rank Tracker': 'node-b3',
+      '🚀 Organic CTR Booster': 'node-b4',
+      '🛡️ SEO Validation': 'node-b5'
+    };
+
+    document.querySelectorAll('.status-logs .log-item').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const text = item.querySelector('span').innerText.trim();
+        const nodeId = logMapping[text];
+        if (nodeId) {
+          openNodeDrawer(nodeId);
+          // Highlight card
+          const card = document.getElementById(nodeId);
+          card.style.borderColor = nodeData[nodeId].color;
+          setTimeout(() => card.style.borderColor = '', 2000);
+        }
+      });
+    });
+
+    // ================= SIMULATION ACTIONS LOGIC =================
+    function runSimulation(nodeId) {
+      const path = document.getElementById(`path-${nodeId}`);
+      if (path) {
+        // Pulse path lines
+        path.setAttribute('stroke-width', '5');
+        path.style.animation = 'dash 5s linear infinite';
+        
+        setTimeout(() => {
+          path.setAttribute('stroke-width', '2.5');
+          path.style.animation = 'dash 35s linear infinite';
+        }, 4000);
+      }
+
+      // Populate interactive logs in drawer
+      const originalInfo = drawerInfo.innerHTML;
+      drawerInfo.innerHTML = `
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a5b4fc; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 8px; border: 1px solid rgba(99,102,241,0.15); display: flex; flex-direction: column; gap: 6px;">
+          <div style="color: #6366f1;">[SYSTEM] Initializing simulation...</div>
+          <div id="sim-log-1" style="display: none;">[PROCESS] Spawning background runner...</div>
+          <div id="sim-log-2" style="display: none;">[API] Authenticated successfully.</div>
+          <div id="sim-log-3" style="display: none;">[STATUS] Working...</div>
+          <div id="sim-log-4" style="display: none; color: #10b981;">[SUCCESS] Simulation run complete!</div>
+        </div>
+      `;
+
+      // Update sidebar status logs
+      let logSpan, statusSpan;
+      document.querySelectorAll('.status-logs .log-item').forEach(item => {
+        const text = item.querySelector('span').innerText.trim();
+        if (logMapping[text] === nodeId) {
+          logSpan = item.querySelector('span');
+          statusSpan = item.querySelectorAll('span')[1];
+        }
+      });
+
+      if (statusSpan) {
+        statusSpan.innerText = 'RUNNING';
+        statusSpan.style.color = '#fbbf24';
+      }
+
+      // Step logs
+      setTimeout(() => { document.getElementById('sim-log-1').style.display = 'block'; }, 800);
+      setTimeout(() => { document.getElementById('sim-log-2').style.display = 'block'; }, 1600);
+      
+      if (nodeId === 'node-b3') {
+        // Rank Tracker report output simulation
+        setTimeout(() => { 
+          document.getElementById('sim-log-3').style.display = 'block'; 
+          document.getElementById('sim-log-3').innerHTML = `
+            <div style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 4px; padding-top: 4px;">
+              🔍 Found query: "panthm ai" (Pos 4.2)<br/>
+              ⚡ Generated gsc_report.json
+            </div>
+          `;
+        }, 2200);
+      } else if (nodeId === 'node-b2') {
+        // Blogging simulation
+        setTimeout(() => { 
+          document.getElementById('sim-log-3').style.display = 'block'; 
+          document.getElementById('sim-log-3').innerHTML = `
+            <div style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: 4px; padding-top: 4px;">
+              📝 Created: "AI Voice Agents 2026"<br/>
+              🚀 IndexNow: Pinged Bing Search
+            </div>
+          `;
+        }, 2200);
+      } else {
+        setTimeout(() => { document.getElementById('sim-log-3').style.display = 'block'; }, 2200);
+      }
+
+      setTimeout(() => { 
+        document.getElementById('sim-log-4').style.display = 'block'; 
+        if (statusSpan) {
+          statusSpan.innerText = 'SUCCESS';
+          statusSpan.style.color = '#10b981';
+        }
+      }, 3000);
+
+      // Return to Standby
+      setTimeout(() => {
+        drawerInfo.innerHTML = originalInfo;
+        if (statusSpan) {
+          if (nodeId === 'node-b4') {
+            statusSpan.innerText = 'ACTIVE';
+            statusSpan.style.color = '#818cf8';
+          } else if (nodeId === 'node-b5') {
+            statusSpan.innerText = 'ONLINE';
+            statusSpan.style.color = '#10b981';
+          } else {
+            statusSpan.innerText = 'STANDBY';
+            statusSpan.style.color = '#10b981';
+          }
+        }
+      }, 5500);
+    }
   </script>
 </body>
 </html>
+
