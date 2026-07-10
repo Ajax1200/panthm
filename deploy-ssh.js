@@ -159,6 +159,7 @@ async function main() {
             `mkdir -p ~/${targetDir}`,
             `rm -rf ~/${targetDir}/*`,
             `unzip -o ~/build.zip -d ~/${targetDir}/`,
+            `sed -i "s|/home/u586129197/domains/panthm.com/public_html/|/home/u586129197/${targetDir}/|g" ~/${targetDir}/automation-canvas/.htaccess`,
             "rm -f ~/build.zip"
         ].join(" && ");
         
