@@ -8,46 +8,44 @@
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   
   <style>
     /* CSS Variables & Theme Definitions */
     :root {
-      --bg-color: #f0f2f5;
-      --panel-bg: rgba(255, 255, 255, 0.88);
-      --card-bg: rgba(255, 255, 255, 0.92);
+      --bg-color: #f1f3f6;
+      --panel-bg: rgba(255, 255, 255, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.75);
       --text-color: #1e293b;
       --text-muted: #64748b;
       --text-white: #0f172a;
-      --border-color: rgba(99, 102, 241, 0.3);
-      --card-border: rgba(99, 102, 241, 0.15);
-      --grid-color: rgba(99, 102, 241, 0.06);
-      --radial-glow: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
-      --card-hover-shadow: rgba(99, 102, 241, 0.15);
-      --shadow-color: rgba(0, 0, 0, 0.05);
-      --node-item-bg: rgba(99, 102, 241, 0.04);
+      --border-color: rgba(99, 102, 241, 0.2);
+      --card-border: rgba(99, 102, 241, 0.1);
+      --grid-color: rgba(99, 102, 241, 0.05);
+      --card-hover-shadow: rgba(99, 102, 241, 0.08);
+      --shadow-color: rgba(0, 0, 0, 0.03);
+      --node-item-bg: rgba(99, 102, 241, 0.03);
       --hud-text: #4f46e5;
       --corner-color: #4f46e5;
-      --line-glow: rgba(99, 102, 241, 0.3);
+      --line-glow: rgba(99, 102, 241, 0.15);
     }
 
     .dark {
-      --bg-color: #030307;
-      --panel-bg: rgba(6, 6, 12, 0.82);
-      --card-bg: rgba(8, 8, 16, 0.72);
-      --text-color: #cbd5e1;
-      --text-muted: #64748b;
-      --text-white: #ffffff;
-      --border-color: rgba(99, 102, 241, 0.25);
-      --card-border: rgba(255, 255, 255, 0.06);
-      --grid-color: rgba(99, 102, 241, 0.03);
-      --radial-glow: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
-      --card-hover-shadow: rgba(99, 102, 241, 0.3);
-      --shadow-color: rgba(0, 0, 0, 0.4);
-      --node-item-bg: rgba(255, 255, 255, 0.02);
+      --bg-color: #030306;
+      --panel-bg: rgba(5, 5, 8, 0.85);
+      --card-bg: rgba(6, 6, 10, 0.55);
+      --text-color: #94a3b8;
+      --text-muted: #475569;
+      --text-white: #e2e8f0;
+      --border-color: rgba(99, 102, 241, 0.15);
+      --card-border: rgba(255, 255, 255, 0.03);
+      --grid-color: rgba(99, 102, 241, 0.02);
+      --card-hover-shadow: rgba(99, 102, 241, 0.2);
+      --shadow-color: rgba(0, 0, 0, 0.3);
+      --node-item-bg: rgba(255, 255, 255, 0.01);
       --hud-text: #818cf8;
       --corner-color: #818cf8;
-      --line-glow: rgba(129, 140, 248, 0.5);
+      --line-glow: rgba(129, 140, 248, 0.3);
     }
 
     /* Reset & Base styling */
@@ -71,7 +69,7 @@
 
     /* Cyberpunk Grid Background */
     .bg-grid {
-      background-size: 60px 60px;
+      background-size: 50px 50px;
       background-image: 
         linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
@@ -108,64 +106,62 @@
     .h-16 { height: 64px; }
     .w-80 { width: 320px; }
     .w-64 { width: 256px; }
-    .rounded-lg { border-radius: 8px; }
-    .rounded-xl { border-radius: 12px; }
-    .rounded-2xl { border-radius: 16px; }
     .font-bold { font-weight: 700; }
     .font-semibold { font-weight: 600; }
-    .text-xs { font-size: 12px; }
-    .text-sm { font-size: 14px; }
-    .text-base { font-size: 16px; }
-    .text-lg { font-size: 18px; }
-    .text-3xl { font-size: 30px; }
+    .text-xs { font-size: 11px; }
+    .text-sm { font-size: 13px; }
+    .text-base { font-size: 15px; }
+    .text-lg { font-size: 17px; }
+    .text-3xl { font-size: 28px; }
     
     /* Font Families */
     .font-title { font-family: 'Plus Jakarta Sans', sans-serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-    /* Sci-Fi Brackets / Corners */
+    /* Sharp Sci-Fi Cards */
     .tech-card {
       position: relative;
       border: 1px solid var(--card-border);
-      border-radius: 4px;
+      border-radius: 0px; /* Sharp corners */
       background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 32px var(--shadow-color);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px var(--shadow-color);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
+    /* Minimal Tech Brackets */
     .tech-card::before, .tech-card::after,
     .tech-corner-top-left, .tech-corner-top-right,
     .tech-corner-bottom-left, .tech-corner-bottom-right {
       content: '';
       position: absolute;
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-color: var(--corner-color);
       border-style: solid;
       pointer-events: none;
       z-index: 10;
     }
 
-    .tech-corner-top-left { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-    .tech-corner-top-right { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
-    .tech-corner-bottom-left { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
-    .tech-corner-bottom-right { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+    .tech-corner-top-left { top: -1px; left: -1px; border-width: 1.5px 0 0 1.5px; }
+    .tech-corner-top-right { top: -1px; right: -1px; border-width: 1.5px 1.5px 0 0; }
+    .tech-corner-bottom-left { bottom: -1px; left: -1px; border-width: 0 0 1.5px 1.5px; }
+    .tech-corner-bottom-right { bottom: -1px; right: -1px; border-width: 0 1.5px 1.5px 0; }
 
     .tech-card:hover {
-      border-color: rgba(99, 102, 241, 0.4);
-      box-shadow: 0 0 24px var(--card-hover-shadow);
-      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 0 20px var(--card-hover-shadow);
     }
 
-    /* Glassmorphism Panel styles */
+    /* Minimalist Glass Panel */
     .glass-panel {
       background: var(--panel-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border: 1px solid var(--border-color);
-      box-shadow: 0 20px 40px var(--shadow-color);
+      border-radius: 0px; /* Sharp corners */
+      box-shadow: 0 10px 30px var(--shadow-color);
     }
 
     /* Colors */
@@ -175,23 +171,23 @@
     .text-indigo-600 { color: #4f46e5; }
     .dark .text-indigo-600 { color: #818cf8; }
     .text-indigo-400 { color: #818cf8; }
-    .text-emerald-600 { color: #10b981; }
+    .text-emerald-600 { color: #059669; }
     .text-emerald-400 { color: #34d399; }
     .text-amber-600 { color: #d97706; }
     .dark .text-amber-600 { color: #fbbf24; }
     .text-amber-400 { color: #fbbf24; }
-    .text-rose-600 { color: #e11d48; }
-    .dark .text-rose-600 { color: #fb7185; }
-    .text-rose-400 { color: #fb7185; }
+    .text-rose-600 { color: #dc2626; }
+    .dark .text-rose-600 { color: #f87171; }
+    .text-rose-400 { color: #f87171; }
     .text-cyan-600 { color: #0891b2; }
     .dark .text-cyan-600 { color: #22d3ee; }
     .text-cyan-400 { color: #22d3ee; }
 
     /* SVG Connectors */
     .connection-line {
-      stroke-dasharray: 6 3;
-      animation: dash 25s linear infinite;
-      filter: drop-shadow(0 0 5px var(--line-glow));
+      stroke-dasharray: 5 3;
+      animation: dash 30s linear infinite;
+      filter: drop-shadow(0 0 3px var(--line-glow));
     }
     
     @keyframes dash {
@@ -203,31 +199,31 @@
     /* Neon Animations & Accents */
     @keyframes pulse-neon {
       0%, 100% {
-        box-shadow: 0 0 15px rgba(99, 102, 241, 0.2), inset 0 0 10px rgba(99, 102, 241, 0.05);
-        border-color: rgba(99, 102, 241, 0.35);
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.1), inset 0 0 5px rgba(99, 102, 241, 0.02);
+        border-color: rgba(99, 102, 241, 0.25);
       }
       50% {
-        box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.1);
-        border-color: rgba(168, 85, 247, 0.45);
+        box-shadow: 0 0 18px rgba(129, 140, 248, 0.2), inset 0 0 10px rgba(129, 140, 248, 0.05);
+        border-color: rgba(129, 140, 248, 0.35);
       }
     }
 
     .pulse-glow {
       animation: pulse-neon 4s infinite;
-      border-radius: 4px;
+      border-radius: 0px;
     }
 
     @keyframes ping-anim {
       0% { transform: scale(0.5); opacity: 1; }
-      100% { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(1.6); opacity: 0; }
     }
     .ping-dot::after {
       content: '';
       position: absolute;
-      inset: -4px;
+      inset: -3px;
       border-radius: 50%;
-      border: 2px solid #10b981;
-      animation: ping-anim 1.5s infinite;
+      border: 1.5px solid #10b981;
+      animation: ping-anim 1.8s infinite;
       opacity: 0;
     }
 
@@ -235,25 +231,25 @@
     .node-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 13px;
+      gap: 6px;
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: var(--text-white);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
     }
     
     .node-list {
       display: flex;
       flex-direction: column;
-      gap: 6.5px;
+      gap: 5px;
     }
     
     .node-item {
-      padding: 7px 10px;
+      padding: 6px 9px;
       background: var(--node-item-bg);
-      border-radius: 4px;
+      border-radius: 0px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -267,8 +263,8 @@
     .badge {
       font-size: 9px;
       font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 2px;
+      padding: 1px 4px;
+      border-radius: 0px;
       font-family: 'JetBrains Mono', monospace;
     }
 
@@ -309,28 +305,28 @@
       top: 16px;
       left: 16px;
       right: 16px;
-      height: 64px;
-      border-radius: 4px;
+      height: 56px;
+      border-radius: 0px;
       z-index: 50;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
-      border-left: 3px solid #4f46e5;
+      padding: 0 20px;
+      border-left: 2px solid #4f46e5;
     }
     .dark header {
-      border-left: 3px solid #818cf8;
+      border-left: 2px solid #818cf8;
     }
     
     .search-input {
       width: 100%;
-      height: 36px;
-      background: rgba(99, 102, 241, 0.04);
+      height: 32px;
+      background: rgba(99, 102, 241, 0.03);
       border: 1px solid var(--card-border);
-      border-radius: 4px;
-      padding-left: 36px;
-      padding-right: 16px;
-      font-size: 12px;
+      border-radius: 0px;
+      padding-left: 32px;
+      padding-right: 12px;
+      font-size: 11px;
       color: var(--text-color);
       outline: none;
       transition: all 0.2s;
@@ -338,40 +334,25 @@
     
     .search-input:focus {
       border-color: #4f46e5;
-      box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
-    }
-
-    .btn-ctrl {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.02);
-    }
-    
-    .btn-ctrl:hover {
-      color: var(--text-white);
+      box-shadow: 0 0 8px rgba(99, 102, 241, 0.15);
     }
 
     .btn-export {
-      height: 36px;
-      padding: 0 16px;
+      height: 32px;
+      padding: 0 12px;
       background: #4f46e5;
       color: #fff;
-      border-radius: 4px;
-      font-size: 11px;
+      border-radius: 0px;
+      font-size: 10px;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       cursor: pointer;
       border: none;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      box-shadow: 0 3px 10px rgba(99, 102, 241, 0.25);
       transition: all 0.2s;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
     }
     
@@ -385,51 +366,50 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 50;
-      height: 48px;
-      border-radius: 4px;
+      height: 42px;
+      border-radius: 0px;
       display: flex;
       align-items: center;
-      padding: 0 6px;
-      gap: 6px;
+      padding: 0 4px;
+      gap: 4px;
       border-bottom: 2px solid #4f46e5;
     }
-    .dark class.bottom-tab-bar {
+    .dark .bottom-tab-bar {
       border-bottom: 2px solid #818cf8;
     }
 
     .tab-btn {
-      height: 36px;
-      padding: 0 20px;
-      border-radius: 2px;
-      font-size: 11px;
+      height: 32px;
+      padding: 0 16px;
+      border-radius: 0px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.2s;
       border: none;
       background: transparent;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
     }
 
     .tab-btn.active {
       background: #4f46e5;
       color: #fff;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
     }
 
     /* Sidebar Panel Styles */
     #sidebar-expand-btn {
       position: absolute;
-      top: 96px;
+      top: 88px;
       left: 16px;
       z-index: 40;
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
+      width: 36px;
+      height: 36px;
+      border-radius: 0px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -440,17 +420,17 @@
 
     #left-sidebar {
       position: absolute;
-      top: 96px;
+      top: 88px;
       left: 16px;
-      bottom: 96px;
-      width: 320px;
-      border-radius: 4px;
+      bottom: 88px;
+      width: 300px;
+      border-radius: 0px;
       z-index: 40;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 24px;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+      padding: 20px;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s;
       overflow-y: auto;
       border-left: 2px solid #4f46e5;
     }
@@ -463,35 +443,37 @@
       z-index: 30;
     }
 
-    /* Futuristic HUD overlays */
+    /* HUD Telemetry styling */
     .hud-overlay {
       position: absolute;
-      bottom: 24px;
-      left: 24px;
+      bottom: 20px;
+      left: 20px;
       z-index: 40;
-      padding: 10px 16px;
-      border-radius: 4px;
-      font-size: 10px;
+      padding: 8px 12px;
+      border-radius: 0px;
+      font-size: 9px;
       font-weight: 600;
       color: var(--hud-text);
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: 0 4px 16px var(--shadow-color);
+      box-shadow: 0 2px 10px var(--shadow-color);
+      border: 1px solid var(--border-color);
     }
 
     .hud-right-telemetry {
       position: absolute;
-      bottom: 24px;
-      right: 24px;
+      bottom: 20px;
+      right: 20px;
       z-index: 40;
-      padding: 10px 16px;
-      border-radius: 4px;
-      font-size: 10px;
+      padding: 8px 12px;
+      border-radius: 0px;
+      font-size: 9px;
       font-weight: 600;
       color: var(--hud-text);
       letter-spacing: 1px;
       text-transform: uppercase;
-      box-shadow: 0 4px 16px var(--shadow-color);
+      box-shadow: 0 2px 10px var(--shadow-color);
+      border: 1px solid var(--border-color);
     }
 
     /* Scan line laser sweep */
@@ -504,15 +486,15 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 3px;
-      background: linear-gradient(to right, transparent, rgba(99, 102, 241, 0.3), transparent);
-      animation: scanline 8s linear infinite;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(99, 102, 241, 0.2), transparent);
+      animation: scanline 10s linear infinite;
       pointer-events: none;
       z-index: 5;
     }
 
     .node-header-icon {
-      filter: drop-shadow(0 0 3px currentColor);
+      filter: drop-shadow(0 0 2px currentColor);
     }
   </style>
 </head>
@@ -522,98 +504,95 @@
   <div class="scan-line"></div>
 
   <!-- Radial gradient high-tech shading -->
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.04),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.06),transparent_70%)] pointer-events-none z-[1]" style="position: absolute;"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.02),transparent_70%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.04),transparent_70%)] pointer-events-none z-[1]" style="position: absolute;"></div>
 
   <!-- Header Control Bar -->
   <header class="glass-panel">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
+      <div class="w-9 h-9 rounded bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>
       </div>
       <div>
-        <h1 class="font-title font-bold text-white text-base leading-none">PANTHM AI Labs</h1>
-        <p class="text-[9px] text-indigo-600 dark:text-indigo-400 font-mono font-bold tracking-wider uppercase mt-1 leading-none">Automation Canvas Control Center</p>
+        <h1 class="font-title font-bold text-white text-base leading-none">PANTHM</h1>
+        <p class="text-[9px] text-indigo-600 dark:text-indigo-400 font-mono font-bold tracking-wider uppercase mt-1 leading-none">OPERATIONS CANVAS</p>
       </div>
     </div>
     
     <div class="flex items-center gap-4">
       <div class="relative w-64">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 flex items-center" style="position: absolute; top: 18px;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 flex items-center" style="position: absolute; top: 16px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </span>
         <input 
           id="search-input"
           type="text" 
-          placeholder="Search nodes or pipelines..." 
+          placeholder="SEARCH TELEMETRY..." 
           class="search-input font-mono"
         />
       </div>
 
-      <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-800 pl-4" style="border-left: 1px solid rgba(255,255,255,0.08);">
+      <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-800/80 pl-4" style="border-left: 1px solid rgba(255,255,255,0.06);">
         <div id="zoom-out" class="w-9 h-9 rounded border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-pointer transition-all" title="Zoom Out">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         </div>
-        <div id="zoom-reset" class="w-16 h-9 rounded border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-white/5 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xs font-mono font-medium" title="Reset Zoom">
+        <div id="zoom-reset" class="w-14 h-9 rounded border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-white/5 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-xs font-mono font-medium" title="Reset Zoom">
           85%
         </div>
         <div id="zoom-in" class="w-9 h-9 rounded border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-pointer transition-all" title="Zoom In">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
         </div>
       </div>
 
       <!-- Mode Selector -->
-      <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-800 pl-4" style="border-left: 1px solid rgba(255,255,255,0.08);">
+      <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-800/80 pl-4" style="border-left: 1px solid rgba(255,255,255,0.06);">
         <div id="theme-toggle" class="w-9 h-9 rounded border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center text-slate-500 dark:text-slate-400 cursor-pointer transition-all" title="Toggle Theme">
           <!-- Moon Icon -->
-          <svg id="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="moon-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           <!-- Sun Icon -->
-          <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         </div>
       </div>
 
       <button id="btn-export" class="btn-export">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> 
-        Export Canvas
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> 
+        EXPORT
       </button>
     </div>
   </header>
 
   <!-- Left Sidebar Panel Toggle Button (Floating) -->
   <div id="sidebar-expand-btn" class="glass-panel" style="display: none;" title="Show Panel">
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-600 dark:text-slate-300"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-600 dark:text-slate-300"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
   </div>
 
   <!-- Left Sidebar Panel -->
   <aside id="left-sidebar" class="glass-panel">
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-5">
       <div class="flex justify-between items-center">
-        <h2 class="font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-none" style="font-size: 10px;">System Overview</h2>
+        <h2 class="font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest leading-none font-mono" style="font-size: 9px;">SYSTEM_LOGS</h2>
         <div id="close-sidebar" class="cursor-pointer text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 flex items-center transition-all" title="Hide Panel">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </div>
+      </div>
+
+      <!-- Aligned System Overview Rows -->
+      <div class="flex gap-3 mt-1">
+        <div style="flex: 1; border-left: 2px solid #4f46e5; background: rgba(99, 102, 241, 0.03); padding: 8px 10px;">
+          <span style="font-size: 8px; text-transform: uppercase; color: var(--text-muted); display: block; font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 0.5px;">PIPELINES</span>
+          <div style="font-size: 15px; font-weight: bold; font-family: 'JetBrains Mono'; color: var(--text-white); margin-top: 4px;">04</div>
+        </div>
+        <div style="flex: 1; border-left: 2px solid #10b981; background: rgba(16, 185, 129, 0.03); padding: 8px 10px;">
+          <span style="font-size: 8px; text-transform: uppercase; color: var(--text-muted); display: block; font-family: 'JetBrains Mono'; font-weight: 700; letter-spacing: 0.5px;">HEALTH</span>
+          <div style="font-size: 15px; font-weight: bold; font-family: 'JetBrains Mono'; color: var(--text-white); margin-top: 4px;">100%</div>
         </div>
       </div>
 
       <div>
-        <div class="grid grid-cols-2 gap-3">
-          <div class="p-3 rounded" style="background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.1); flex-shrink: 0; position: relative;">
-            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #4f46e5; border-radius: 2px 0 0 2px;"></div>
-            <span class="text-[10px] text-slate-400 dark:text-slate-500 block leading-none pl-1">Total Pipelines</span>
-            <div class="text-xl font-bold font-mono text-indigo-600 dark:text-indigo-400 mt-2 leading-none pl-1">4</div>
-          </div>
-          <div class="p-3 rounded" style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.1); flex-shrink: 0; position: relative;">
-            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #10b981; border-radius: 2px 0 0 2px;"></div>
-            <span class="text-[10px] text-slate-400 dark:text-slate-500 block leading-none pl-1">System Health</span>
-            <div class="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400 mt-2 leading-none pl-1">100%</div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h2 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 flex items-center justify-between">
-          <span>Active Pipelines</span>
-          <span class="ping-dot inline-block w-2 h-2 rounded-full bg-emerald-500 relative"></span>
+        <h2 class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 flex items-center justify-between font-mono">
+          <span>Active Channels</span>
+          <span class="ping-dot inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 relative"></span>
         </h2>
-        <div class="flex flex-col gap-2 font-mono text-xs">
+        <div class="flex flex-col gap-1.5 font-mono text-xs">
           <div class="node-item">
             <span class="text-emerald-600 dark:text-emerald-400 font-semibold">📝 Blogging Autopilot</span>
             <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">STANDBY</span>
@@ -634,34 +613,34 @@
       </div>
       
       <div>
-        <h2 class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">Color Codes</h2>
-        <div class="flex flex-col gap-2.5 text-xs">
-          <div class="flex items-center gap-2.5">
-            <span class="w-2.5 h-2.5 rounded bg-indigo-500 shadow-md"></span>
-            <span class="text-slate-600 dark:text-slate-400 font-medium">Central Hub & Infrastructure</span>
+        <h2 class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 font-mono">Index Keys</h2>
+        <div class="flex flex-col gap-2 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-none bg-indigo-500 shadow-md"></span>
+            <span class="text-slate-600 dark:text-slate-400 font-semibold" style="font-size: 10px;">Central Infrastructure</span>
           </div>
-          <div class="flex items-center gap-2.5">
-            <span class="w-2.5 h-2.5 rounded bg-emerald-500 shadow-md"></span>
-            <span class="text-slate-600 dark:text-slate-400 font-medium">Blogging Autopilot Pipeline</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-none bg-emerald-500 shadow-md"></span>
+            <span class="text-slate-600 dark:text-slate-400 font-semibold" style="font-size: 10px;">Blogging Autopilot</span>
           </div>
-          <div class="flex items-center gap-2.5">
-            <span class="w-2.5 h-2.5 rounded bg-amber-500 shadow-md"></span>
-            <span class="text-slate-600 dark:text-slate-400 font-medium">Rank Tracking & Metrics</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-none bg-amber-500 shadow-md"></span>
+            <span class="text-slate-600 dark:text-slate-400 font-semibold" style="font-size: 10px;">Rank Metrics Engine</span>
           </div>
-          <div class="flex items-center gap-2.5">
-            <span class="w-2.5 h-2.5 rounded bg-rose-500 shadow-md"></span>
-            <span class="text-slate-600 dark:text-slate-400 font-medium">CTR Booster Engine</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-none bg-rose-500 shadow-md"></span>
+            <span class="text-slate-600 dark:text-slate-400 font-semibold" style="font-size: 10px;">CTR Optimizer</span>
           </div>
-          <div class="flex items-center gap-2.5">
-            <span class="w-2.5 h-2.5 rounded bg-cyan-500 shadow-md"></span>
-            <span class="text-slate-600 dark:text-slate-400 font-medium">Validation & Guardrails</span>
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-none bg-cyan-500 shadow-md"></span>
+            <span class="text-slate-600 dark:text-slate-400 font-semibold" style="font-size: 10px;">Validation Guardrails</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="border-t border-slate-200 dark:border-slate-800 pt-4 text-center" style="border-top: 1px solid rgba(255,255,255,0.08); margin-top: auto;">
-      <span class="font-mono text-slate-400 dark:text-slate-600 font-semibold tracking-wider uppercase text-[9px]">PANTHM Operations OS v2.5</span>
+    <div class="border-t border-slate-200 dark:border-slate-800/80 pt-4 text-center font-mono" style="border-top: 1px solid rgba(255,255,255,0.06); margin-top: auto;">
+      <span class="text-slate-500 dark:text-slate-600 font-semibold tracking-wider uppercase text-[8px]">OPERATIONS OS v2.5</span>
     </div>
   </aside>
 
@@ -670,47 +649,47 @@
     <div id="canvas-container" style="transform: translate(-500px, -350px) scale(0.85);">
       
       <!-- Tech radar background rings centered at the hub -->
-      <div class="absolute" style="top: 875px; left: 1470px; transform: translate(-50%, -50%); width: 1200px; height: 1200px; border: 1px dashed rgba(99, 102, 241, 0.08); border-radius: 50%; pointer-events: none; z-index: 5;"></div>
-      <div class="absolute" style="top: 875px; left: 1470px; transform: translate(-50%, -50%); width: 800px; height: 800px; border: 1px dashed rgba(99, 102, 241, 0.05); border-radius: 50%; pointer-events: none; z-index: 5;"></div>
-      <div class="absolute" style="top: 875px; left: 1470px; transform: translate(-50%, -50%); width: 400px; height: 400px; border: 1px solid rgba(99, 102, 241, 0.03); border-radius: 50%; pointer-events: none; z-index: 5;"></div>
+      <div class="absolute" style="top: 875px; left: 1470px; transform: translate(-50%, -50%); width: 1200px; height: 1200px; border: 1px dashed rgba(99, 102, 241, 0.05); border-radius: 50%; pointer-events: none; z-index: 5;"></div>
+      <div class="absolute" style="top: 875px; left: 1470px; transform: translate(-50%, -50%); width: 800px; height: 800px; border: 1px dashed rgba(99, 102, 241, 0.03); border-radius: 50%; pointer-events: none; z-index: 5;"></div>
+      <div class="absolute" style="top: 875px; left: 1470px; transform: translate(-50%, -50%); width: 400px; height: 400px; border: 1px solid rgba(99, 102, 241, 0.02); border-radius: 50%; pointer-events: none; z-index: 5;"></div>
 
       <!-- SVG Connectors Layer -->
       <svg id="svg-connectors">
         <defs>
           <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop id="stop-indigo-1" offset="0%" stop-color="#4f46e5" stop-opacity="0.6"/>
-            <stop id="stop-indigo-2" offset="100%" stop-color="#1e1b4b" stop-opacity="0.1"/>
+            <stop id="stop-indigo-1" offset="0%" stop-color="#4f46e5" stop-opacity="0.5"/>
+            <stop id="stop-indigo-2" offset="100%" stop-color="#1e1b4b" stop-opacity="0.05"/>
           </linearGradient>
           <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop id="stop-emerald-1" offset="0%" stop-color="#10b981" stop-opacity="0.6"/>
-            <stop id="stop-emerald-2" offset="100%" stop-color="#064e3b" stop-opacity="0.1"/>
+            <stop id="stop-emerald-1" offset="0%" stop-color="#10b981" stop-opacity="0.5"/>
+            <stop id="stop-emerald-2" offset="100%" stop-color="#064e3b" stop-opacity="0.05"/>
           </linearGradient>
           <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop id="stop-amber-1" offset="0%" stop-color="#f59e0b" stop-opacity="0.6"/>
-            <stop id="stop-amber-2" offset="100%" stop-color="#451a03" stop-opacity="0.1"/>
+            <stop id="stop-amber-1" offset="0%" stop-color="#f59e0b" stop-opacity="0.5"/>
+            <stop id="stop-amber-2" offset="100%" stop-color="#451a03" stop-opacity="0.05"/>
           </linearGradient>
           <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop id="stop-rose-1" offset="0%" stop-color="#f43f5e" stop-opacity="0.6"/>
-            <stop id="stop-rose-2" offset="100%" stop-color="#4c0519" stop-opacity="0.1"/>
+            <stop id="stop-rose-1" offset="0%" stop-color="#f43f5e" stop-opacity="0.5"/>
+            <stop id="stop-rose-2" offset="100%" stop-color="#4c0519" stop-opacity="0.05"/>
           </linearGradient>
           <linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop id="stop-cyan-1" offset="0%" stop-color="#06b6d4" stop-opacity="0.6"/>
-            <stop id="stop-cyan-2" offset="100%" stop-color="#083344" stop-opacity="0.1"/>
+            <stop id="stop-cyan-1" offset="0%" stop-color="#06b6d4" stop-opacity="0.5"/>
+            <stop id="stop-cyan-2" offset="100%" stop-color="#083344" stop-opacity="0.05"/>
           </linearGradient>
 
-          <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#818cf8"/>
           </marker>
-          <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#34d399"/>
           </marker>
-          <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#fbbf24"/>
           </marker>
-          <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#fb7185"/>
           </marker>
-          <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
             <path d="M 0 0 L 10 5 L 0 10 z" fill="#22d3ee"/>
           </marker>
         </defs>
@@ -724,19 +703,19 @@
         <!-- ============================================================== -->
         <div class="tab-content" id="tab1-content">
           <!-- ================= CENTRAL HUB ================= -->
-          <div id="node-center" class="mind-node glass-panel pulse-glow" style="top: 800px; left: 1300px; width: 340px; height: 150px; border-radius: 4px; border-color: rgba(99, 102, 241, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; box-shadow: 0 0 50px rgba(99, 102, 241, 0.25);">
+          <div id="node-center" class="mind-node glass-panel pulse-glow" style="top: 800px; left: 1300px; width: 340px; height: 150px; border-color: rgba(99, 102, 241, 0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div style="font-size: 32px; filter: drop-shadow(0 0 8px #4f46e5);">🧠</div>
-            <h2 class="font-title font-bold text-white mt-2" style="font-size: 18px; letter-spacing: 1px;">PANTHM AI Labs</h2>
-            <p class="text-indigo-600 dark:text-indigo-400 font-mono font-bold tracking-widest uppercase mt-1 text-[11px]">Automation Canvas</p>
-            <p class="font-mono mt-1 text-slate-400 dark:text-slate-500 text-[9px]">Complete Architecture & Workflow Ecosystem</p>
+            <div style="font-size: 28px; filter: drop-shadow(0 0 5px #4f46e5);">🧠</div>
+            <h2 class="font-title font-bold text-white mt-2" style="font-size: 16px; letter-spacing: 1.5px;">PANTHM AI LABS</h2>
+            <p class="text-indigo-600 dark:text-indigo-400 font-mono font-bold tracking-widest uppercase mt-1 text-[10px]">CORE_NODE</p>
+            <p class="font-mono mt-1 text-slate-500 text-[8.5px]">Workflow Architecture & Autopilot telemetry</p>
           </div>
 
           <!-- ================= BRANCH 1: SYSTEM ARCHITECTURE ================= -->
           <div id="node-b1" class="mind-node tech-card" style="top: 500px; left: 1320px; width: 300px; padding: 18px;" data-branch="indigo">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
             <div class="node-header text-indigo-600 dark:text-indigo-400 font-title font-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               <span>System Architecture</span>
             </div>
             <div class="flex flex-col gap-1.5">
@@ -770,9 +749,9 @@
           <!-- ================= BRANCH 2: DAILY BLOGGING AUTOPILOT ================= -->
           <div id="node-b2" class="mind-node tech-card" style="top: 450px; left: 450px; width: 330px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 <span>Daily Blogging Autopilot</span>
               </div>
               <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">DAILY</span>
@@ -780,31 +759,31 @@
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>1. Research AI Trends</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               </div>
               <div class="node-item">
                 <span>2. SEO Heading Outline</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
               </div>
               <div class="node-item">
                 <span>3. Helpful Content Writing</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
               </div>
               <div class="node-item">
                 <span>4. Citations (134-167 words)</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.028V21zm13 0c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.028V21z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.028V21zm13 0c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.028V21z"></path></svg>
               </div>
               <div class="node-item">
                 <span>5. Cloudinary Asset Upload</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>6. Insert into Hostinger MySQL</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
               </div>
               <div class="node-item">
                 <span>7. Ping IndexNow API</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500 inline-block"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500 inline-block"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
               </div>
             </div>
           </div>
@@ -812,9 +791,9 @@
           <!-- ================= BRANCH 3: SEARCH CONSOLE TRACKER ================= -->
           <div id="node-b3" class="mind-node tech-card" style="top: 600px; left: 880px; width: 330px; padding: 18px;" data-branch="amber">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-amber-600 dark:text-amber-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-amber-600 dark:text-amber-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M3 3v18h18"></path><line x1="18.7" y1="8" x2="12" y2="15"></line><line x1="12" y1="15" x2="8" y2="11"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M3 3v18h18"></path><line x1="18.7" y1="8" x2="12" y2="15"></line><line x1="12" y1="15" x2="8" y2="11"></line></svg>
                 <span>Search Console Tracker</span>
               </div>
               <span class="badge" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">MIDNIGHT</span>
@@ -822,20 +801,20 @@
             
             <!-- Mini Dashboard -->
             <div class="grid grid-cols-4 gap-1.5 mb-3" style="text-align: center;">
-              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 6px; border-radius: 4px;">
-                <span class="text-[8px] text-slate-400 dark:text-slate-500 block leading-none">Clicks</span>
+              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 5px; border-radius: 0px;">
+                <span class="text-[7.5px] text-slate-400 dark:text-slate-500 block leading-none font-mono">CLICKS</span>
                 <div class="text-xs font-bold text-amber-600 dark:text-amber-400 font-mono mt-1">1</div>
               </div>
-              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 6px; border-radius: 4px;">
-                <span class="text-[8px] text-slate-400 dark:text-slate-500 block leading-none">Impr</span>
+              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 5px; border-radius: 0px;">
+                <span class="text-[7.5px] text-slate-400 dark:text-slate-500 block leading-none font-mono">IMPR</span>
                 <div class="text-xs font-bold text-amber-600 dark:text-amber-400 font-mono mt-1">5</div>
               </div>
-              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 6px; border-radius: 4px;">
-                <span class="text-[8px] text-slate-400 dark:text-slate-500 block leading-none">CTR</span>
+              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 5px; border-radius: 0px;">
+                <span class="text-[7.5px] text-slate-400 dark:text-slate-500 block leading-none font-mono">CTR</span>
                 <div class="text-xs font-bold text-amber-600 dark:text-amber-400 font-mono mt-1">20%</div>
               </div>
-              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 6px; border-radius: 4px;">
-                <span class="text-[8px] text-slate-400 dark:text-slate-500 block leading-none">Pos</span>
+              <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.1); padding: 5px; border-radius: 0px;">
+                <span class="text-[7.5px] text-slate-400 dark:text-slate-500 block leading-none font-mono">POS</span>
                 <div class="text-xs font-bold text-amber-600 dark:text-amber-400 font-mono mt-1">4.2</div>
               </div>
             </div>
@@ -843,7 +822,7 @@
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>Query Search Console API</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
               </div>
               <div class="node-item cursor-help" title="High search volume (impressions > 10) but low click-through rate (CTR < 2%). Optimizing page title or meta description captures massive traffic instantly.">
                 <span>Filter low-CTR (Impr >10, CTR <2%)</span>
@@ -855,7 +834,7 @@
               </div>
               <div class="node-item">
                 <span>Generate gsc_report.json</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Auto-Optimize Metadata Engine</span>
@@ -867,9 +846,9 @@
           <!-- ================= BRANCH 4: ORGANIC CTR BOOSTER ================= -->
           <div id="node-b4" class="mind-node tech-card" style="top: 950px; left: 450px; width: 330px; padding: 18px;" data-branch="rose">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-rose-600 dark:text-rose-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-rose-600 dark:text-rose-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"></path><path d="m12 18 4 4 5-5"></path><path d="M3 7h18"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"></path><path d="m12 18 4 4 5-5"></path><path d="M3 7h18"></path></svg>
                 <span>Organic CTR Booster</span>
               </div>
               <span class="badge" style="background: rgba(244, 63, 94, 0.15); color: #fb7185;">RECURRING</span>
@@ -877,25 +856,25 @@
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>1. Launch Headless Browser</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="19.07" y1="4.93" x2="14.83" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="9.17" y1="14.83" x2="4.93" y2="19.07"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="19.07" y1="4.93" x2="14.83" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="9.17" y1="14.83" x2="4.93" y2="19.07"></line></svg>
               </div>
               <div class="node-item">
                 <span>2. Perform Google Search</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
               </div>
               <div class="node-item">
                 <span>3. Find and click panthm.com</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-rose-500 inline-block"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-rose-500 inline-block"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
               </div>
               <div class="node-item">
                 <span>4. Scroll and increase dwell time</span>
                 <span style="font-size: 10px; color: #fb7185; display: flex; align-items: center; gap: 4px; font-weight: 700;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="animate-spin inline-block"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Timer
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="animate-spin inline-block"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Timer
                 </span>
               </div>
               <div class="node-item">
                 <span>5. Exit and clear session</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
               </div>
             </div>
           </div>
@@ -903,9 +882,9 @@
           <!-- ================= BRANCH 5: SEO VALIDATION ================= -->
           <div id="node-b5" class="mind-node tech-card" style="top: 1080px; left: 1320px; width: 300px; padding: 18px;" data-branch="cyan">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-cyan-600 dark:text-cyan-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-cyan-600 dark:text-cyan-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 <span>SEO Validation Guardrails</span>
               </div>
               <span class="badge" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee;">ON COMMIT</span>
@@ -921,15 +900,15 @@
               </div>
               <div class="node-item">
                 <span>Check Canonical Targets</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
               </div>
               <div class="node-item">
                 <span>JSON-LD Schema Verification</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Flag Deprecated Entities</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-amber-500 inline-block"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-amber-500 inline-block"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               </div>
             </div>
           </div>
@@ -937,11 +916,11 @@
           <!-- ================= BRANCH 6: AUTOMATION SCRIPTS ================= -->
           <div id="node-b6" class="mind-node tech-card" style="top: 600px; left: 1720px; width: 280px; padding: 18px;" data-branch="indigo">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               <span>Automation Scripts</span>
             </div>
-            <div class="flex flex-col gap-1.5 font-mono">
+            <div class="flex flex-col gap-1.5 font-mono font-bold">
               <div class="node-item">
                 <span>automation/autopilot.js</span>
                 <span class="badge" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">JS</span>
@@ -964,26 +943,26 @@
           <!-- ================= BRANCH 7: TRIGGER SCHEDULES ================= -->
           <div id="node-b7" class="mind-node tech-card" style="top: 750px; left: 2120px; width: 280px; padding: 18px;" data-branch="indigo">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               <span>Trigger Schedules</span>
             </div>
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>Daily (Blogging)</span>
-                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.08); color: var(--text-muted);">0 0 * * *</span>
+                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">0 0 * * *</span>
               </div>
               <div class="node-item">
                 <span>Midnight (GSC Tracker)</span>
-                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.08); color: var(--text-muted);">0 0 * * *</span>
+                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">0 0 * * *</span>
               </div>
               <div class="node-item">
                 <span>Recurring (CTR Booster)</span>
-                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.08); color: var(--text-muted);">Interval</span>
+                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">Interval</span>
               </div>
               <div class="node-item">
                 <span>On Local Code Changes</span>
-                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.08); color: var(--text-muted);">git commit</span>
+                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">git commit</span>
               </div>
             </div>
           </div>
@@ -991,11 +970,11 @@
           <!-- ================= BRANCH 8: EXTERNAL SERVICES ================= -->
           <div id="node-b8" class="mind-node tech-card" style="top: 1000px; left: 1720px; width: 280px; padding: 18px;" data-branch="indigo">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
               <span>External Services</span>
             </div>
-            <div class="grid grid-cols-2 gap-2" style="text-align: center; font-weight: 600; font-size: 11px;">
+            <div class="grid grid-cols-2 gap-2" style="text-align: center; font-weight: 600; font-size: 10px;">
               <div class="node-item" style="justify-content: center;">Cloudinary</div>
               <div class="node-item" style="justify-content: center;">Hostinger</div>
               <div class="node-item" style="justify-content: center;">GitHub</div>
@@ -1008,11 +987,11 @@
           <!-- ================= BRANCH 9: GENERATED OUTPUTS ================= -->
           <div id="node-b9" class="mind-node tech-card" style="top: 1100px; left: 880px; width: 330px; padding: 18px;" data-branch="indigo">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               <span>Generated Outputs</span>
             </div>
-            <div class="grid grid-cols-2 gap-2" style="font-weight: 600; font-size: 11px;">
+            <div class="grid grid-cols-2 gap-2" style="font-weight: 600; font-size: 10px;">
               <div class="node-item" style="justify-content: center;">Blog Articles</div>
               <div class="node-item" style="justify-content: center;">SEO Reports</div>
               <div class="node-item" style="justify-content: center;">XML Sitemaps</div>
@@ -1028,19 +1007,19 @@
         <!-- ============================================================== -->
         <div class="tab-content" id="tab2-content" style="display: none;">
           <!-- ================= WA CENTRAL HUB ================= -->
-          <div id="node-wa-center" class="mind-node glass-panel pulse-glow" style="top: 800px; left: 1300px; width: 340px; height: 150px; border-radius: 4px; border-color: rgba(16, 185, 129, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; box-shadow: 0 0 50px rgba(16, 185, 129, 0.25);">
+          <div id="node-wa-center" class="mind-node glass-panel pulse-glow" style="top: 800px; left: 1300px; width: 340px; height: 150px; border-color: rgba(16, 185, 129, 0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div style="font-size: 32px; filter: drop-shadow(0 0 8px #10b981);">💬</div>
-            <h2 class="font-title font-bold text-white mt-2" style="font-size: 18px; letter-spacing: 1px;">PANTHM WhatsApp API</h2>
-            <p class="text-emerald-600 dark:text-emerald-400 font-mono font-bold tracking-widest uppercase mt-1 text-[11px]">Campaigns & Automation Hub</p>
-            <p class="font-mono mt-1 text-slate-400 dark:text-slate-500 text-[9px]">Automated Messaging & Conversational Funnels</p>
+            <div style="font-size: 28px; filter: drop-shadow(0 0 5px #10b981);">💬</div>
+            <h2 class="font-title font-bold text-white mt-2" style="font-size: 16px; letter-spacing: 1.5px;">WHATSAPP API</h2>
+            <p class="text-emerald-600 dark:text-emerald-400 font-mono font-bold tracking-widest uppercase mt-1 text-[10px]">CAMPAIGNS_HUB</p>
+            <p class="font-mono mt-1 text-slate-500 text-[8.5px]">Automated Messaging & Conversational Funnels</p>
           </div>
 
           <!-- ================= BRANCH 1: META GATEWAY ================= -->
           <div id="node-wa-b1" class="mind-node tech-card" style="top: 500px; left: 1320px; width: 300px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               <span>Meta Cloud API Gateway</span>
             </div>
             <div class="flex flex-col gap-1.5">
@@ -1066,9 +1045,9 @@
           <!-- ================= BRANCH 2: CAMPAIGN SCHEDULER ================= -->
           <div id="node-wa-b2" class="mind-node tech-card" style="top: 450px; left: 450px; width: 330px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 <span>Campaign Scheduler</span>
               </div>
               <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">ACTIVE</span>
@@ -1076,19 +1055,19 @@
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>Parse CSV Audience Contacts</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Draft Template Selector</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
               </div>
               <div class="node-item">
                 <span>Set Batch Intervals</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Prevent Anti-Spam Limits</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
               </div>
             </div>
           </div>
@@ -1096,9 +1075,9 @@
           <!-- ================= BRANCH 3: WEBHOOK HANDLER ================= -->
           <div id="node-wa-b3" class="mind-node tech-card" style="top: 600px; left: 880px; width: 330px; padding: 18px;" data-branch="cyan">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-cyan-600 dark:text-cyan-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-cyan-600 dark:text-cyan-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 <span>Webhook Callback Logger</span>
               </div>
               <span class="badge" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee;">WEBHOOK</span>
@@ -1106,15 +1085,15 @@
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>Capture Delivery Receipts</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Capture Read Receipts</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 inline-block"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400 inline-block"><polyline points="20 6 9 17 4 12"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Store User Response Body</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
               </div>
             </div>
           </div>
@@ -1122,9 +1101,9 @@
           <!-- ================= BRANCH 4: GEMINI AI BOT ================= -->
           <div id="node-wa-b4" class="mind-node tech-card" style="top: 950px; left: 450px; width: 330px; padding: 18px;" data-branch="indigo">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center justify-between mb-3 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[13px]">
+            <div class="flex items-center justify-between mb-3 text-indigo-600 dark:text-indigo-400 font-title font-bold text-[12px]">
               <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 <span>Gemini AI Auto-Responder</span>
               </div>
               <span class="badge" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">AI AGENT</span>
@@ -1132,15 +1111,15 @@
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>Evaluate Customer Intent</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Structured Output Q&A</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-500 inline-block"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
               </div>
               <div class="node-item">
                 <span>Live Appointment Setting</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-500 inline-block"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-indigo-500 inline-block"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               </div>
             </div>
           </div>
@@ -1148,11 +1127,11 @@
           <!-- ================= BRANCH 6: SCRIPTS ================= -->
           <div id="node-wa-b6" class="mind-node tech-card" style="top: 600px; left: 1720px; width: 280px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               <span>Automation Scripts</span>
             </div>
-            <div class="flex flex-col gap-1.5 font-mono">
+            <div class="flex flex-col gap-1.5 font-mono font-bold">
               <div class="node-item">
                 <span>api/bot-handler.js</span>
                 <span class="badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">JS</span>
@@ -1167,18 +1146,18 @@
           <!-- ================= BRANCH 7: WA SCHEDULES ================= -->
           <div id="node-wa-b7" class="mind-node tech-card" style="top: 750px; left: 2120px; width: 280px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               <span>Trigger Schedules</span>
             </div>
             <div class="flex flex-col gap-1.5">
               <div class="node-item">
                 <span>Instant Meta Webhooks</span>
-                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.08); color: var(--text-muted);">Real-Time</span>
+                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">Real-Time</span>
               </div>
               <div class="node-item">
                 <span>Queue Delivery Cron</span>
-                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.08); color: var(--text-muted);">*/5 * * * *</span>
+                <span class="badge font-mono" style="background: rgba(255, 255, 255, 0.05); color: var(--text-muted);">*/5 * * * *</span>
               </div>
             </div>
           </div>
@@ -1186,11 +1165,11 @@
           <!-- ================= BRANCH 8: WA INTEGRATIONS ================= -->
           <div id="node-wa-b8" class="mind-node tech-card" style="top: 1000px; left: 1720px; width: 280px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
               <span>External Integrations</span>
             </div>
-            <div class="grid grid-cols-2 gap-2" style="text-align: center; font-weight: 600; font-size: 11px;">
+            <div class="grid grid-cols-2 gap-2" style="text-align: center; font-weight: 600; font-size: 10px;">
               <div class="node-item" style="justify-content: center;">Meta Cloud</div>
               <div class="node-item" style="justify-content: center;">Gemini API</div>
               <div class="node-item" style="justify-content: center;">MySQL DB</div>
@@ -1200,11 +1179,11 @@
           <!-- ================= BRANCH 9: WA OUTPUTS ================= -->
           <div id="node-wa-b9" class="mind-node tech-card" style="top: 1100px; left: 880px; width: 330px; padding: 18px;" data-branch="emerald">
             <div class="tech-corner-top-left"></div><div class="tech-corner-top-right"></div><div class="tech-corner-bottom-left"></div><div class="tech-corner-bottom-right"></div>
-            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[13px] mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            <div class="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-title font-bold text-[12px] mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block node-header-icon"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
               <span>Outputs & Metrics</span>
             </div>
-            <div class="grid grid-cols-2 gap-2" style="font-weight: 600; font-size: 11px;">
+            <div class="grid grid-cols-2 gap-2" style="font-weight: 600; font-size: 10px;">
               <div class="node-item" style="justify-content: center;">Delivery Logs</div>
               <div class="node-item" style="justify-content: center;">Response Data</div>
               <div class="node-item" style="justify-content: center;">Read Stats</div>
@@ -1219,49 +1198,49 @@
   <!-- High-Tech HUD Telemetry Overlays -->
   <div class="hud-overlay glass-panel font-mono">
     <span>SYSTEM: ONLINE</span>
-    <span style="margin: 0 8px; opacity: 0.5;">|</span>
+    <span style="margin: 0 6px; opacity: 0.3;">|</span>
     <span>CPU: 24%</span>
-    <span style="margin: 0 8px; opacity: 0.5;">|</span>
-    <span id="hud-latency">LATENCY: 12ms</span>
+    <span style="margin: 0 6px; opacity: 0.3;">|</span>
+    <span id="hud-latency">LATENCY: 9ms</span>
   </div>
 
   <div class="hud-right-telemetry glass-panel font-mono">
     <span id="hud-coordinates">X: -500.00 | Y: -350.00</span>
-    <span style="margin: 0 8px; opacity: 0.5;">|</span>
+    <span style="margin: 0 6px; opacity: 0.3;">|</span>
     <span id="hud-zoom">ZOOM: 85%</span>
   </div>
 
   <!-- Bottom Workflow Selector Tab Bar -->
   <div class="bottom-tab-bar glass-panel">
     <button id="tab-btn-1" class="tab-btn active" onclick="switchWorkflowTab(1)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
       SEO & Blogging
     </button>
     <button id="tab-btn-2" class="tab-btn" onclick="switchWorkflowTab(2)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
       WhatsApp API Campaigns
     </button>
   </div>
 
   <!-- Right Drawer for Node Details -->
-  <div id="detail-drawer" class="glass-panel" style="position: absolute; top: 96px; right: -400px; bottom: 16px; width: 360px; border-radius: 4px; border-left: 2px solid #4f46e5; z-index: 100; padding: 24px; display: flex; flex-direction: column; gap: 20px; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 40px rgba(0,0,0,0.6); overflow-y: auto;">
+  <div id="detail-drawer" class="glass-panel" style="position: absolute; top: 88px; right: -400px; bottom: 88px; width: 340px; border-radius: 0px; border-left: 2px solid #4f46e5; z-index: 100; padding: 20px; display: flex; flex-direction: column; gap: 16px; transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 30px rgba(0,0,0,0.5); overflow-y: auto;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <span id="drawer-tag" class="badge" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">SYSTEM</span>
       <div id="close-drawer" style="cursor: pointer; color: var(--text-muted); display: flex; align-items: center;" title="Close Panel">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </div>
     </div>
     
     <div>
-      <h3 id="drawer-title" class="font-title font-bold text-white" style="font-size: 17px; text-transform: uppercase; letter-spacing: 0.5px;">Pipeline Details</h3>
-      <p id="drawer-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5;">Click any node to view detailed architectural specifications.</p>
+      <h3 id="drawer-title" class="font-title font-bold text-white" style="font-size: 15px; text-transform: uppercase; letter-spacing: 0.8px;">Pipeline Details</h3>
+      <p id="drawer-desc" style="font-size: 11px; color: var(--text-muted); margin-top: 6px; line-height: 1.5;">Click any node to view detailed architectural specifications.</p>
     </div>
 
-    <div id="drawer-info" style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+    <div id="drawer-info" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; display: flex; flex-direction: column; gap: 10px;">
       <!-- Dynamic list -->
     </div>
     
-    <div id="drawer-actions" style="margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 10px;">
+    <div id="drawer-actions" style="margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; flex-direction: column; gap: 8px;">
       <!-- Action button -->
     </div>
   </div>
@@ -1294,7 +1273,7 @@
       hudCoords.innerText = `X: ${Math.round(posX)}.00 | Y: ${Math.round(posY)}.00`;
       
       // Simulate slight technical latency variation when panning
-      const lat = Math.floor(Math.random() * 8) + 8;
+      const lat = Math.floor(Math.random() * 6) + 6;
       hudLatency.innerText = `LATENCY: ${lat}ms`;
 
       drawConnectors();
@@ -1464,7 +1443,7 @@
         path.setAttribute('id', `path-${target.id}`);
         path.setAttribute('fill', 'none');
         path.setAttribute('stroke', `url(#grad-${target.color})`);
-        path.setAttribute('stroke-width', '2.5');
+        path.setAttribute('stroke-width', '1.5');
         path.setAttribute('class', 'connection-line');
         path.setAttribute('marker-end', `url(#arrow-${target.color})`);
         
@@ -1551,7 +1530,7 @@
           { label: 'Index Verification', val: 'IndexNow Ping API' },
           { label: 'Schedule Frequency', val: 'Once Daily (00:00 UTC)' }
         ],
-        actions: `<button onclick="runSimulation('node-b2')" class="btn-export" style="background: #10b981; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); width: 100%; justify-content: center; height: 40px;">🚀 Run Autopilot Cycle</button>`
+        actions: `<button onclick="runSimulation('node-b2')" class="btn-export" style="background: #10b981; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); width: 100%; justify-content: center; height: 36px;">🚀 Run Autopilot Cycle</button>`
       },
       'node-b3': {
         tag: 'ANALYTICS & AUTO-PILOT',
@@ -1565,7 +1544,7 @@
           { label: 'AI Auto-Optimizer', val: 'Prompts Gemini to rewrite titles & meta tags' },
           { label: 'Deploy & Ping', val: 'Auto-commits back to git & pings IndexNow API' }
         ],
-        actions: `<button onclick="runSimulation('node-b3')" class="btn-export" style="background: #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); width: 100%; justify-content: center; height: 40px;">🤖 Auto-Optimize Opportunities</button>`
+        actions: `<button onclick="runSimulation('node-b3')" class="btn-export" style="background: #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); width: 100%; justify-content: center; height: 36px;">🤖 Auto-Optimize Opportunities</button>`
       },
       'node-b4': {
         tag: 'OPTIMIZATION',
@@ -1579,7 +1558,7 @@
           { label: 'Simulated Dwell Time', val: 'Randomized 60s - 180s' },
           { label: 'Booster Engine', val: 'automation/ctr_booster.mjs' }
         ],
-        actions: `<button onclick="runSimulation('node-b4')" class="btn-export" style="background: #f43f5e; box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3); width: 100%; justify-content: center; height: 40px;">⚡ Simulate Organic Search</button>`
+        actions: `<button onclick="runSimulation('node-b4')" class="btn-export" style="background: #f43f5e; box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3); width: 100%; justify-content: center; height: 36px;">⚡ Simulate Organic Search</button>`
       },
       'node-b5': {
         tag: 'QUALITY ASSURANCE',
@@ -1593,7 +1572,7 @@
           { label: 'Core Web Vitals Check', val: 'INP < 200ms | LCP < 2.5s' },
           { label: 'Execution Trigger', val: 'Local Git pre-commit hook' }
         ],
-        actions: `<button onclick="runSimulation('node-b5')" class="btn-export" style="background: #06b6d4; box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3); width: 100%; justify-content: center; height: 40px;">🛡️ Run SEO Tag Audit</button>`
+        actions: `<button onclick="runSimulation('node-b5')" class="btn-export" style="background: #06b6d4; box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3); width: 100%; justify-content: center; height: 36px;">🛡️ Run SEO Tag Audit</button>`
       },
       'node-b6': {
         tag: 'FILES',
@@ -1690,7 +1669,7 @@
           { label: 'Anti-Spam Batching', val: 'Rate limited intervals' },
           { label: 'Queue Engine', val: 'automation/campaign_queue.js' }
         ],
-        actions: `<button onclick="runSimulation('node-wa-b2')" class="btn-export" style="background: #10b981; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); width: 100%; justify-content: center; height: 40px;">🚀 Launch Campaign Batch</button>`
+        actions: `<button onclick="runSimulation('node-wa-b2')" class="btn-export" style="background: #10b981; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3); width: 100%; justify-content: center; height: 36px;">🚀 Launch Campaign Batch</button>`
       },
       'node-wa-b3': {
         tag: 'WEBHOOKS',
@@ -1716,7 +1695,7 @@
           { label: 'Intent Evaluator', val: 'Structured response parsing' },
           { label: 'Scheduler Hook', val: 'Cal.com / Google Calendar' }
         ],
-        actions: `<button onclick="runSimulation('node-wa-b4')" class="btn-export" style="background: #4f46e5; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); width: 100%; justify-content: center; height: 40px;">💬 Simulate Incoming Reply</button>`
+        actions: `<button onclick="runSimulation('node-wa-b4')" class="btn-export" style="background: #4f46e5; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3); width: 100%; justify-content: center; height: 36px;">💬 Simulate Incoming Reply</button>`
       },
       'node-wa-b6': {
         tag: 'SCRIPTS',
@@ -1842,12 +1821,12 @@
     function runSimulation(nodeId) {
       const path = document.getElementById(`path-${nodeId}`);
       if (path) {
-        path.setAttribute('stroke-width', '5');
-        path.style.animation = 'dash 5s linear infinite';
+        path.setAttribute('stroke-width', '4');
+        path.style.animation = 'dash 3s linear infinite';
         
         setTimeout(() => {
-          path.setAttribute('stroke-width', '2.5');
-          path.style.animation = 'dash 35s linear infinite';
+          path.setAttribute('stroke-width', '1.5');
+          path.style.animation = 'dash 30s linear infinite';
         }, 4000);
       }
 
@@ -1892,7 +1871,7 @@
       }
 
       drawerInfo.innerHTML = `
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a5b4fc; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 4px; border: 1px solid rgba(99,102,241,0.15); display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a5b4fc; background: rgba(0,0,0,0.4); padding: 12px; border-radius: 0px; border: 1px solid rgba(99,102,241,0.15); display: flex; flex-direction: column; gap: 6px;">
           ${logs}
         </div>
       `;
