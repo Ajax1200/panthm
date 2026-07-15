@@ -135,11 +135,18 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-start items-center gap-4">
+        <div className="border-t border-slate-200 dark:border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
-            &copy; {new Date().getFullYear()} PANTHM AI Labs. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} PANTHM AI Labs. All rights reserved.
           </p>
+          <div className="flex gap-6 text-sm">
+            <Link to="/privacy-policy" className="text-slate-500 hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="text-slate-500 hover:text-primary transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

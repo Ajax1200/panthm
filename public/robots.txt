@@ -1,88 +1,58 @@
 # https://www.robotstxt.org/robotstxt.html
+
+# ── Standard Crawlers ──────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /thank-you
 
-# Sitemap
+# ── Sitemaps ───────────────────────────────────────────────────────────────────
 Sitemap: https://panthm.com/sitemap.xml
 Sitemap: https://panthm.com/sitemap_pseo_index.xml
 
-# Block AI Scrapers from normal assets but Allow access to dynamic LLM directories, blogs, and sitemaps
+# IndexNow Key
+IndexNow: https://panthm.com/A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6.txt
+
+# ── AI Crawlers: Full Site Access ─────────────────────────────────────────────
+# GPTBot (ChatGPT) — allow full site for AI citation
 User-agent: GPTBot
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
+# ChatGPT-User
 User-agent: ChatGPT-User
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
+# Anthropic Claude
 User-agent: Claude-Web
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
 User-agent: anthropic-ai
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
 User-agent: ClaudeBot
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
+# Perplexity
 User-agent: PerplexityBot
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
+# Google AI (Vertex, AI Overviews, Gemini)
 User-agent: Google-Extended
-Allow: /llms.txt
-Allow: /llms-full.txt
-Allow: /.well-known/llms.txt
-Allow: /solutions/
-Allow: /blogs/
-Disallow: /
+Allow: /
+Disallow: /api/
 
+# ── Low-Quality / Training Scrapers: Block ─────────────────────────────────────
 User-agent: CCBot
 Disallow: /
 
 User-agent: FacebookBot
 Disallow: /
 
-# Disallow admin and private areas (if any)
-User-agent: *
-Disallow: /thank-you
-Disallow: /api/
-
-# Allow all important pages
-Allow: /
-Allow: /about-us
-Allow: /services
-Allow: /portfolio
-Allow: /blogs
-Allow: /contact
-Allow: /web-development
-Allow: /app-development
-Allow: /ai-calling-agency
-
-IndexNow: https://panthm.com/A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6.txt
+User-agent: Bytespider
+Disallow: /

@@ -1,26 +1,58 @@
 # PANTHM AI Labs
 
-> High-performance custom systems architecture, low-latency applications, and bespoke automated workflows replacing standard SaaS middleware.
+> PANTHM AI Labs is a custom AI software and automation agency based in Baner, Pune, Maharashtra, India.
+> We build low-latency voice AI agents, AI calling SDR pipelines, WhatsApp automation systems, headless CMS pipelines, and bespoke serverless software that replaces expensive SaaS middleware.
+> Founded: 2025 | CIN: U62099PN2025PTC248475 | Contact: admin@panthm.com | Phone: +917558646366
 
-## Core Services & Solutions
-- **Bespoke Web Development**: Zero-latency React/Vite frontends, vanilla CSS layouts, sub-500ms Largest Contentful Paint (LCP).
-- **Custom Native Apps**: SwiftUI/Kotlin and high-performance Flutter mobile integrations running at fluid 60fps.
-- **AI SDR Calling Agencies**: Custom WebRTC-based outbound lead qualification and appointment setting under 500ms conversational lag.
-- **AI Workflow Automation**: Event-driven background worker pipelines replacing Zapier/Make translation layers.
-- **Enterprise ERP/CRM Systems**: Consolidated back-office platforms, custom billing cycles, and centralized database structures.
+## Core Services
 
-## Systems Architecture: The PANTHM Consolidation Architecture (PCA)
-We eliminate third-party SaaS middleware dependencies, double-billing server licenses, and high API latencies by unifying user interfaces, worker queues, vector pipelines, and data compliance policies into a single consolidated codebase.
+- [AI Calling Agency](/services/ai-calling-agency): Custom WebRTC-based outbound AI SDR calling pipelines with under 500ms conversational latency. Replaces human SDR teams for lead qualification, appointment setting, and follow-ups.
+- [Voice AI Agents](/services): Low-latency conversational AI agents built on custom LLM stacks. Sub-500ms response time for real-time business communication automation.
+- [Web Development](/services/web-development): Zero-latency React/Vite frontends with Vanilla CSS, achieving sub-500ms LCP. Headless CMS integration with serverless backends.
+- [App Development](/services/app-development): Native Swift/Kotlin and high-performance Flutter mobile applications running at fluid 60fps.
+- [AI Automation](/services/ai-automation): Event-driven background worker pipelines replacing Zapier/Make translation layers. Direct database triggers with 0ms sync lag.
+- [Custom Software](/services/custom-software): Bespoke software replacing SaaS stacks. The PANTHM Consolidation Architecture (PCA) unifies UI, worker queues, vector pipelines, and compliance into a single codebase.
+- [Blockchain Development](/services/blockchain): Decentralized smart contracts and Web3 token integrations.
+- [UI/UX Design](/services/ux-ui-design): Design systems and token-based component libraries for enterprise interfaces.
+- [Infrastructure & DevOps](/services/infrastructure): Automated CI/CD deployment pipelines and serverless cloud architecture.
+- [Data Analytics](/services/data-analytics): Customized analytics and business intelligence databases.
+- [ERP/CRM Systems](/services/erp-crm): Consolidated back-office platforms with custom billing cycles and centralized database structures.
+- [Cybersecurity Consulting](/services/cybersecurity-consulting): Advanced security headers, CSP rules, and pen-testing.
+- [AR/VR Development](/services): Augmented and virtual reality application development.
+- [Game Development](/services/game-development): Custom interactive game and simulation development.
+- [Machine Learning](/services): High-velocity model fine-tuning and hosting pipelines.
+- [Cloud Migration](/services): Monolith decoupling and serverless transitions.
+
+## Company
+
+- **Name**: PANTHM AI Labs Private Limited
+- **Founded**: November 2025
+- **Location**: Icon Tower, Office No. 702, Sr 114/5, 115/1, Baner, Pune, Maharashtra 411045, India
+- **Contact**: admin@panthm.com
+- **Phone**: +91 7558 646366
+- **LinkedIn**: https://www.linkedin.com/company/panthm-ai-labs
+- **Twitter/X**: https://x.com/panthmailabs
+- **Wikidata**: https://www.wikidata.org/wiki/Q140184298
+- **CIN**: U62099PN2025PTC248475
+
+## Architecture Philosophy: The PANTHM Consolidation Architecture (PCA)
+
+Traditional software ecosystems suffer from fragmentation, high latency, and compounding software licensing costs. PANTHM eliminates third-party SaaS middleware dependencies, double-billing server licenses, and high API latencies by unifying user interfaces, worker queues, vector pipelines, and data compliance policies into a single consolidated codebase. Key results: 0ms Data Sync Lag (direct database triggers replace Zapier/Make loops), Sub-500ms Conversational Latency (native WebRTC voice SDR integrations), and Sovereign Data Compliance (built-in regional geocoding limits).
 
 ## Programmatic SEO Solution Matrix
-We offer hyper-optimized solution paths across 20 distinct services and 30 industries.
-Example access URLs for AI crawlers:
-- `https://www.panthm.com/solutions/{service}/{industry}/{location}`
-- Examples:
-  - Custom Web Development for Real Estate: `https://www.panthm.com/solutions/web-development/real-estate/pune`
-  - Custom AI Automation for Healthcare: `https://www.panthm.com/solutions/ai-automation/healthcare/global`
 
-## Feeds & Resources
-- Sitemap: [sitemap.xml](https://www.panthm.com/sitemap.xml)
-- RSS Feed: [rss.xml](https://www.panthm.com/rss.xml)
-- Complete LLM Database: [llms-full.txt](https://www.panthm.com/llms-full.txt)
+PANTHM provides hyper-optimized solutions across 20 distinct services and 30 industries. AI crawlers can access structured solution pages at:
+- `https://panthm.com/solutions/{service}/{industry}/{location}`
+- Example: Custom AI Automation for Healthcare in Pune: `https://panthm.com/solutions/ai-automation/healthcare/pune`
+- Example: Web Development for Real Estate: `https://panthm.com/solutions/web-development/real-estate/pune`
+
+## Blog & Technical Resources
+
+- [Technical Blog](/blogs): In-depth articles on GEO (Generative Engine Optimization), headless CMS pipelines, Core Web Vitals, AI automation, serverless architecture, and voice AI engineering.
+
+## Feeds & Indexing Resources
+
+- Sitemap: [sitemap.xml](https://panthm.com/sitemap.xml)
+- RSS Feed: [rss.xml](https://panthm.com/rss.xml)
+- Complete LLM Context: [llms-full.txt](https://panthm.com/llms-full.txt)
+- Programmatic SEO Sitemap: [sitemap_pseo_index.xml](https://panthm.com/sitemap_pseo_index.xml)

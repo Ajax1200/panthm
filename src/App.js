@@ -40,6 +40,7 @@ const Thankyou = lazy(() => import("./pages/Thankyou"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const IntersectionLanding = lazy(() => import("./pages/IntersectionLanding"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const SolutionsDirectory = lazy(() => import("./pages/SolutionsDirectory"));
 const ComparisonPage = lazy(() => import("./pages/ComparisonPage"));
@@ -122,6 +123,16 @@ function AppContent() {
                 <PageTransition>
 <Header />
                   <PrivacyPolicy />
+                  <Footer />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/terms"
+              element={
+                <PageTransition>
+<Header />
+                  <Terms />
                   <Footer />
                 </PageTransition>
               }

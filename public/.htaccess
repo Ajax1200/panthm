@@ -19,10 +19,27 @@
   </FilesMatch>
 </IfModule>
 
+# ── Explicit MIME Types for Static SEO Files ────────────────────────────────
+<IfModule mod_mime.c>
+  AddType application/xml .xml
+  AddType text/plain .txt
+  AddType application/json .json
+  AddType application/rss+xml .rss
+</IfModule>
+
 # ── URL Rewrite Rules ────────────────────────────────────────────────────────
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # ── Critical: Serve all real static files directly — NEVER fall through to SPA ──
+  # This fixes sitemap.xml, robots.txt, llms.txt, rss.xml returning index.html
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Also serve real directories directly
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
 
   # ── LLM Feeds Redirect ──────────────────────────────────────────────────────
   RewriteRule ^llms\.txt$ llms-full.txt [L]
