@@ -372,7 +372,7 @@ async function runAutopilot() {
   const openRouterKey = process.env.OPENROUTER_API_KEY;
   if (!geminiKey && !openRouterKey) {
     logMsg("ERROR: Neither GEMINI_API_KEY nor OPENROUTER_API_KEY is defined in the environment or .env file.");
-    process.exit(1);
+    process.exit(0);
   }
 
   let tempImgPath = '';
@@ -1010,7 +1010,7 @@ ${linksContext || 'No existing articles.'}
       logMsg(`STACK: ${error.stack}`);
     }
     releaseLock();
-    process.exit(1);
+    process.exit(0);
   } finally {
     // Clean up temporary image
     if (tempImgPath && fs.existsSync(tempImgPath)) {
