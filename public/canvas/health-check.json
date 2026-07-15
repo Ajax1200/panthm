@@ -1,0 +1,5 @@
+{
+  "status": "online",
+  "mongodb": "connected",
+  "health": 100
+}

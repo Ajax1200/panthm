@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "PANTHM Automation Control Center"
-AuthUserFile /home/u586129197/domains/panthm.com/public_html/automation-canvas/.htpasswd
-Require valid-user
