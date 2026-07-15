@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-07-14T01:14:34.408Z",
+  "lastUpdated": "2026-07-15T01:11:28.224Z",
   "dateRange": {
-    "startDate": "2026-07-04",
-    "endDate": "2026-07-11"
+    "startDate": "2026-07-05",
+    "endDate": "2026-07-12"
   },
   "brandStats": {
     "clicks": 1,
@@ -23,6 +23,13 @@
       "impressions": 1,
       "ctr": 0,
       "position": 57
+    },
+    {
+      "query": "mtp ai",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 66
     }
   ],
   "lowCtrQueries": [],
