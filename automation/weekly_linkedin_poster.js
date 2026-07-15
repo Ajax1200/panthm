@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import axios from 'axios';
+axios.defaults.family = 4;
 import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';

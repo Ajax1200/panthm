@@ -16,6 +16,7 @@
  */
 
 import axios from 'axios';
+axios.defaults.family = 4;
 import fs from 'fs';
 import path from 'path';
 import { submitToGoogleIndexing } from './google_indexer.mjs';

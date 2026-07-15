@@ -3,6 +3,7 @@ import { updateSitemap } from './sitemap_updater.js';
 import { postToLinkedIn } from './linkedin_poster.js';
 import { deployAuthorityNode } from './deploy_authority_node.js';
 import axios from 'axios';
+axios.defaults.family = 4;
 import dns from 'dns';
 import crypto from 'crypto';
 
