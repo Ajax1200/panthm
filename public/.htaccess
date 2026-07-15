@@ -32,6 +32,10 @@
   RewriteEngine On
   RewriteBase /
 
+  # ── Redirect www to non-www (SEO best practice) ─────────────────────────────
+  RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
   # ── Critical: Serve all real static files directly — NEVER fall through to SPA ──
   # This fixes sitemap.xml, robots.txt, llms.txt, rss.xml returning index.html
   RewriteCond %{REQUEST_FILENAME} -f

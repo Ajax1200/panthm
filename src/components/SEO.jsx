@@ -104,12 +104,53 @@ const SEO = ({
       }
     };
 
+    const professionalServiceSchema = {
+      "@type": "ProfessionalService",
+      "@id": `${baseUrl}/#service`,
+      "name": "PANTHM AI Labs",
+      "url": baseUrl,
+      "image": `${baseUrl}/logo.png`,
+      "priceRange": "$$$$",
+      "telephone": "+917558646366",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Icon Tower Office No. 702, Sr 114/5, 115/1, 114/6/3, Baner",
+        "addressLocality": "Pune",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.55823,
+        "longitude": 73.78438
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q140184298",
+        "https://www.linkedin.com/company/panthm-ai-labs",
+        "https://x.com/panthmailabs"
+      ]
+    };
+
     const graphSchema = {
       "@context": "https://schema.org",
       "@graph": [
         organizationSchema,
         websiteSchema,
         webpageSchema,
+        professionalServiceSchema,
         breadcrumbSchema
       ]
     };

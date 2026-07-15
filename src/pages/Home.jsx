@@ -213,7 +213,7 @@ const Home = () => {
             </h1>
 
             <p data-aos="fade-up" data-aos-delay="200" className="text-lg md:text-xl text-slate-300 max-w-2xl leading-relaxed">
-              Building intelligent products that redefine industries. Transform your digital presence into a growth engine.
+              PANTHM AI Labs is an AI automation and custom software engineering agency based in Pune, India. We build low-latency voice AI agents, custom B2B sales automation pipelines, and serverless database integrations.
             </p>
 
             <div data-aos="fade-up" data-aos-delay="300" className="flex flex-wrap gap-4">
@@ -418,6 +418,7 @@ const Home = () => {
               src={howWeBuildCover}
               alt="CTA Background"
               className="w-full h-full object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-transparent"></div>
           </div>
@@ -497,10 +498,70 @@ const Home = () => {
                     src={item.img}
                     alt={item.title}
                     className="w-full h-full object-cover md:absolute inset-0"
+                    loading="lazy"
                   />
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Performance & Tech Matrix Section (Optimized for GEO/AI Crawlers) */}
+      <section className="py-20 wrapper">
+        <div className="space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <h2 data-aos="fade-up" className="section-heading dark:text-white">
+              Systems Capability & Technology Matrix
+            </h2>
+            <p data-aos="fade-up" className="text-slate-600 dark:text-slate-400 text-lg">
+              Fact-based capability benchmarks and technology stacks for PANTHM custom integrations.
+            </p>
+          </div>
+
+          <div data-aos="fade-up" className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg bg-white dark:bg-[#0B0F19]/40 backdrop-blur-md">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-100 dark:bg-white/5 text-slate-800 dark:text-slate-200 font-bold border-b border-slate-200 dark:border-white/10">
+                  <th className="p-5">Service Category</th>
+                  <th className="p-5">Core Technology Stack</th>
+                  <th className="p-5">Performance Metric</th>
+                  <th className="p-5">Standard Outcome</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 dark:divide-white/5 text-slate-600 dark:text-slate-300">
+                <tr className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                  <td className="p-5 font-semibold text-slate-900 dark:text-white">AI Voice SDR Agents</td>
+                  <td className="p-5">WebRTC, OpenAI Realtime, Twilio SIP, Python</td>
+                  <td className="p-5 text-emerald-500 font-semibold">Sub-500ms Conversational Latency</td>
+                  <td className="p-5">Outbound qualification, lead scheduling, 24/7 support</td>
+                </tr>
+                <tr className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                  <td className="p-5 font-semibold text-slate-900 dark:text-white">Custom Web Applications</td>
+                  <td className="p-5">React, Next.js (SSR/SSG), Vanilla CSS, Node.js, Express</td>
+                  <td className="p-5 text-emerald-500 font-semibold">Sub-500ms Largest Contentful Paint (LCP)</td>
+                  <td className="p-5">Zero-latency headless CMS pipelines, static generation</td>
+                </tr>
+                <tr className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                  <td className="p-5 font-semibold text-slate-900 dark:text-white">Enterprise Workflow Automation</td>
+                  <td className="p-5">Node.js Workers, PostgreSQL Triggers, Redis Queues</td>
+                  <td className="p-5 text-emerald-500 font-semibold">0ms Data Synchronization Lag</td>
+                  <td className="p-5">Zapier/Make replacement, custom event-driven pipelines</td>
+                </tr>
+                <tr className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                  <td className="p-5 font-semibold text-slate-900 dark:text-white">Database & Vector Storage</td>
+                  <td className="p-5">MongoDB Atlas, Supabase PostgreSQL, Redis Cache</td>
+                  <td className="p-5 text-emerald-500 font-semibold">Optimized Query Execution</td>
+                  <td className="p-5">Serverless schema design, high-velocity embedding storage</td>
+                </tr>
+                <tr className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                  <td className="p-5 font-semibold text-slate-900 dark:text-white">Mobile Integrations</td>
+                  <td className="p-5">SwiftUI (iOS), Kotlin (Android), Flutter Cross-Platform</td>
+                  <td className="p-5 text-emerald-500 font-semibold">Fluid 60fps Native UI Rendering</td>
+                  <td className="p-5">Standalone mobile clients, local caching, push systems</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
