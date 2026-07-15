@@ -189,7 +189,7 @@ async function generateContentWithRetry(model, prompt, maxRetries = 10) {
           const response = await axios.post(
             'https://openrouter.ai/api/v1/chat/completions',
             {
-              model: 'meta-llama/llama-3.3-70b-instruct:free',
+              model: 'google/gemini-2.0-flash-lite',
               messages: [{ role: 'user', content: prompt }],
               response_format: { type: 'json_object' }
             },
@@ -491,7 +491,7 @@ async function runAutopilot() {
     logMsg("Invoking Google Gemini to suggest a trending SEO / LLMO tech topic...");
     const genAI = new GoogleGenerativeAI(geminiKey);
     const topicModel = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
@@ -626,7 +626,7 @@ Requirements for the topic selection:
     const linksContext = existingBlogs.slice(0, 15).map(b => `- Title: "${b.title}", Link slug: "${b.slug}"`).join('\n');
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
+      model: "gemini-1.5-flash",
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
