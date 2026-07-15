@@ -77,7 +77,13 @@ const SEO = ({
         "https://www.linkedin.com/company/panthm-ai-labs",
         "https://x.com/panthmailabs"
       ],
-      "description": "PANTHM AI Labs builds intelligent products that redefine industries, specializing in custom software engineering, low-latency AI voice agents, and conversational workflows."
+      "description": "PANTHM AI Labs builds intelligent products that redefine industries, specializing in custom software engineering, low-latency AI voice agents, and conversational workflows.",
+      "founder": {
+        "@type": "Person",
+        "@id": `${baseUrl}/#founder`,
+        "name": "Ajay Shelke",
+        "jobTitle": "Founder & Director"
+      }
     };
 
     const websiteSchema = {

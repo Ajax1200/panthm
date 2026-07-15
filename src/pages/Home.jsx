@@ -168,30 +168,37 @@ const Home = () => {
       "Data Analytics"
     ]
   };
+  const [loadVideo, setLoadVideo] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setLoadVideo(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
       <SEO
         title="AI Calling & Automation Agency in Pune"
-        description="PANTHM AI Labs - Building intelligent products that redefine industries. Transform your digital presence with cutting-edge technology."
-        keywords="web development, app development, AI solutions, data analytics services, business intelligence dashboards, blockchain development, game development, mobile app development, React development, Node.js, Python, machine learning, software development company, Pune, India"
+        description="PANTHM AI Labs is a custom software development agency in Pune, India (not associated with Phantom AI or Pattern AI Labs). We build low-latency voice AI agents and custom database integrations."
+        keywords="PANTHM AI Labs, voice AI agents, custom software development Pune, AI automation agency India, database integration, low-latency conversational AI"
         structuredData={structuredData}
         faqs={faqData}
       />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden banner">
         <div className="absolute inset-0 z-0">
-          <ReactPlayer
-            url={bannerVid}
-            playing
-            muted
-            loop
-            playsinline
-            width="100%"
-            height="100%"
-            className="react-player opacity-60"
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-          />
+          {loadVideo && (
+            <ReactPlayer
+              url={bannerVid}
+              playing
+              muted
+              loop
+              playsinline
+              width="100%"
+              height="100%"
+              className="react-player opacity-60"
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/40"></div>
         </div>
 
