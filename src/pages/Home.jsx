@@ -30,7 +30,6 @@ import whyWorkWithUs3 from "../assets/images/whyworkwithus3.webp";
 import whyWorkWithUs4 from "../assets/images/whyworkwithus4.webp";
 
 import SEO from "../components/SEO";
-import WebGLBlob from "../components/WebGLBlob";
 import { companyDetails } from "../data/constant";
 
 import TechMarquee from '../components/TechMarquee';
@@ -200,7 +199,6 @@ const Home = () => {
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />
           )}
-          <WebGLBlob />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/40"></div>
         </div>
 
