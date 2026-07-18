@@ -4,25 +4,26 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <url><loc>https://panthm.com/</loc><lastmod>2026-07-16</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://panthm.com/about-us</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services</loc><lastmod>2026-07-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/portfolio</loc><lastmod>2026-07-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs</loc><lastmod>2026-07-16</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/contact</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://panthm.com/privacy-policy</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://panthm.com/services/ai-calling-agency</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/web-development</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/app-development</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/game-development</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/ux-ui-design</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/blockchain</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/infrastructure</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/ai-automation</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/data-analytics</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/vs/phantom-ai</loc><lastmod>2026-07-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/vs/phantom</loc><lastmod>2026-07-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/</loc><lastmod>2026-07-18</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://panthm.com/about-us</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services</loc><lastmod>2026-07-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/portfolio</loc><lastmod>2026-07-18</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs</loc><lastmod>2026-07-18</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/contact</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://panthm.com/privacy-policy</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://panthm.com/services/ai-calling-agency</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/web-development</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/app-development</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/game-development</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/ux-ui-design</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/blockchain</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/infrastructure</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/ai-automation</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/data-analytics</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/vs/phantom-ai</loc><lastmod>2026-07-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/vs/phantom</loc><lastmod>2026-07-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
+  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784354357251</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784182995682</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784090511055</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/custom-serverless-mongodb-atlas-cloudinary-llmo-geo</loc><lastmod>2026-07-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -122,5 +123,4 @@
   <url><loc>https://panthm.com/blogs/cold-email-is-dead-meet-your-new-ai-sales-hunter</loc><lastmod>2025-12-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/stop-building-from-scratch-the-rise-of-whitelabel-ai-saas</loc><lastmod>2025-12-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/why-hiring-a-specialized-ai-agency-beats-generic-solutions</loc><lastmod>2025-12-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/the-ai-workforce-is-here-is-your-business-ready</loc><lastmod>2025-12-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
