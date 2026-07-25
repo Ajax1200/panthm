@@ -1,21 +1,28 @@
 {
-  "lastUpdated": "2026-07-24T01:23:49.391Z",
+  "lastUpdated": "2026-07-25T01:24:38.880Z",
   "dateRange": {
-    "startDate": "2026-07-14",
-    "endDate": "2026-07-21"
+    "startDate": "2026-07-15",
+    "endDate": "2026-07-22"
   },
   "brandStats": {
     "clicks": 4,
-    "impressions": 52,
+    "impressions": 49,
     "avgPosition": 3.1
   },
   "topQueries": [
     {
       "query": "panthm ai labs",
       "clicks": 4,
-      "impressions": 52,
-      "ctr": 0.07692307692307693,
-      "position": 3.1153846153846154
+      "impressions": 49,
+      "ctr": 0.08163265306122448,
+      "position": 3.061224489795918
+    },
+    {
+      "query": "decoyai",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8
     },
     {
       "query": "knowrithm",
@@ -30,13 +37,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 71
-    },
-    {
-      "query": "phant ai customer care number",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
     },
     {
       "query": "phantm",
@@ -55,7 +55,7 @@
   ],
   "lowCtrQueries": [],
   "thresholdQueries": [
-    "knowrithm",
-    "phant ai customer care number"
+    "decoyai",
+    "knowrithm"
   ]
 }
