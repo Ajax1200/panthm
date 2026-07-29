@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-07-28T01:19:54.084Z",
+  "lastUpdated": "2026-07-29T01:21:25.636Z",
   "dateRange": {
-    "startDate": "2026-07-18",
-    "endDate": "2026-07-25"
+    "startDate": "2026-07-19",
+    "endDate": "2026-07-26"
   },
   "brandStats": {
-    "clicks": 5,
-    "impressions": 25,
+    "clicks": 6,
+    "impressions": 26,
     "avgPosition": 1.6
   },
   "topQueries": [
     {
       "query": "panthm ai labs",
-      "clicks": 5,
-      "impressions": 24,
-      "ctr": 0.20833333333333334,
-      "position": 2.208333333333333
+      "clicks": 6,
+      "impressions": 25,
+      "ctr": 0.24,
+      "position": 2.2800000000000002
     },
     {
       "query": "decoyai",
@@ -27,16 +27,16 @@
     {
       "query": "knowrithm",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 2,
       "ctr": 0,
-      "position": 14.666666666666666
+      "position": 14.5
     },
     {
       "query": "mtp ai",
       "clicks": 0,
-      "impressions": 1,
+      "impressions": 2,
       "ctr": 0,
-      "position": 71
+      "position": 68.5
     },
     {
       "query": "panthm",
@@ -44,13 +44,6 @@
       "impressions": 1,
       "ctr": 0,
       "position": 1
-    },
-    {
-      "query": "phantm",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 52
     },
     {
       "query": "upmortem",
