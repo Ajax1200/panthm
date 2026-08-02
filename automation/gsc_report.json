@@ -1,8 +1,8 @@
 {
-  "lastUpdated": "2026-08-01T01:29:11.705Z",
+  "lastUpdated": "2026-08-02T01:26:45.303Z",
   "dateRange": {
-    "startDate": "2026-07-22",
-    "endDate": "2026-07-29"
+    "startDate": "2026-07-23",
+    "endDate": "2026-07-30"
   },
   "brandStats": {
     "clicks": 2,
@@ -16,13 +16,6 @@
       "impressions": 16,
       "ctr": 0.125,
       "position": 2.25
-    },
-    {
-      "query": "decoyai",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 8
     },
     {
       "query": "knowrithm",
@@ -55,7 +48,6 @@
   ],
   "lowCtrQueries": [],
   "thresholdQueries": [
-    "decoyai",
     "knowrithm"
   ]
 }
