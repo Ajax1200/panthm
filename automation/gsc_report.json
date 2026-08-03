@@ -1,21 +1,28 @@
 {
-  "lastUpdated": "2026-08-02T01:26:45.303Z",
+  "lastUpdated": "2026-08-03T01:27:38.730Z",
   "dateRange": {
-    "startDate": "2026-07-23",
-    "endDate": "2026-07-30"
+    "startDate": "2026-07-24",
+    "endDate": "2026-07-31"
   },
   "brandStats": {
     "clicks": 2,
-    "impressions": 17,
-    "avgPosition": 1.6
+    "impressions": 8,
+    "avgPosition": 2.4
   },
   "topQueries": [
     {
       "query": "panthm ai labs",
       "clicks": 2,
-      "impressions": 16,
-      "ctr": 0.125,
-      "position": 2.25
+      "impressions": 8,
+      "ctr": 0.25,
+      "position": 2.375
+    },
+    {
+      "query": "decoyai",
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8
     },
     {
       "query": "knowrithm",
@@ -32,13 +39,6 @@
       "position": 66
     },
     {
-      "query": "panthm",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    },
-    {
       "query": "phantom ai",
       "clicks": 0,
       "impressions": 1,
@@ -48,6 +48,7 @@
   ],
   "lowCtrQueries": [],
   "thresholdQueries": [
+    "decoyai",
     "knowrithm"
   ]
 }
