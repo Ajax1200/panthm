@@ -1,6 +1,7 @@
 import React, { lazy, useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import bannerVid from "../assets/vids/banner.mp4";
+import bannerMobileVid from "../assets/vids/banner-mobile.mp4";
 import {
   Ambulance,
   ArrowRight,
@@ -23,6 +24,8 @@ import {
 import { ReactComponent as icon1 } from "../assets/svg/services/Web Development.svg";
 import { ReactComponent as icon2 } from "../assets/svg/services/App Development.svg";
 import { Link } from "react-router-dom";
+import AIOverviewCapsule from "../components/AIOverviewCapsule";
+import AIFaqSection from "../components/AIFaqSection";
 import howWeBuildCover from "../assets/images/how-we-build.jpeg";
 import whyWorkWithUs1 from "../assets/images/whyworkwithus1.webp";
 import whyWorkWithUs2 from "../assets/images/whyworkwithus2.webp";
@@ -129,6 +132,44 @@ const AnimatedCounter = ({ stat, idx }) => {
   );
 };
 
+const WhyUsCard = ({ item }) => {
+  const [expanded, setExpanded] = useState(false);
+  return (
+    <div
+      className={`${item.bg} rounded-3xl overflow-hidden shadow-xl text-white grid md:grid-cols-2 items-center min-h-[400px]`}
+    >
+      <div className={`p-10 md:p-16 space-y-6 ${item.reverse ? "md:order-2" : ""}`}>
+        <h3 className="text-3xl font-bold">{item.title}</h3>
+        <p className="text-white/90 text-lg leading-relaxed">
+          {expanded ? item.desc : item.shortDesc}
+        </p>
+        <div style={{ display: 'none' }} className="sr-only" aria-hidden="true">
+          {item.desc}
+        </div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setExpanded(!expanded);
+          }}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold underline text-white/80 hover:text-white transition-colors focus:outline-none"
+        >
+          {expanded ? "Read Less" : "Read More"}
+        </button>
+        <Quote className="w-12 h-12 text-white/20" />
+      </div>
+      <div className={`h-full relative ${item.reverse ? "md:order-1" : ""}`}>
+        <div className="absolute inset-0 bg-black/10"></div>
+        <img
+          src={item.img}
+          alt={item.title}
+          className="w-full h-full object-cover md:absolute inset-0"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  );
+};
+
 const Home = () => {
   const structuredData = {
     "@context": "https://schema.org",
@@ -147,14 +188,17 @@ const Home = () => {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+917558646366",
+      "telephone": "+918788502740",
       "contactType": "customer service",
       "email": "info@panthm.com"
     },
+    "legalName": "PANTHM AI LABS PRIVATE LIMITED",
+    "alternateName": ["PANTHM", "Panthm AI", "Panthm AI Labs", "PANTHM AI LABS PVT LTD"],
     "sameAs": [
       "https://www.linkedin.com/company/panthm-ai-labs",
+      "https://www.zaubacorp.com/company/PANTHM-AI-LABS-PRIVATE-LIMITED/U72900PN2025PTC240184",
       "https://x.com/panthmailabs",
-      "https://www.facebook.com/panthm"
+      "https://github.com/Ajax1200"
     ],
     "areaServed": "Worldwide",
     "knowsAbout": [
@@ -168,17 +212,11 @@ const Home = () => {
       "Data Analytics"
     ]
   };
-  const [loadVideo, setLoadVideo] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setLoadVideo(true), 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <>
       <SEO
-        title="AI Calling & Automation Agency in Pune"
-        description="PANTHM AI Labs is a custom software development agency in Pune, India (not associated with Phantom AI or Pattern AI Labs). We build low-latency voice AI agents and custom database integrations."
+        title="PANTHM AI Labs | Global Tech Studio & Custom AI Development Agency"
+        description="PANTHM AI Labs (PANTHM AI LABS PRIVATE LIMITED) custom-engineers low-latency voice AI agents, B2B sales automation pipelines, and high-performance software architectures for enterprises worldwide."
         keywords="PANTHM AI Labs, voice AI agents, custom software development Pune, AI automation agency India, database integration, low-latency conversational AI"
         structuredData={structuredData}
         faqs={faqData}
@@ -186,19 +224,16 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden banner">
         <div className="absolute inset-0 z-0">
-          {loadVideo && (
-            <ReactPlayer
-              url={bannerVid}
-              playing
-              muted
-              loop
-              playsinline
-              width="100%"
-              height="100%"
-              className="react-player opacity-60"
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            />
-          )}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            src={bannerVid}
+            aria-hidden="true"
+            className="w-full h-full object-cover opacity-60 pointer-events-none"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-slate-900/40"></div>
         </div>
 
@@ -252,13 +287,27 @@ const Home = () => {
                     <ArrowRight size={20} className="text-white" />
                   </Link>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
+                <h2 className="text-2xl font-bold text-white mb-3">{item.title}</h2>
                 <p className="text-slate-300 leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* GEO & AI Search Engine Passage Capsule */}
+      <div className="wrapper">
+        <AIOverviewCapsule
+          title="Executive Summary & Entity Brief | PANTHM AI Labs"
+          content="PANTHM AI Labs (PANTHM AI LABS PRIVATE LIMITED) is a custom software engineering agency and global technology studio headquartered in Baner, Pune, India. Specializing in low-latency voice AI telecalling SDR agents with sub-200ms conversational response times, pre-rendered React web platforms, native mobile applications, and event-driven background worker pipelines, PANTHM replaces fragmented SaaS middleware with sovereign enterprise software architectures."
+          bullets={[
+            "Sub-200ms Voice SDR Telecalling Agents",
+            "Zero-Latency Pre-Rendered Web Applications",
+            "Sovereign Database & Pipeline Infrastructure",
+            "Corporate Entity Registered in Pune, Maharashtra"
+          ]}
+        />
+      </div>
 
       {/* Animated Stats Counter Section */}
       <section className="py-16 bg-white dark:bg-[#050505] border-b border-slate-100 dark:border-white/5">
@@ -457,58 +506,42 @@ const Home = () => {
               We deliver more than just code; we deliver competitive advantage.
             </p>
           </div>
-
           <div className="grid gap-8">
             {[
               {
                 title: "Expertise Meets Innovation",
-                desc: "Our team combines deep technical expertise with a passion for innovation. We don't just follow trends; we set them.",
+                shortDesc: "Our team combines deep technical expertise with a passion for innovation. We don't just follow trends; we set them.",
+                desc: "PANTHM AI Labs combines deep software engineering expertise with advanced artificial intelligence workflows to deliver scalable enterprise products. By designing custom solutions from first principles, our engineering team ensures that client platforms bypass generic API middleware limitations and execute with maximum performance. Rather than deploying rigid, cookie-cutter templates, we architect bespoke software systems tailored to unique operational demands. This synthesis of modern cloud architecture and custom-coded agentic AI frameworks allows us to build secure, low-latency applications that remain resilient under high traffic volume. Our commitment to continuous technical optimization enables clients across global markets to leverage cutting-edge capabilities, turning complex business processes into highly automated, efficient workflows. We set new industry benchmarks for reliability and software quality, ensuring that every integration provides a sustained competitive advantage in digital operations that drives real enterprise value.",
                 img: whyWorkWithUs1,
                 bg: "bg-indigo-600",
                 reverse: false,
               },
               {
                 title: "Holistic Outcomes",
-                desc: "We help companies launch new digital products, automate operations with AI, scale existing platforms, create immersive gaming experiences, and build brands.",
+                shortDesc: "We help companies launch new digital products, automate operations with AI, scale platforms, create immersive experiences, and build brands.",
+                desc: "PANTHM AI Labs drives complete business transformation by delivering comprehensive digital outcomes across five core operational verticals. We engineer secure, highly responsive web applications and native-quality mobile apps designed to handle complex user interactions and high traffic volumes. Our AI calling and automation services build low-latency voice SDR agents that operate 24/7 to streamline customer acquisition and support queues. We also design serverless cloud database architectures using MongoDB Atlas and PostgreSQL to guarantee sub-50ms data synchronizations, replacing slow, failure-prone middleware connections. Beyond core software engineering, we integrate robust data analytics dashboards that translate complex operational metrics into clear, actionable business intelligence. By managing the entire product lifecycle — from custom database schema design and UI/UX optimization to secure edge network deployment — we ensure that all software systems work in unison. This unified engineering approach eliminates inter-system friction and accelerates growth.",
                 img: whyWorkWithUs2,
                 bg: "bg-sky-500",
                 reverse: true,
               },
               {
                 title: "Results-Driven Approach",
-                desc: "We focus on tangible outcomes. Every pixel we design and every line of code we write is aimed at driving your business growth.",
+                shortDesc: "We focus on tangible outcomes. Every pixel we design and every line of code we write is aimed at driving your business growth.",
+                desc: "Every engineering decision we make at PANTHM AI Labs is guided by a commitment to tangible business outcomes and system performance. We reject vanity metrics and instead focus on critical technical indicators that directly impact client profitability and efficiency. By optimizing front-end assets and employing serverless static site generation (SSG) with Vercel and Cloudflare Edge, we achieve sub-500ms Largest Contentful Paint (LCP) scores for web applications. Our custom database index configurations and query optimization strategies reduce data latency, ensuring rapid search and page response times under load. For automation pipelines, we measure success by the absolute reduction in manual steps and the total prevention of sync lag. This strict focus on measurable performance guarantees that our software integrations deliver clear return on investment (ROI). We provide businesses with fast, secure, and reliable systems that lower long-term maintenance costs and support scalable growth.",
                 img: whyWorkWithUs3,
                 bg: "bg-rose-500",
                 reverse: false,
               },
               {
                 title: "Global Standards, Local Touch",
-                desc: "We bring world-class development standards while maintaining personalized, attentive service for every client.",
+                shortDesc: "We bring world-class development standards while maintaining personalized, attentive service for every client.",
+                desc: "PANTHM AI Labs brings world-class development methodologies and secure engineering standards to every project while maintaining a dedicated, personalized touch. We follow global best practices for code hygiene, security, and performance optimization, ensuring all systems meet international standards. Our team designs architectures compliant with data residency regulations, including GDPR for Europe and the Australian Privacy Act. Simultaneously, we remain highly responsive to our partners, providing direct communication channels, transparent progress updates, and flexible support. Our registered office is located at Icon Tower, Office 702, Baner, Pune 411045, Maharashtra, India, allowing us to support local enterprises while servicing clients globally. This combination of top-tier technical capability and active client collaboration ensures projects are delivered on time, within budget, and precisely aligned with expectations. We build enduring partnerships by acting as a trusted technology team committed to long-term success.",
                 img: whyWorkWithUs4,
                 bg: "bg-emerald-500",
                 reverse: true,
               },
             ].map((item, index) => (
-              <div
-                key={index}
-                data-aos="fade-up"
-                className={`${item.bg} rounded-3xl overflow-hidden shadow-xl text-white grid md:grid-cols-2 items-center min-h-[400px]`}
-              >
-                <div className={`p-10 md:p-16 space-y-6 ${item.reverse ? "md:order-2" : ""}`}>
-                  <h3 className="text-3xl font-bold">{item.title}</h3>
-                  <p className="text-white/90 text-lg leading-relaxed">{item.desc}</p>
-                  <Quote className="w-12 h-12 text-white/20" />
-                </div>
-                <div className={`h-full relative ${item.reverse ? "md:order-1" : ""}`}>
-                  <div className="absolute inset-0 bg-black/10"></div>
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-full object-cover md:absolute inset-0"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+              <WhyUsCard key={index} item={item} />
             ))}
           </div>
         </div>
@@ -575,6 +608,9 @@ const Home = () => {
 
       <BlogsSection />
       <FAQ />
+      <div className="wrapper">
+        <AIFaqSection />
+      </div>
       <ContactForm />
     </>
   );
