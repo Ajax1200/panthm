@@ -41,73 +41,125 @@ async function main() {
     
     try {
         if (fs.existsSync(localZipPath)) fs.unlinkSync(localZipPath);
-        // Exclude map files, sitemaps, and gzips to keep the archive clean, but include static/media
-        execSync('cd build && zip -r ../build.zip .htaccess * -x "*.map" > /dev/null');
+        
+        // Temporarily move large static/media folder out of build to minimize upload size (under 6MB)
+        // unzipping overlays files on the remote server, keeping existing media files intact.
+        const mediaPath = path.join(__dirname, "build", "static", "media");
+        const tempMediaPath = path.join(__dirname, "../media_temp_deploy");
+        let mediaMoved = false;
+        
+        if (fs.existsSync(mediaPath)) {
+            console.log("ℹ️  Temporarily moving build/static/media directory to optimize upload package...");
+            if (fs.existsSync(tempMediaPath)) {
+                // Delete if old temp folder exists
+                fs.rmSync(tempMediaPath, { recursive: true, force: true });
+            }
+            fs.renameSync(mediaPath, tempMediaPath);
+            mediaMoved = true;
+        }
+        
+        try {
+            execSync('cd build && zip -r ../build.zip .htaccess * -x "*.map" -x "*.mp4" > /dev/null');
+        } finally {
+            // Always restore the media folder
+            if (mediaMoved && fs.existsSync(tempMediaPath)) {
+                fs.mkdirSync(path.dirname(mediaPath), { recursive: true });
+                fs.renameSync(tempMediaPath, mediaPath);
+                console.log("✅ Restored build/static/media directory.");
+            }
+        }
+        
         console.log("Local build.zip created successfully.");
     } catch (err) {
         console.error("Failed to create local zip:", err.message);
         process.exit(1);
     }
     
-    // Step 2: Upload build.zip using native scp (ultra-robust)
-    console.log("\n[2/4] Uploading build.zip via native SCP directly to remote server...");
-    try {
-        execSync(`scp -P ${SSH_PORT} -i "${keyPath}" -o StrictHostKeyChecking=no "${localZipPath}" ${SSH_USER}@${SSH_HOST}:~/build.zip`, { stdio: 'inherit' });
-        console.log("SCP Upload completed successfully.");
-    } catch (uploadErr) {
-        console.error("SCP Upload failed:", uploadErr.message);
-        cleanupLocalFiles();
-        process.exit(1);
-    }
-    
-    // Step 3: Establish Key-Based SSH Connection to trigger extraction
-    console.log("\n[3/4] Connecting to Hostinger via SSH to extract build...");
+    // Step 2: Establish SSH Connection
+    console.log("\n[2/4] Connecting to Hostinger via SSH...");
     const conn = new Client();
+    const keepAlive = setInterval(() => {}, 1000);
     
     conn.on("ready", () => {
         console.log("SSH Connection established successfully.");
         
-        // Step 4: Unzip and deploy (overlaying existing files to preserve media/sitemaps)
-        console.log(`\n[4/4] Extracting build on Hostinger server...`);
-        
-        const deployCmd = [
-            `mkdir -p ~/${targetDir}`,
-            `unzip -o ~/build.zip -d ~/${targetDir}/`,
-            `sed -i "s|/home/u586129197/domains/panthm.com/public_html/|/home/u586129197/${targetDir}/|g" ~/${targetDir}/canvas/.htaccess`,
-            "rm -f ~/build.zip"
-        ].join(" && ");
-        
-        conn.exec(deployCmd, (execErr, stream) => {
-            if (execErr) {
-                console.error("Remote deployment command execution failed:", execErr.message);
+        // Step 3: Open SFTP and upload build.zip
+        console.log("\n[3/4] Uploading build.zip via SFTP channel...");
+        conn.sftp((sftpErr, sftp) => {
+            if (sftpErr) {
+                console.error("Failed to open SFTP session:", sftpErr.message);
+                cleanupLocalFiles();
+                clearInterval(keepAlive);
                 conn.end();
-                return;
+                process.exit(1);
             }
             
-            stream.on("close", () => {
-                console.log("Remote deployment and unzip completed successfully.");
+            // Clean up old remote zip if exists
+            sftp.unlink("build.zip", () => {
+                const readStream = fs.createReadStream(localZipPath);
+                const writeStream = sftp.createWriteStream("build.zip");
                 
-                // Cleanup
-                cleanupLocalFiles();
-                
-                console.log(`\nDEPLOYMENT SUCCESSFUL to ${targetName}!`);
-                if (!isProduction) {
-                    console.log("\nVerify your staging deployment at:");
-                    console.log("👉 http://staging.panthm.com");
-                } else {
-                    console.log("\nVerify your production deployment at:");
-                    console.log("👉 http://panthm.com");
-                }
-                conn.end();
-            })
-            .on("data", (data) => {})
-            .stderr.on("data", (data) => {
-                console.error("[Remote Stderr]: " + data);
+                writeStream.on("finish", () => {
+                    console.log("SFTP Upload completed successfully.");
+                    
+                    // Step 4: Extract build on remote server
+                    console.log(`\n[4/4] Extracting build on Hostinger server...`);
+                    const deployCmd = [
+                        `mkdir -p ~/${targetDir}`,
+                        // Guardrail: Remove loose sub-app files at root level to prevent pollution
+                        `rm -f ~/${targetDir}/client.js ~/${targetDir}/style.css ~/${targetDir}/sw.js`,
+                        `unzip -o ~/build.zip -d ~/${targetDir}/`,
+                        `sed -i "s|/home/u586129197/domains/panthm.com/public_html/|/home/u586129197/${targetDir}/|g" ~/${targetDir}/canvas/.htaccess`,
+                        "rm -f ~/build.zip"
+                    ].join(" && ");
+                    
+                    conn.exec(deployCmd, (execErr, stream) => {
+                        if (execErr) {
+                            console.error("Remote deployment command execution failed:", execErr.message);
+                            cleanupLocalFiles();
+                            clearInterval(keepAlive);
+                            conn.end();
+                            process.exit(1);
+                        }
+                        
+                        stream.on("close", () => {
+                            console.log("Remote deployment and unzip completed successfully.");
+                            cleanupLocalFiles();
+                            console.log(`\nDEPLOYMENT SUCCESSFUL to ${targetName}!`);
+                            if (!isProduction) {
+                                console.log("\nVerify your staging deployment at:");
+                                console.log("👉 http://staging.panthm.com");
+                            } else {
+                                console.log("\nVerify your production deployment at:");
+                                console.log("👉 http://panthm.com");
+                            }
+                            clearInterval(keepAlive);
+                            conn.end();
+                        })
+                        .on("data", (data) => {
+                            console.log("[Remote Output]: " + data);
+                        })
+                        .stderr.on("data", (data) => {
+                            console.error("[Remote Stderr]: " + data);
+                        });
+                });
+            });
+
+            writeStream.on("error", (err) => {
+                    console.error("SFTP Write stream error:", err.message);
+                    cleanupLocalFiles();
+                    clearInterval(keepAlive);
+                    conn.end();
+                    process.exit(1);
+                });
+
+                readStream.pipe(writeStream);
             });
         });
     }).on("error", (err) => {
         console.error("SSH connection error:", err.message);
         cleanupLocalFiles();
+        clearInterval(keepAlive);
         process.exit(1);
     }).connect({
         host: SSH_HOST,
