@@ -42,32 +42,8 @@ async function main() {
     try {
         if (fs.existsSync(localZipPath)) fs.unlinkSync(localZipPath);
         
-        // Temporarily move large static/media folder out of build to minimize upload size (under 6MB)
-        // unzipping overlays files on the remote server, keeping existing media files intact.
-        const mediaPath = path.join(__dirname, "build", "static", "media");
-        const tempMediaPath = path.join(__dirname, "../media_temp_deploy");
-        let mediaMoved = false;
-        
-        if (fs.existsSync(mediaPath)) {
-            console.log("ℹ️  Temporarily moving build/static/media directory to optimize upload package...");
-            if (fs.existsSync(tempMediaPath)) {
-                // Delete if old temp folder exists
-                fs.rmSync(tempMediaPath, { recursive: true, force: true });
-            }
-            fs.renameSync(mediaPath, tempMediaPath);
-            mediaMoved = true;
-        }
-        
-        try {
-            execSync('cd build && zip -r ../build.zip .htaccess * -x "*.map" -x "*.mp4" > /dev/null');
-        } finally {
-            // Always restore the media folder
-            if (mediaMoved && fs.existsSync(tempMediaPath)) {
-                fs.mkdirSync(path.dirname(mediaPath), { recursive: true });
-                fs.renameSync(tempMediaPath, mediaPath);
-                console.log("✅ Restored build/static/media directory.");
-            }
-        }
+        console.log("ℹ️  Packaging build directory including static assets...");
+        execSync('cd build && zip -r ../build.zip .htaccess * -x "*.map" > /dev/null');
         
         console.log("Local build.zip created successfully.");
     } catch (err) {
