@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-08-06T01:18:16.662Z",
+  "lastUpdated": "2026-08-07T01:59:38.419Z",
   "dateRange": {
-    "startDate": "2026-07-27",
-    "endDate": "2026-08-03"
+    "startDate": "2026-07-28",
+    "endDate": "2026-08-04"
   },
   "brandStats": {
     "clicks": 0,
-    "impressions": 8,
-    "avgPosition": 2.9
+    "impressions": 14,
+    "avgPosition": 3
   },
   "topQueries": [
     {
@@ -20,9 +20,9 @@
     {
       "query": "panthm ai labs",
       "clicks": 0,
-      "impressions": 8,
+      "impressions": 14,
       "ctr": 0,
-      "position": 2.875
+      "position": 3
     },
     {
       "query": "phantom ai",
@@ -32,7 +32,9 @@
       "position": 62
     }
   ],
-  "lowCtrQueries": [],
+  "lowCtrQueries": [
+    "panthm ai labs"
+  ],
   "thresholdQueries": [
     "decoyai"
   ]
