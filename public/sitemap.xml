@@ -4,42 +4,47 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <url><loc>https://panthm.com/</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://panthm.com/about-us</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/portfolio</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs</loc><lastmod>2026-08-02</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/contact</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://panthm.com/privacy-policy</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://panthm.com/services/ai-calling-agency</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/web-development</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/app-development</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/game-development</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/ux-ui-design</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/blockchain</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/infrastructure</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/ai-automation</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/services/data-analytics</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/vs/phantom-ai</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://panthm.com/vs/phantom</loc><lastmod>2026-08-02</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://panthm.com/about-us</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/portfolio</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs</loc><lastmod>2026-08-07</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/contact</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://panthm.com/privacy-policy</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://panthm.com/services/ai-calling-agency</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/web-development</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/app-development</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/game-development</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/ux-ui-design</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/blockchain</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/infrastructure</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/ai-automation</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/services/data-analytics</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/vs/phantom-ai</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://panthm.com/vs/phantom</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785652653761</loc><lastmod>2026-08-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785565640656</loc><lastmod>2026-08-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785480390904</loc><lastmod>2026-07-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785392758198</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785307022856</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785219857484</loc><lastmod>2026-07-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785135925514</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1786081204677</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/enterprise-rag-architecture-vector-retrieval-semantic-search-1785989567000</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1785888170309</loc><lastmod>2026-08-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/architecting-low-latency-voice-ai-sdrs-sub-200ms-webrtc-pipelines-823649</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/why-pre-rendering-beats-client-side-react-llm-googlebot-crawlers-072cbb</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/architecting-low-latency-voice-ai-sdrs-sub-200ms-webrtc-pipelines-91c8d5</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/building-high-throughput-microservices-nodejs-redis-mongodb-8f1d55</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/generative-engine-optimization-geo-passage-citability-schema-graphs-68ab41</loc><lastmod>2026-08-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/building-high-throughput-microservices-nodejs-redis-mongodb-bc4e9b</loc><lastmod>2026-08-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/saas-prototyping-rapid-mvp-development-react-vite-cloudinary-bd727d</loc><lastmod>2026-08-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/autonomous-outreach-engineering-scaling-cold-email-smtp-pools-3750ed</loc><lastmod>2026-08-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/vector-databases-rag-architecture-enterprise-knowledge-systems-9122bc</loc><lastmod>2026-08-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/generative-engine-optimization-geo-passage-citability-schema-graphs-1785068631112</loc><lastmod>2026-07-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784960264166</loc><lastmod>2026-07-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784788059950</loc><lastmod>2026-07-23</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784701977739</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784615331514</loc><lastmod>2026-07-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784529433340</loc><lastmod>2026-07-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784442313671</loc><lastmod>2026-07-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784354357251</loc><lastmod>2026-07-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784182995682</loc><lastmod>2026-07-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/architecting-enterprise-ai-systems-pipelines-latency-roi-1784090511055</loc><lastmod>2026-07-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/why-pre-rendering-beats-client-side-react-llm-googlebot-crawlers-a181a8</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/saas-prototyping-rapid-mvp-development-react-vite-cloudinary-e7080d</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/vector-databases-rag-architecture-enterprise-knowledge-systems-3a59bc</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/architecting-low-latency-voice-ai-sdrs-sub-200ms-webrtc-pipelines-6e0c9c</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/why-pre-rendering-beats-client-side-react-llm-googlebot-crawlers-62cd5c</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/generative-engine-optimization-geo-passage-citability-schema-graphs-1e07d4</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/building-high-throughput-microservices-nodejs-redis-mongodb-821a55</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/generative-engine-optimization-geo-passage-citability-schema-graphs-9afbac</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://panthm.com/blogs/autonomous-outreach-engineering-scaling-cold-email-smtp-pools-55c40a</loc><lastmod>2026-08-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/custom-serverless-mongodb-atlas-cloudinary-llmo-geo</loc><lastmod>2026-07-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/dynamic-llmo-geo-strategies-ai-search-citation-dominance</loc><lastmod>2026-07-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/architecting-generative-ai-autonomous-sales-playbooks-llmo-geo-dynamic-prospect-engagement</loc><lastmod>2026-07-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -118,9 +123,4 @@
   <url><loc>https://panthm.com/blogs/architecting-ai-search-headless-cms-microservices-llmo-dominance</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/semantic-search-knowledge-graphs-llmo-generative-ai-visibility</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://panthm.com/blogs/unlock-citation-dominance-optimizing-ai-content-llmo-geo-generative-search</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/llm-predictive-seo-ai-search-dominance</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/ai-search-ui-ux-generative-engine-citation-dominance</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/generative-engine-optimization-strategies-ai-search-citations</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/automatic-xml-sitemap-hooking-crawl-budget-conversions-2om3</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://panthm.com/blogs/automatic-xml-sitemap-hooking-crawl-budget-conversions-eq9t</loc><lastmod>2026-05-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
