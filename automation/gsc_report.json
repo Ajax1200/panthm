@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-08-09T00:44:56.550Z",
+  "lastUpdated": "2026-08-10T00:47:53.831Z",
   "dateRange": {
-    "startDate": "2026-07-30",
-    "endDate": "2026-08-06"
+    "startDate": "2026-07-31",
+    "endDate": "2026-08-07"
   },
   "brandStats": {
     "clicks": 0,
-    "impressions": 19,
+    "impressions": 20,
     "avgPosition": 3.2
   },
   "topQueries": [
@@ -20,9 +20,9 @@
     {
       "query": "panthm ai labs",
       "clicks": 0,
-      "impressions": 19,
+      "impressions": 20,
       "ctr": 0,
-      "position": 3.1578947368421053
+      "position": 3.2
     }
   ],
   "lowCtrQueries": [
