@@ -1,28 +1,21 @@
 {
-  "lastUpdated": "2026-09-01T02:19:22.606Z",
+  "lastUpdated": "2026-09-02T01:41:04.595Z",
   "dateRange": {
-    "startDate": "2026-08-22",
-    "endDate": "2026-08-29"
+    "startDate": "2026-08-23",
+    "endDate": "2026-08-30"
   },
   "brandStats": {
     "clicks": 0,
-    "impressions": 13,
-    "avgPosition": 5
+    "impressions": 10,
+    "avgPosition": 1.1
   },
   "topQueries": [
     {
-      "query": "panthm",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 9
-    },
-    {
       "query": "panthm ai labs",
       "clicks": 0,
-      "impressions": 12,
+      "impressions": 10,
       "ctr": 0,
-      "position": 1.0833333333333333
+      "position": 1.1
     },
     {
       "query": "phant ai customer care number",
@@ -32,11 +25,8 @@
       "position": 9
     }
   ],
-  "lowCtrQueries": [
-    "panthm ai labs"
-  ],
+  "lowCtrQueries": [],
   "thresholdQueries": [
-    "panthm",
     "phant ai customer care number"
   ]
 }
