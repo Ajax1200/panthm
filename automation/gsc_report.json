@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-09-05T01:41:38.437Z",
+  "lastUpdated": "2026-09-06T01:35:40.570Z",
   "dateRange": {
-    "startDate": "2026-08-26",
-    "endDate": "2026-09-02"
+    "startDate": "2026-08-27",
+    "endDate": "2026-09-03"
   },
   "brandStats": {
     "clicks": 0,
-    "impressions": 14,
+    "impressions": 13,
     "avgPosition": 1.1
   },
   "topQueries": [
     {
       "query": "panthm ai labs",
       "clicks": 0,
-      "impressions": 14,
+      "impressions": 13,
       "ctr": 0,
-      "position": 1.0714285714285714
+      "position": 1.0769230769230769
     },
     {
       "query": "phant ai customer care number",
