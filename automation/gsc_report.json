@@ -1,36 +1,28 @@
 {
-  "lastUpdated": "2026-10-10T03:02:22.398Z",
+  "lastUpdated": "2026-10-11T02:32:58.123Z",
   "dateRange": {
-    "startDate": "2026-09-30",
-    "endDate": "2026-10-07"
+    "startDate": "2026-10-01",
+    "endDate": "2026-10-08"
   },
   "brandStats": null,
   "topQueries": [
     {
-      "query": "does mongodb atlas offer the same level of control and customization as enterprise advanced for complex deployments?",
+      "query": "evaluate the enterprise data management software company mongodb on cloud deployment & managed services",
       "clicks": 0,
       "impressions": 1,
       "ctr": 0,
-      "position": 11
-    },
-    {
-      "query": "evaluate the enterprise data management software company mongodb on cloud deployment & managed services",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9.5
+      "position": 10
     },
     {
       "query": "what is the best backend storage for generative ai applications?",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 1,
       "ctr": 0,
-      "position": 3
+      "position": 1
     }
   ],
   "lowCtrQueries": [],
   "thresholdQueries": [
-    "does mongodb atlas offer the same level of control and customization as enterprise advanced for complex deployments?",
     "evaluate the enterprise data management software company mongodb on cloud deployment & managed services"
   ]
 }
