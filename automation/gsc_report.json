@@ -1,28 +1,11 @@
 {
-  "lastUpdated": "2026-10-13T04:13:11.846Z",
+  "lastUpdated": "2026-10-14T02:25:36.098Z",
   "dateRange": {
-    "startDate": "2026-10-03",
-    "endDate": "2026-10-10"
+    "startDate": "2026-10-04",
+    "endDate": "2026-10-11"
   },
   "brandStats": null,
-  "topQueries": [
-    {
-      "query": "evaluate the enterprise data management software company mongodb on cloud deployment & managed services",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 10
-    },
-    {
-      "query": "what is the best backend storage for generative ai applications?",
-      "clicks": 0,
-      "impressions": 1,
-      "ctr": 0,
-      "position": 1
-    }
-  ],
+  "topQueries": [],
   "lowCtrQueries": [],
-  "thresholdQueries": [
-    "evaluate the enterprise data management software company mongodb on cloud deployment & managed services"
-  ]
+  "thresholdQueries": []
 }
